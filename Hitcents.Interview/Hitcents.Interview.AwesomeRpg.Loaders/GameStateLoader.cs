@@ -11,6 +11,16 @@ namespace Hitcents.Interview.AwesomeRpg.Loaders
     /// </summary>
     public class GameStateLoader : IGameStateLoader
     {
+        //TODO: These should be a more accurate/specific type (Hashtable, maybe?)...using List for expediency
+        private List<string> _allElementIds;
+        private List<string> _allActionIds;
+
+        public GameStateLoader()
+        {
+            this._allElementIds = new List<string>();
+            this._allActionIds = new List<string>();
+        }
+
         /// <summary>
         /// This method returns loaded GameState from the provided raw XML objects.
         /// Basic conversion and transformation logic should be done here.
@@ -25,7 +35,7 @@ namespace Hitcents.Interview.AwesomeRpg.Loaders
                 var gameState = new List<GameElement>();
                 foreach (var element in elements)
                 {
-                    gameState.Add(this.GetGameElement(gameState, element));
+                    gameState.Add(this.GetGameElement(element));
                 }
 
                 return gameState;
@@ -37,15 +47,25 @@ namespace Hitcents.Interview.AwesomeRpg.Loaders
             }
         }
 
-        private GameElement GetGameElement(List<GameElement> readOnlyGameState, Element element)
+        private GameElement GetGameElement(Element element)
         {
+            //Make sure another element with the same Id doesn't exist
+            if(this._allElementIds.Contains(element.Id))
+            {
+                throw new Exception(string.Format("An Element with the Id {0} already exists. Each Element Id must be unique. Check your configuration and retry.", element.Id));
+            }
+            else
+            {
+                this._allElementIds.Add(element.Id);
+            }
+
             var gameElement = new GameElement()
             {
                 Id = element.Id,
                 Value = this.GetElementValue(element.Id, element.Value),
                 Action = this.GetGameAction(element),
                 Trigger = this.GetGameTrigger(element),
-                Elements = this.GetChildElements(readOnlyGameState, element)
+                Elements = this.GetChildElements(element)
             };
 
             return gameElement;
@@ -75,6 +95,16 @@ namespace Hitcents.Interview.AwesomeRpg.Loaders
             GameAction action = null;
             if (element.Action != null)
             {
+                //Make sure another action with the same Id doesn't exist
+                if (this._allActionIds.Contains(element.Action.Id))
+                {
+                    throw new Exception(string.Format("An Action with the Id {0} already exists (Element Id {1}). Each Action Id must be unique. Check your configuration and retry.", element.Action.Id, element.Id));
+                }
+                else
+                {
+                    this._allActionIds.Add(element.Action.Id);
+                }
+
                 action = new GameAction()
                 {
                     Id = element.Action.Id,
@@ -136,7 +166,7 @@ namespace Hitcents.Interview.AwesomeRpg.Loaders
             return gameSetters;
         }
 
-        private List<GameElement> GetChildElements(List<GameElement> readOnlyGameState, Element element)
+        private List<GameElement> GetChildElements(Element element)
         {
             var childElements = new List<GameElement>();
             if (element.Elements != null)
@@ -144,7 +174,7 @@ namespace Hitcents.Interview.AwesomeRpg.Loaders
                 //Make recursive call to populate nested game elements
                 foreach (var innerElement in element.Elements)
                 {
-                    childElements.Add(this.GetGameElement(readOnlyGameState, innerElement));
+                    childElements.Add(this.GetGameElement(innerElement));
                 }
             }
 

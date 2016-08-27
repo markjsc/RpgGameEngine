@@ -102,6 +102,75 @@ namespace Hitcents.Interview.AwesomeRpg.Tests.Loaders
             //Assert - expected exception
         }
 
+        [TestMethod, ExpectedException(typeof(Exception))]
+        public void DoesLoadGameStateThrowExceptionWhenDuplicateElementIdIsAddedInSameLevel()
+        {
+            var gameStateLoader = new GameStateLoader();
+
+            var elements = new List<Element>()
+            {
+                new Element()
+                {
+                    Id = "abc"                    
+                },
+                new Element()
+                {
+                    Id = "abc"
+                }
+            };
+
+            //Act
+            var actual = gameStateLoader.LoadGameState(elements);
+
+            //Assert - expected exception
+        }
+
+        [TestMethod, ExpectedException(typeof(Exception))]
+        public void DoesLoadGameStateThrowExceptionWhenDuplicateElementIdIsAddedInDifferentLevel()
+        {
+            var gameStateLoader = new GameStateLoader();
+
+            var elements = new List<Element>()
+            {
+                new Element()
+                {
+                    Id = "abc",
+                    Elements = new[]
+                    {
+                        new Element() { Id = "abc" }
+                    }
+                }                
+            };
+
+            //Act
+            var actual = gameStateLoader.LoadGameState(elements);
+
+            //Assert - expected exception
+        }
+
+        [TestMethod, ExpectedException(typeof(Exception))]
+        public void DoesLoadGameStateThrowExceptionWhenDuplicateActionIdIsAdded()
+        {
+            var gameStateLoader = new GameStateLoader();
+
+            var elements = new List<Element>()
+            {
+                new Element()
+                {
+                    Action = new AwesomeRpg.Contracts.Models.RawXml.Action() { Id = "abc" }
+                },
+                new Element()
+                {
+                    Action = new AwesomeRpg.Contracts.Models.RawXml.Action() { Id = "abc" }
+                }
+            };
+
+            //Act
+            var actual = gameStateLoader.LoadGameState(elements);
+
+            //Assert - expected exception
+        }
+
         [TestMethod]
         public void DoesLoadGameStateWorkWithHappyPath()
         {

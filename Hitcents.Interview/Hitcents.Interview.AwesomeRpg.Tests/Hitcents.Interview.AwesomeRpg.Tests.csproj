@@ -65,6 +65,10 @@
       <Project>{d1ac1eed-e929-48e4-adfc-5058791c89c9}</Project>
       <Name>Hitcents.Interview.AwesomeRpg.Contracts</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Hitcents.Interview.AwesomeRpg.Engine\Hitcents.Interview.AwesomeRpg.Engine.csproj">
+      <Project>{499242EA-D727-4382-8E8F-99E823EFD1F1}</Project>
+      <Name>Hitcents.Interview.AwesomeRpg.Engine</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Hitcents.Interview.AwesomeRpg.Loaders\Hitcents.Interview.AwesomeRpg.Loaders.csproj">
       <Project>{1dae69d6-b2ca-43e2-bf22-6d992e84f459}</Project>
       <Name>Hitcents.Interview.AwesomeRpg.Loaders</Name>
