@@ -14,6 +14,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hitcents.Interview.AwesomeR
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hitcents.Interview.AwesomeRpg.Loaders", "Hitcents.Interview.AwesomeRpg.Loaders\Hitcents.Interview.AwesomeRpg.Loaders.csproj", "{1DAE69D6-B2CA-43E2-BF22-6D992E84F459}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hitcents.Interview.AwesomeRpg.Engine", "Hitcents.Interview.AwesomeRpg.Engine\Hitcents.Interview.AwesomeRpg.Engine.csproj", "{499242EA-D727-4382-8E8F-99E823EFD1F1}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -32,6 +34,10 @@ Global
 		{1DAE69D6-B2CA-43E2-BF22-6D992E84F459}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1DAE69D6-B2CA-43E2-BF22-6D992E84F459}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1DAE69D6-B2CA-43E2-BF22-6D992E84F459}.Release|Any CPU.Build.0 = Release|Any CPU
+		{499242EA-D727-4382-8E8F-99E823EFD1F1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{499242EA-D727-4382-8E8F-99E823EFD1F1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{499242EA-D727-4382-8E8F-99E823EFD1F1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{499242EA-D727-4382-8E8F-99E823EFD1F1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

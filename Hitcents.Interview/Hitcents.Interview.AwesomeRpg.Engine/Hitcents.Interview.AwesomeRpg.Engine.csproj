@@ -5,11 +5,11 @@
     <MinimumVisualStudioVersion>11.0</MinimumVisualStudioVersion>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{D1AC1EED-E929-48E4-ADFC-5058791C89C9}</ProjectGuid>
+    <ProjectGuid>{499242EA-D727-4382-8E8F-99E823EFD1F1}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Hitcents.Interview.AwesomeRpg.Contracts</RootNamespace>
-    <AssemblyName>Hitcents.Interview.AwesomeRpg.Contracts</AssemblyName>
+    <RootNamespace>Hitcents.Interview.AwesomeRpg.Engine</RootNamespace>
+    <AssemblyName>Hitcents.Interview.AwesomeRpg.Engine</AssemblyName>
     <DefaultLanguage>en-US</DefaultLanguage>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{786C830F-07A1-408B-BD7F-6EE04809D6DB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -35,22 +35,13 @@
   </PropertyGroup>
   <ItemGroup>
     <!-- A reference to the entire .NET Framework is automatically included -->
+    <ProjectReference Include="..\Hitcents.Interview.AwesomeRpg.Contracts\Hitcents.Interview.AwesomeRpg.Contracts.csproj">
+      <Project>{d1ac1eed-e929-48e4-adfc-5058791c89c9}</Project>
+      <Name>Hitcents.Interview.AwesomeRpg.Contracts</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Interfaces\IGameContext.cs" />
-    <Compile Include="Interfaces\IGameStateLoader.cs" />
-    <Compile Include="Interfaces\IXmlLoader.cs" />
-    <Compile Include="Models\GameAction.cs" />
-    <Compile Include="Models\GameElement.cs" />
-    <Compile Include="Models\GameSetter.cs" />
-    <Compile Include="Models\GameTrigger.cs" />
-    <Compile Include="Models\RawXml\Action.cs" />
-    <Compile Include="Models\RawXml\Element.cs" />
-    <Compile Include="Models\RawXml\GameConfig.cs" />
-    <Compile Include="Models\RawXml\Setter.cs" />
-    <Compile Include="Models\RawXml\Tigger.cs" />
-    <Compile Include="Models\SetterOperations.cs" />
-    <Compile Include="Models\TargetComparisons.cs" />
+    <Compile Include="GameContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
