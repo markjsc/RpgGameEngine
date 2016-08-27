@@ -1,35 +1,29 @@
 ﻿using Hitcents.Interview.AwesomeRpg.Contracts.Models.RawXml;
+using Hitcents.Interview.AwesomeRpg.Loaders;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System.IO;
 
-namespace Hitcents.Interview.AwesomeRpg.Tests.Contracts
+namespace Hitcents.Interview.AwesomeRpg.Tests.Loaders
 {
+    /// <summary>
+    /// Summary description for XmlLoaderTests
+    /// </summary>
     [TestClass]
-    public class RawXmlTests
+    public class XmlLoaderTests
     {
-        /// <summary>
-        /// This validates that the Raw XML is correctly deserialized into the expected object set.
-        /// There are a large number of asserts here just because breaking it into separate smaller
-        /// tests didn't seem worthwhile for a single deserialize operation.
-        /// This will give us a gut check in case the XML Schema or Raw XML classes happen to change.
-        /// </summary>
         [TestMethod]
-        public void DoesRawXmlDeserializeIntoContractsUsingBasicXml()
+        public void DoesLoadXmlReturnExpectedListOfElements()
         {
             //Arrange
-            var deserializer = new System.Xml.Serialization.XmlSerializer(typeof(GameConfig));
+            var loader = new XmlLoader();
 
             //Act
-            var xmlRoot = (GameConfig)deserializer.Deserialize(new StringReader(Constants.SampleXml));
+            var elements = loader.LoadXml(Constants.SampleXml);
 
             //Assert
-            Assert.IsNotNull(xmlRoot);
-            Assert.IsInstanceOfType(xmlRoot, typeof(GameConfig));
-            Assert.IsNotNull(xmlRoot.Elements);
-            Assert.AreEqual(1, xmlRoot.Elements.Length);
+            Assert.AreEqual(1, elements.Count);
 
             //GameConfig/Elements/CoolGame
-            var coolGameElement = xmlRoot.Elements[0];
+            var coolGameElement = elements[0];
             Assert.IsInstanceOfType(coolGameElement, typeof(Element));
             Assert.AreEqual("CoolGame", coolGameElement.Id);
             Assert.AreEqual(1, coolGameElement.Elements.Length);

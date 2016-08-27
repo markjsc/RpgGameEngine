@@ -14,6 +14,6 @@ namespace Hitcents.Interview.AwesomeRpg.Contracts.Models.RawXml
         public string Value { get; set; }
 
         [XmlElement(ElementName = "Setter")]
-        public Setter Setter { get; set; }
+        public Setter[] Setters { get; set; }
     }
 }

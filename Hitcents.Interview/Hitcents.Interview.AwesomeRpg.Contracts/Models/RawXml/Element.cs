@@ -10,11 +10,8 @@ namespace Hitcents.Interview.AwesomeRpg.Contracts.Models.RawXml
         [XmlAttribute(AttributeName = "Id")]
         public string Id { get; set; }
 
-        /// <summary>
-        /// Value - int, for now (possibly a string later?)
-        /// </summary>
         [XmlAttribute(AttributeName = "Value")]
-        public int Value { get; set; }
+        public string Value { get; set; }
 
         [XmlElement(ElementName = "Element")]
         public Element[] Elements { get; set; }

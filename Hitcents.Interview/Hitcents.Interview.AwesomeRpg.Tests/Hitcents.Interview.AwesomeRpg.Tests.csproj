@@ -53,7 +53,9 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="Constants.cs" />
     <Compile Include="Contracts\RawXmlTests.cs" />
+    <Compile Include="Loaders\XmlLoaderTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -61,7 +63,12 @@
       <Project>{d1ac1eed-e929-48e4-adfc-5058791c89c9}</Project>
       <Name>Hitcents.Interview.AwesomeRpg.Contracts</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Hitcents.Interview.AwesomeRpg.Loaders\Hitcents.Interview.AwesomeRpg.Loaders.csproj">
+      <Project>{1dae69d6-b2ca-43e2-bf22-6d992e84f459}</Project>
+      <Name>Hitcents.Interview.AwesomeRpg.Loaders</Name>
+    </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
       <ItemGroup>
