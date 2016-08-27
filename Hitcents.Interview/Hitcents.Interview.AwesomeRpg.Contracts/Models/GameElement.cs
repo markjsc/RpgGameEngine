@@ -26,5 +26,11 @@ namespace Hitcents.Interview.AwesomeRpg.Contracts.Models
         public GameAction Action { get; set; }
         
         public GameTrigger Trigger { get; set; }
+
+        public override string ToString()
+        {
+            //TODO: Implement a formatted string output to show the tree of Elements, Actions, Triggers and Setters
+            return base.ToString();
+        }
     }
 }
