@@ -16,6 +16,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hitcents.Interview.AwesomeR
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hitcents.Interview.AwesomeRpg.Engine", "Hitcents.Interview.AwesomeRpg.Engine\Hitcents.Interview.AwesomeRpg.Engine.csproj", "{499242EA-D727-4382-8E8F-99E823EFD1F1}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hitcents.Interview.AwesomeRpg.DesktopClient", "Hitcents.Interview.AwesomeRpg.DesktopClient\Hitcents.Interview.AwesomeRpg.DesktopClient.csproj", "{98A3DD55-FA2A-4C92-A04D-B3CD223C19C3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -38,6 +40,10 @@ Global
 		{499242EA-D727-4382-8E8F-99E823EFD1F1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{499242EA-D727-4382-8E8F-99E823EFD1F1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{499242EA-D727-4382-8E8F-99E823EFD1F1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{98A3DD55-FA2A-4C92-A04D-B3CD223C19C3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{98A3DD55-FA2A-4C92-A04D-B3CD223C19C3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{98A3DD55-FA2A-4C92-A04D-B3CD223C19C3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{98A3DD55-FA2A-4C92-A04D-B3CD223C19C3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
