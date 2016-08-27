@@ -8,7 +8,7 @@
 
         public const string Equal = "==";
 
-        public const string NotEquals = "!=";
+        public const string NotEqual = "!=";
 
         public const string LessThanOrEqual = "<=";
 

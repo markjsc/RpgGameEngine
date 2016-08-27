@@ -18,6 +18,14 @@ namespace Hitcents.Interview.AwesomeRpg.Engine
             this._gameState = new List<GameElement>();            
         }
 
+        public List<GameElement> GameState
+        {
+            get
+            {
+                return this._gameState;
+            }
+        }
+
         public void BuildGameContext(List<GameElement> gameState)
         {
             try
@@ -41,7 +49,7 @@ namespace Hitcents.Interview.AwesomeRpg.Engine
                 if(actionToRun != null)
                 {
                     this.RunActionSetters(actionToRun.Setters, actionId);
-                    this.RunTriggersFromActionSetters(actionToRun.Setters, actionId);                    
+                    this.RunTriggersFromActionSetters(actionToRun.Setters, actionId);             
                 }
                 else
                 {
@@ -75,15 +83,10 @@ namespace Hitcents.Interview.AwesomeRpg.Engine
         {
             foreach(var actionSetter in actionSetters)
             {
-                var triggeredElement = this.GetElementById(actionSetter.TargetId);
-                if(triggeredElement == null)
+                var trigger = this.GetTriggerByTarget(actionSetter.TargetId);
+                if(trigger != null && this.ShouldTriggerRun(trigger))
                 {
-                    throw new Exception(string.Format("Unable to locate Element with Id {0}, defined as Target of Setter in Action with Id {1}.", actionSetter.TargetId, actionId));
-                }
-
-                if (triggeredElement.Trigger != null && this.ShouldTriggerRun(triggeredElement.Trigger))
-                {
-                    this.RunTriggerSetters(triggeredElement.Trigger.Setters, triggeredElement.Id);
+                    this.RunTriggerSetters(trigger.Setters, trigger.TargetId);
                 }
             }
         }
@@ -127,7 +130,7 @@ namespace Hitcents.Interview.AwesomeRpg.Engine
                 case TargetComparisons.LessThanOrEqual:
                     shouldTriggerRun = assumedElementValue <= trigger.Value;
                     break;
-                case TargetComparisons.NotEquals:
+                case TargetComparisons.NotEqual:
                     shouldTriggerRun = assumedElementValue != trigger.Value;
                     break;
                 default:

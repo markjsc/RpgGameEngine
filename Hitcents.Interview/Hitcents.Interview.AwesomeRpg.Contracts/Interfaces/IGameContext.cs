@@ -8,5 +8,7 @@ namespace Hitcents.Interview.AwesomeRpg.Contracts.Interfaces
         void BuildGameContext(List<GameElement> gameState);
 
         void RunAction(string actionId);
+
+        List<GameElement> GameState { get; }
     }
 }
