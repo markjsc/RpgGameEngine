@@ -1,0 +1,10 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+*.suo
+/Hitcents.Interview/Hitcents.Interview.AwesomeRpg.Contracts/bin/Debug
+/Hitcents.Interview/Hitcents.Interview.AwesomeRpg.Tests/bin/Debug
+/Hitcents.Interview/Hitcents.Interview.AwesomeRpg.Tests/obj/Debug
+/Hitcents.Interview/.vs/config
+/Hitcents.Interview/Hitcents.Interview.AwesomeRpg.Contracts/obj/Debug
