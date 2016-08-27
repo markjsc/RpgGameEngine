@@ -55,6 +55,7 @@
   <ItemGroup>
     <Compile Include="Constants.cs" />
     <Compile Include="Contracts\RawXmlTests.cs" />
+    <Compile Include="Loaders\GameStateLoaderTests.cs" />
     <Compile Include="Loaders\XmlLoaderTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

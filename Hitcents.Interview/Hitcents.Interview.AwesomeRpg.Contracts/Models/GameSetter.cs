@@ -2,7 +2,7 @@
 {
     public class GameSetter
     {
-        public GameElement Target { get; set; }
+        public string TargetId { get; set; }
 
         public string Operation { get; set; }
 

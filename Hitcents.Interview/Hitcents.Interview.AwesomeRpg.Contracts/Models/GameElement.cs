@@ -1,10 +1,12 @@
-﻿namespace Hitcents.Interview.AwesomeRpg.Contracts.Models
+﻿using System.Collections.Generic;
+
+namespace Hitcents.Interview.AwesomeRpg.Contracts.Models
 {
     public class GameElement
     {
         public GameElement()
         {
-            this.Elements = new GameElement[0];
+            this.Elements = new List<GameElement>();
         }
 
         /// <summary>
@@ -17,9 +19,9 @@
         /// In real life this could be any type and the triggering logic would need to
         /// be adjusted to account for operations against varying types at runtime.
         /// </summary>
-        public int Value { get; set; }
+        public int? Value { get; set; }
 
-        public GameElement[] Elements { get; set; }
+        public List<GameElement> Elements { get; set; }
 
         public GameAction Action { get; set; }
         

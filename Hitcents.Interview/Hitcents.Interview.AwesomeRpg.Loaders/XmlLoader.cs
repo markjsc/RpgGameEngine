@@ -6,8 +6,17 @@ using System.IO;
 
 namespace Hitcents.Interview.AwesomeRpg.Loaders
 {
+    /// <summary>
+    /// This class is responsible for loading the XML ONLY.
+    /// </summary>
     public class XmlLoader : IXmlLoader
     {
+        /// <summary>
+        /// This method populates the Raw XML objects from the provided XML.
+        /// There is no conversion or business logic performed here.
+        /// </summary>
+        /// <param name="xml"></param>
+        /// <returns></returns>
         public List<Element> LoadXml(string xml)
         {
             try
