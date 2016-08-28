@@ -3,6 +3,9 @@ using Hitcents.Interview.AwesomeRpg.Contracts.Models;
 
 namespace Hitcents.Interview.AwesomeRpg.DesktopClient.DesignData
 {
+    /// <summary>
+    /// This is some hard-coded sample data that is used to display in the GameStateViewer designer.
+    /// </summary>
     public class GameStateViewerDesignData
     {
         private readonly List<GameElement> _gameState;

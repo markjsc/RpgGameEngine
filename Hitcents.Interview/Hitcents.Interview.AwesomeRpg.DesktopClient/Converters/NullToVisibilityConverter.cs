@@ -5,6 +5,9 @@ using System.Windows.Data;
 
 namespace Hitcents.Interview.AwesomeRpg.DesktopClient.Converters
 {
+    /// <summary>
+    /// If value is NOT null, Visibility is Visible. Otherwise Collapsed.
+    /// </summary>
     public class NullToVisibilityConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
@@ -14,6 +17,7 @@ namespace Hitcents.Interview.AwesomeRpg.DesktopClient.Converters
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
+            //There's no going back...
             throw new NotImplementedException();
         }
     }

@@ -6,6 +6,12 @@ using Hitcents.Interview.AwesomeRpg.Contracts.Models;
 
 namespace Hitcents.Interview.AwesomeRpg.DesktopClient.UserControls
 {
+    /// <summary>
+    /// In a bigger system there would be almost NO code here - it would live in ViewModels.
+    /// For this sample, it's much quicker to implement a few small bits of interaction here.
+    /// Also, I did not create any Unit Tests for the WPF project since there is no business logic here.
+    /// In a larger system, any non-trivial logic (business logic, navigation, etc) would be fully tested!
+    /// </summary>
     public partial class GameStateViewer : UserControl
     {
         public event EventHandler NavigateBackEvent;
@@ -22,9 +28,9 @@ namespace Hitcents.Interview.AwesomeRpg.DesktopClient.UserControls
         }
 
         public static readonly DependencyProperty GameStateProperty =
-            DependencyProperty.Register("GameState", typeof(ObservableCollection<GameElement>), typeof(GameStateViewer), new PropertyMetadata(new ObservableCollection<GameElement>(App.GameContext.GameState)));
+            DependencyProperty.Register("GameState", typeof(ObservableCollection<GameElement>), typeof(GameStateViewer), new PropertyMetadata(new ObservableCollection<GameElement>()));
        
-        private void BackButton_Click(object sender, System.Windows.RoutedEventArgs e)
+        private void BackButton_Click(object sender, RoutedEventArgs e)
         {
             this.OnNavigateBack();
         }

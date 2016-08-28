@@ -7,7 +7,10 @@ using Hitcents.Interview.AwesomeRpg.Loaders;
 namespace Hitcents.Interview.AwesomeRpg.DesktopClient.UserControls
 {
     /// <summary>
-    /// Interaction logic for LoadXmlControl.xaml
+    /// In a bigger system there would be almost NO code here - it would live in ViewModels.
+    /// For this sample, it's much quicker to implement a few small bits of interaction here.
+    /// Also, I did not create any Unit Tests for the WPF project since there is no business logic here.
+    /// In a larger system, any non-trivial logic (business logic, navigation, etc) would be fully tested!
     /// </summary>
     public partial class LoadXmlControl : UserControl
     {
@@ -24,7 +27,7 @@ namespace Hitcents.Interview.AwesomeRpg.DesktopClient.UserControls
 
         }
 
-        private void LoadFromFileButton_Click(object sender, System.Windows.RoutedEventArgs e)
+        private void LoadFromFileButton_Click(object sender, RoutedEventArgs e)
         {
             var fileOpen = new Microsoft.Win32.OpenFileDialog()
             {
@@ -48,7 +51,7 @@ namespace Hitcents.Interview.AwesomeRpg.DesktopClient.UserControls
             }
         }
 
-        private void LoadGameStateButton_Click(object sender, System.Windows.RoutedEventArgs e)
+        private void LoadGameStateButton_Click(object sender, RoutedEventArgs e)
         {
             try
             {

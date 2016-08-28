@@ -10,6 +10,7 @@
         <!--Null To Visibility Converter-->
         <converters:NullToVisibilityConverter x:Key="NullToVisibilityConverter" />
 
+        <!--TextBlock.SectionTitle-->
         <Style x:Key="TextBlock.SectionTitle" TargetType="{x:Type TextBlock}">
             <Setter Property="Background" Value="LightGray" />
             <Setter Property="FontSize" Value="20" />
@@ -18,6 +19,7 @@
             <Setter Property="Margin" Value="2" />
         </Style>
 
+        <!--TextBlock.SectionSubTitle-->
         <Style x:Key="TextBlock.SectionSubTitle" TargetType="{x:Type TextBlock}">
             <Setter Property="Background" Value="LightGray" />
             <Setter Property="FontSize" Value="14" />
@@ -25,29 +27,35 @@
             <Setter Property="Foreground" Value="Black" />
         </Style>
 
+        <!--TextBlock.SetterTitle-->
         <Style x:Key="TextBlock.SetterTitle" TargetType="{x:Type TextBlock}">
             <Setter Property="FontSize" Value="12" />
             <Setter Property="FontWeight" Value="Bold" />
         </Style>
 
+        <!--TextBlock.Label-->
         <Style x:Key="TextBlock.Label" TargetType="{x:Type TextBlock}">
             <Setter Property="Margin" Value="12,4,4,4" />
         </Style>
 
+        <!--TextBlock.SetterLabel-->
         <Style x:Key="TextBlock.SetterLabel" TargetType="{x:Type TextBlock}">
             <Setter Property="Margin" Value="12,0,4,0" />
         </Style>
 
+        <!--TextBlock.Value-->
         <Style x:Key="TextBlock.Value" TargetType="{x:Type TextBlock}">
             <Setter Property="Margin" Value="4" />
             <Setter Property="FontWeight" Value="Bold" />
         </Style>
 
+        <!--TextBlock.SetterValue-->
         <Style x:Key="TextBlock.SetterValue" TargetType="{x:Type TextBlock}">
             <Setter Property="Margin" Value="4,0" />
             <Setter Property="FontWeight" Value="Bold" />
         </Style>
 
+        <!--Button.DoAction-->
         <Style x:Key="Button.DoAction" TargetType="{x:Type Button}">
             <Setter Property="Padding" Value="4" />
             <Setter Property="Margin" Value="12,8" />
