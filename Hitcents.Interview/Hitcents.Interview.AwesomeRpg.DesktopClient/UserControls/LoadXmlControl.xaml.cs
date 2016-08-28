@@ -43,7 +43,7 @@ namespace Hitcents.Interview.AwesomeRpg.DesktopClient.UserControls
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show(string.Format("An exception occurred opening the XML file ({0}). Exception: {1}", fileOpen.FileName, ex));
+                    MessageBox.Show(string.Format("An exception occurred opening the XML file ({0}). Exception: {1}", fileOpen.FileName, ex), "Exception", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
             }
         }
@@ -63,7 +63,7 @@ namespace Hitcents.Interview.AwesomeRpg.DesktopClient.UserControls
             }
             catch (Exception ex)
             {
-                MessageBox.Show(string.Format("An exception occurred loading the Game State. Exception: {0}", ex));
+                MessageBox.Show(string.Format("An exception occurred loading the Game State. Exception: {0}", ex), "Exception", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 

@@ -22,7 +22,7 @@ namespace Hitcents.Interview.AwesomeRpg.DesktopClient.UserControls
         }
 
         public static readonly DependencyProperty GameStateProperty =
-            DependencyProperty.Register("GameState", typeof(ObservableCollection<GameElement>), typeof(GameStateViewer), new PropertyMetadata(new ObservableCollection<GameElement>()));
+            DependencyProperty.Register("GameState", typeof(ObservableCollection<GameElement>), typeof(GameStateViewer), new PropertyMetadata(new ObservableCollection<GameElement>(App.GameContext.GameState)));
        
         private void BackButton_Click(object sender, System.Windows.RoutedEventArgs e)
         {

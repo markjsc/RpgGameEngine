@@ -55,10 +55,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <DesignData Include="DesignData\GameStateDesignData.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </DesignData>
     <Page Include="UserControls\GameStateViewer.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -76,6 +72,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Converters\NullToVisibilityConverter.cs" />
+    <Compile Include="DesignData\GameStateViewerDesignData.cs" />
     <Compile Include="UserControls\GameStateViewer.xaml.cs">
       <DependentUpon>GameStateViewer.xaml</DependentUpon>
     </Compile>

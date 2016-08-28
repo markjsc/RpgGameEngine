@@ -15,6 +15,43 @@
             <Setter Property="FontSize" Value="20" />
             <Setter Property="FontWeight" Value="Bold" />
             <Setter Property="Foreground" Value="Black" />
+            <Setter Property="Margin" Value="2" />
+        </Style>
+
+        <Style x:Key="TextBlock.SectionSubTitle" TargetType="{x:Type TextBlock}">
+            <Setter Property="Background" Value="LightGray" />
+            <Setter Property="FontSize" Value="14" />
+            <Setter Property="FontWeight" Value="Normal" />
+            <Setter Property="Foreground" Value="Black" />
+        </Style>
+
+        <Style x:Key="TextBlock.SetterTitle" TargetType="{x:Type TextBlock}">
+            <Setter Property="FontSize" Value="12" />
+            <Setter Property="FontWeight" Value="Bold" />
+        </Style>
+
+        <Style x:Key="TextBlock.Label" TargetType="{x:Type TextBlock}">
+            <Setter Property="Margin" Value="12,4,4,4" />
+        </Style>
+
+        <Style x:Key="TextBlock.SetterLabel" TargetType="{x:Type TextBlock}">
+            <Setter Property="Margin" Value="12,0,4,0" />
+        </Style>
+
+        <Style x:Key="TextBlock.Value" TargetType="{x:Type TextBlock}">
+            <Setter Property="Margin" Value="4" />
+            <Setter Property="FontWeight" Value="Bold" />
+        </Style>
+
+        <Style x:Key="TextBlock.SetterValue" TargetType="{x:Type TextBlock}">
+            <Setter Property="Margin" Value="4,0" />
+            <Setter Property="FontWeight" Value="Bold" />
+        </Style>
+
+        <Style x:Key="Button.DoAction" TargetType="{x:Type Button}">
+            <Setter Property="Padding" Value="4" />
+            <Setter Property="Margin" Value="12,8" />
+            <Setter Property="HorizontalAlignment" Value="Left" />
         </Style>
         
     </Application.Resources>

@@ -19,7 +19,7 @@ namespace Hitcents.Interview.AwesomeRpg.DesktopClient
         private void GameStateViewer_NavigateBackEvent(object sender, EventArgs e)
         {
             GameStateViewer.Visibility = Visibility.Collapsed;
-            LoadXmlControl.ClearGameXml();
+            //LoadXmlControl.ClearGameXml(); //Originally cleared the XML, but after using the client a bit, I decided NOT to clear it.
             LoadXmlControl.Visibility = Visibility.Visible;            
         }
 
