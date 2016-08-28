@@ -4,9 +4,6 @@ namespace Hitcents.Interview.AwesomeRpg.Contracts.Models.RawXml
 {
     public class Element
     {
-        /// <summary>
-        /// Unique Identifier
-        /// </summary>
         [XmlAttribute(AttributeName = "Id")]
         public string Id { get; set; }
 

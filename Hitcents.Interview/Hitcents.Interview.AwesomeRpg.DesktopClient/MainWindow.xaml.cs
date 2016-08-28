@@ -26,6 +26,7 @@ namespace Hitcents.Interview.AwesomeRpg.DesktopClient
         private void LoadXmlControl_GameStateLoaded(object sender, EventArgs e)
         {
             LoadXmlControl.Visibility = Visibility.Collapsed;
+            GameStateViewer.GameState = new System.Collections.ObjectModel.ObservableCollection<Contracts.Models.GameElement>(App.GameContext.GameState);
             GameStateViewer.Visibility = Visibility.Visible;
         }
     }

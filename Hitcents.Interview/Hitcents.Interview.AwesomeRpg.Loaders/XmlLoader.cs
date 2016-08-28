@@ -1,8 +1,8 @@
-﻿using Hitcents.Interview.AwesomeRpg.Contracts.Interfaces;
-using Hitcents.Interview.AwesomeRpg.Contracts.Models.RawXml;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using Hitcents.Interview.AwesomeRpg.Contracts.Interfaces;
+using Hitcents.Interview.AwesomeRpg.Contracts.Models.RawXml;
 
 namespace Hitcents.Interview.AwesomeRpg.Loaders
 {
@@ -22,6 +22,9 @@ namespace Hitcents.Interview.AwesomeRpg.Loaders
             try
             {
                 var deserializer = new System.Xml.Serialization.XmlSerializer(typeof(GameConfig));
+
+                //Consider always adding the outer two container items to the XML, allowing the input to exclude them (i.e. <Root><Elements>.....</Elements></Root>)
+
                 var root = (GameConfig)deserializer.Deserialize(new StringReader(xml));
                 return new List<Element>(root.Elements);
             }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.ObjectModel;
+using System.Windows;
 using System.Windows.Controls;
 using Hitcents.Interview.AwesomeRpg.Contracts.Models;
 
@@ -15,18 +16,19 @@ namespace Hitcents.Interview.AwesomeRpg.DesktopClient
         public GameStateViewer()
         {
             InitializeComponent();
-
-            this.DataContext = this;
+            //DataContext = this;
         }
-
+        
         public ObservableCollection<GameElement> GameState
         {
-            get
-            {
-                return new ObservableCollection<GameElement>(App.GameContext.GameState);
-            }
+            get { return (ObservableCollection<GameElement>)GetValue(GameStateProperty); }
+            set { SetValue(GameStateProperty, value); }
         }
 
+        // Using a DependencyProperty as the backing store for GameState.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty GameStateProperty =
+            DependencyProperty.Register("GameState", typeof(ObservableCollection<GameElement>), typeof(GameStateViewer), new PropertyMetadata(new ObservableCollection<GameElement>()));
+        
         private void BackButton_Click(object sender, System.Windows.RoutedEventArgs e)
         {
             this.OnNavigateBack();
