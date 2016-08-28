@@ -55,6 +55,14 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="GameStateViewer.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="LoadXmlControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -62,6 +70,12 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="GameStateViewer.xaml.cs">
+      <DependentUpon>GameStateViewer.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="LoadXmlControl.xaml.cs">
+      <DependentUpon>LoadXmlControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
@@ -94,6 +108,20 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Hitcents.Interview.AwesomeRpg.Contracts\Hitcents.Interview.AwesomeRpg.Contracts.csproj">
+      <Project>{D1AC1EED-E929-48E4-ADFC-5058791C89C9}</Project>
+      <Name>Hitcents.Interview.AwesomeRpg.Contracts</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Hitcents.Interview.AwesomeRpg.Engine\Hitcents.Interview.AwesomeRpg.Engine.csproj">
+      <Project>{499242EA-D727-4382-8E8F-99E823EFD1F1}</Project>
+      <Name>Hitcents.Interview.AwesomeRpg.Engine</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Hitcents.Interview.AwesomeRpg.Loaders\Hitcents.Interview.AwesomeRpg.Loaders.csproj">
+      <Project>{1DAE69D6-B2CA-43E2-BF22-6D992E84F459}</Project>
+      <Name>Hitcents.Interview.AwesomeRpg.Loaders</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

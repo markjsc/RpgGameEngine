@@ -1,17 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace Hitcents.Interview.AwesomeRpg.DesktopClient
 {
@@ -23,6 +11,22 @@ namespace Hitcents.Interview.AwesomeRpg.DesktopClient
         public MainWindow()
         {
             InitializeComponent();
+
+            LoadXmlControl.GameStateLoaded += LoadXmlControl_GameStateLoaded;
+            GameStateViewer.NavigateBackEvent += GameStateViewer_NavigateBackEvent;
+        }
+
+        private void GameStateViewer_NavigateBackEvent(object sender, EventArgs e)
+        {
+            GameStateViewer.Visibility = Visibility.Collapsed;
+            LoadXmlControl.ClearGameXml();
+            LoadXmlControl.Visibility = Visibility.Visible;            
+        }
+
+        private void LoadXmlControl_GameStateLoaded(object sender, EventArgs e)
+        {
+            LoadXmlControl.Visibility = Visibility.Collapsed;
+            GameStateViewer.Visibility = Visibility.Visible;
         }
     }
 }

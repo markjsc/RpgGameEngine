@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using Hitcents.Interview.AwesomeRpg.Contracts.Interfaces;
 using Hitcents.Interview.AwesomeRpg.Contracts.Models;
@@ -18,11 +19,11 @@ namespace Hitcents.Interview.AwesomeRpg.Engine
             this._gameState = new List<GameElement>();            
         }
 
-        public List<GameElement> GameState
+        public IReadOnlyCollection<GameElement> GameState
         {
             get
             {
-                return this._gameState;
+                return new ReadOnlyCollection<GameElement>(this._gameState);
             }
         }
 

@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Data;
-using System.Linq;
-using System.Threading.Tasks;
-using System.Windows;
+﻿using System.Windows;
+using Hitcents.Interview.AwesomeRpg.Contracts.Interfaces;
+using Hitcents.Interview.AwesomeRpg.Engine;
 
 namespace Hitcents.Interview.AwesomeRpg.DesktopClient
 {
@@ -13,5 +9,13 @@ namespace Hitcents.Interview.AwesomeRpg.DesktopClient
     /// </summary>
     public partial class App : Application
     {
+        public static IGameContext GameContext { get; set; }
+
+        protected override void OnStartup(StartupEventArgs e)
+        {
+            GameContext = new GameContext();
+
+            base.OnStartup(e);
+        }
     }
 }

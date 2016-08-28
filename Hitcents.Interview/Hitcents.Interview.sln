@@ -5,7 +5,8 @@ VisualStudioVersion = 14.0.25123.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{2E0BBA77-FD7F-4524-A9A7-980E895889E6}"
 	ProjectSection(SolutionItems) = preProject
-		..\..\..\Users\Mark\Downloads\README.MD = ..\..\..\Users\Mark\Downloads\README.MD
+		OriginalREADME.MD = OriginalREADME.MD
+		ReadMe.md = ReadMe.md
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hitcents.Interview.AwesomeRpg.Contracts", "Hitcents.Interview.AwesomeRpg.Contracts\Hitcents.Interview.AwesomeRpg.Contracts.csproj", "{D1AC1EED-E929-48E4-ADFC-5058791C89C9}"

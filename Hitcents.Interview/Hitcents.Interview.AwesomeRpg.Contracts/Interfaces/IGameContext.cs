@@ -9,6 +9,6 @@ namespace Hitcents.Interview.AwesomeRpg.Contracts.Interfaces
 
         void RunAction(string actionId);
 
-        List<GameElement> GameState { get; }
+        IReadOnlyCollection<GameElement> GameState { get; }
     }
 }

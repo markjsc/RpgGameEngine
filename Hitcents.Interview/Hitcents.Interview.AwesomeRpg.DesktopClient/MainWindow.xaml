@@ -5,8 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Hitcents.Interview.AwesomeRpg.DesktopClient"
         mc:Ignorable="d"
-        Title="Awesome RPG" Height="350" Width="525">
+        Title="Awesome RPG" Height="750" Width="800">
     <Grid>
-        
+        <local:LoadXmlControl x:Name="LoadXmlControl" />
+        <local:GameStateViewer x:Name="GameStateViewer" Visibility="Collapsed" />
     </Grid>
 </Window>
