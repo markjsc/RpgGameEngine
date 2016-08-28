@@ -39,6 +39,7 @@
   <ItemGroup>
     <Compile Include="Interfaces\IGameContext.cs" />
     <Compile Include="Interfaces\IGameStateLoader.cs" />
+    <Compile Include="Interfaces\IGameStateNavigator.cs" />
     <Compile Include="Interfaces\IXmlLoader.cs" />
     <Compile Include="Models\GameAction.cs" />
     <Compile Include="Models\GameElement.cs" />

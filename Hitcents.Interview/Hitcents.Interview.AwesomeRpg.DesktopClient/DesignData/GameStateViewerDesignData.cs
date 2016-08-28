@@ -31,7 +31,7 @@ namespace Hitcents.Interview.AwesomeRpg.DesktopClient.DesignData
                                     {
                                         TargetId = "XP",
                                         Operation = "+",
-                                        Value = 10
+                                        Value = "10"
                                     }
                                 }
                             },
@@ -39,28 +39,28 @@ namespace Hitcents.Interview.AwesomeRpg.DesktopClient.DesignData
                             {
                                 TargetId = "XP",
                                 Comparison = ">=",
-                                Value = 10,
+                                Value = "10",
                                 Setters = new List<GameSetter>()
                                 {
                                     new GameSetter()
                                     {
                                         TargetId = "Level",
                                         Operation = "=",
-                                        Value = 2
+                                        Value = "2"
                                     },
                                     new GameSetter()
                                     {
                                         TargetId = "HP",
                                         Operation = "+",
-                                        Value = 5
+                                        Value = "5"
                                     }
                                 }
                             },
                             Elements = new List<GameElement>()
                             {
-                                new GameElement() { Id = "Level", Value = 1 },
-                                new GameElement() { Id = "XP", Value = 0 },
-                                new GameElement() { Id = "HP", Value = 50 }
+                                new GameElement() { Id = "Level", Value = "1" },
+                                new GameElement() { Id = "XP", Value = "0"},
+                                new GameElement() { Id = "HP", Value = "50" }
                             }
                         }
                     }

@@ -7,10 +7,13 @@ development. (Although I was an avid PC and console gamer for many years - I don
 ## Assumptions
 I made the following assumptions in cases where I wasn't quite clear on the details.
 
-* For simplicity of this example, I assumed the Value would be integer (throwing an exception if it's not).
-  Additional features could be added to support varying types. (For example, the Equality comparison operators
-  could still be performed for non-integer values. But type checking would need to be applied in order to
-  apply the math operators.)
+* Strings vs. Numerics - Based on a comment in the provided Readme.MD, I allowed the Values to be strings or 
+  numerics. However the only supported Operation for strings is _Assign_. Also, the only supported Comparisons 
+  for strings are _Equal_ and _NotEqual_. 
+  **One critical note:** If an alpha is provided when a numeric Operation or Comparison is to be
+  performed then the value will be replaced with a zero. This is probably not desired and a better approach
+  would be to validate the configuration and throw an exception when alphas are provided where numerics are
+  expected.
 * Separate Classes for Raw XML vs. Domain Logic - I created seprate model classes for the XML deserializing and
   the Domain Logic. Even in a small, quick effort like this, it's helpful to have the logic separated. The
   result is that the domain classes don't have to be polluted with the XML serialization attributes and
@@ -22,13 +25,16 @@ I made the following assumptions in cases where I wasn't quite clear on the deta
   was provided, or if there's some flexibility there.
   The result of the hack is:
 ```xml
-    <SomeRoot>
-        <SomeContainer>
+    <GameConfig>
+        <Elements>
             <!--XML provided to the Loader-->
             <Element>…</Element>
-        </SomeContainer>
-    </SomeRoot>
+        </Elements>
+    </GameConfig>
 ```
+* Only a Single Action and Single Trigger per Element - I probably took the provided XML a bit too literally.
+  It seems to make sense that multiple Actions and Triggers would be needed in a given Element.
+
 ## Comments:
 Some additional comments for clarification:
 

@@ -62,32 +62,13 @@ namespace Hitcents.Interview.AwesomeRpg.Loaders
             var gameElement = new GameElement()
             {
                 Id = element.Id,
-                Value = this.GetElementValue(element.Id, element.Value),
+                Value = element.Value,
                 Action = this.GetGameAction(element),
                 Trigger = this.GetGameTrigger(element),
                 Elements = this.GetChildElements(element)
             };
 
             return gameElement;
-        }
-
-        private int? GetElementValue(string parentId, string elementValue)
-        {
-            //TODO: Consider changing this to support additional types besides integer (per a "maybe" in the specs)
-            int? nullableElementValue = null;
-            if (!string.IsNullOrEmpty(elementValue))
-            {
-                int parsedElementValue;
-                if (int.TryParse(elementValue, out parsedElementValue))
-                {
-                    nullableElementValue = parsedElementValue;
-                }
-                else
-                {
-                    throw new Exception(string.Format("Unable to parse Value ({0}) as integer for Element with Id {1}.", elementValue, parentId));
-                }
-            }
-            return nullableElementValue;
         }
 
         private GameAction GetGameAction(Element element)
@@ -120,18 +101,11 @@ namespace Hitcents.Interview.AwesomeRpg.Loaders
 
             if (element.Trigger != null)
             {
-                //TODO: Consider changing this to support additional types besides integer (per a "maybe" in the specs)
-                int parsedTriggerValue;
-                if (!int.TryParse(element.Trigger.Value, out parsedTriggerValue))
-                {
-                    throw new Exception(string.Format("Unable to parse Value ({0}) as integer for Trigger with Target {1}, belonging to Element with Id {2}.", element.Trigger.Value, element.Trigger.Target, element.Id));
-                }
-
                 gameTrigger = new GameTrigger()
                 {
                     TargetId = element.Trigger.Target,
                     Comparison = element.Trigger.Comparison,
-                    Value = parsedTriggerValue,
+                    Value = element.Trigger.Value,
                     Setters = this.GetGameSetters(element.Id, element.Trigger.Setters)
                 };
             }
@@ -147,18 +121,11 @@ namespace Hitcents.Interview.AwesomeRpg.Loaders
             {
                 foreach(var setter in setters)
                 {
-                    //TODO: Consider changing this to support additional types besides integer (per a "maybe" in the specs)
-                    int parsedSetterValue;
-                    if(!int.TryParse(setter.Value, out parsedSetterValue))
-                    {
-                        throw new Exception(string.Format("Unable to parse Value ({0}) as integer for Setter with Target {1}, belonging to Element with Id {2}.", setter.Value, setter.Target, parentElementId));
-                    }
-
                     gameSetters.Add(new GameSetter()
                     {
                         Operation = setter.Operation,
                         TargetId = setter.Target,
-                        Value = parsedSetterValue
+                        Value = setter.Value
                     });
                 }
             }

@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
 using Hitcents.Interview.AwesomeRpg.Contracts.Interfaces;
 using Hitcents.Interview.AwesomeRpg.Contracts.Models;
 
@@ -13,10 +12,12 @@ namespace Hitcents.Interview.AwesomeRpg.Engine
     public class GameContext : IGameContext
     {
         private List<GameElement> _gameState;
+        private readonly IGameStateNavigator _gameStateNavigator;
 
-        public GameContext()
+        public GameContext(IGameStateNavigator gameStateNavigator)
         {
-            this._gameState = new List<GameElement>();            
+            this._gameState = new List<GameElement>();
+            this._gameStateNavigator = gameStateNavigator;
         }
 
         public IReadOnlyCollection<GameElement> GameState
@@ -63,7 +64,7 @@ namespace Hitcents.Interview.AwesomeRpg.Engine
                 throw new Exception(string.Format("Running the action for Action with Id {0} has failed.", actionId), ex);
             }
         }
-
+                
         private void RunActionSetters(List<GameSetter> setters, string actionId)
         {
             foreach(var setter in setters)
@@ -109,31 +110,42 @@ namespace Hitcents.Interview.AwesomeRpg.Engine
         private bool ShouldTriggerRun(GameTrigger trigger)
         {
             bool shouldTriggerRun = false;
-
             var targetElement = this.GetElementById(trigger.TargetId);
-            //Assume that if the target Element or its value is NULL then 0 will be used for comparison
-            var assumedElementValue = targetElement != null && targetElement.Value != null ? targetElement.Value : 0;
+
+            //
+            //For Numeric comparisons (i.e. all except for Equal and Not Equal)
+            //
+            //Assume that if the Target Value is not numeric then its value is 0
+            //Perhaps this should be checked by a validation method and an exception thrown when loading rather than using 0 here.
+            float numericTargetValue = 0;
+            float.TryParse(targetElement.Value, out numericTargetValue);
+            //Assume that if the Trigger Value is not numeric then its value is 0
+            //Perhaps this should be checked by a validation method and an exception thrown when loading rather than using 0 here.
+            float numericTriggerValue = 0;
+            float.TryParse(trigger.Value, out numericTriggerValue);
 
             switch (trigger.Comparison)
             {
                 case TargetComparisons.Equal:
-                    shouldTriggerRun = assumedElementValue == trigger.Value;
-                    break;
-                case TargetComparisons.GreaterThan:
-                    shouldTriggerRun = assumedElementValue > trigger.Value;
-                    break;
-                case TargetComparisons.GreaterThanOrEqual:
-                    shouldTriggerRun = assumedElementValue >= trigger.Value;
-                    break;
-                case TargetComparisons.LessThan:
-                    shouldTriggerRun = assumedElementValue < trigger.Value;
-                    break;
-                case TargetComparisons.LessThanOrEqual:
-                    shouldTriggerRun = assumedElementValue <= trigger.Value;
+                    shouldTriggerRun = targetElement.Value == trigger.Value;
                     break;
                 case TargetComparisons.NotEqual:
-                    shouldTriggerRun = assumedElementValue != trigger.Value;
+                    shouldTriggerRun = targetElement.Value != trigger.Value;
                     break;
+
+                case TargetComparisons.GreaterThan:
+                    shouldTriggerRun = numericTargetValue > numericTriggerValue;
+                    break;
+                case TargetComparisons.GreaterThanOrEqual:
+                    shouldTriggerRun = numericTargetValue >= numericTriggerValue;
+                    break;
+                case TargetComparisons.LessThan:
+                    shouldTriggerRun = numericTargetValue < numericTriggerValue;
+                    break;
+                case TargetComparisons.LessThanOrEqual:
+                    shouldTriggerRun = numericTargetValue <= numericTriggerValue;
+                    break;
+                
                 default:
                     throw new Exception(string.Format("The Comparison {0} is not recognized, specified in the Trigger with Target {1}.", trigger.Comparison, trigger.TargetId));
             }
@@ -141,32 +153,45 @@ namespace Hitcents.Interview.AwesomeRpg.Engine
             return shouldTriggerRun;
         }
 
-        private int? CalculateNewElementValue(int? currentValue, string operation, int setterValue, string targetId)
+        private string CalculateNewElementValue(string currentValue, string operation, string setterValue, string targetId)
         {
-            int? newElementValue = null;
-            //Assume that if current Value is null, treat it like 0
-            var assumedCurrentValue = currentValue != null ? currentValue.Value : 0;
+            string newElementValue = null;
+
+            //
+            //For Numeric operations (i.e. all except for Assign)
+            //
+            //Assume that if current Value is not numeric then its value is 0.
+            //Perhaps this should be checked by a validation method and an exception thrown when loading rather than using 0 here.
+            float currentNumericValue = 0;
+            float.TryParse(currentValue, out currentNumericValue);
+            //Assume that if setter Value is not numeric then its value is 0.
+            //Perhaps this should be checked by a validation method and an exception thrown when loading rather than using 0 here.
+            float setterNumericValue = 0;
+            float.TryParse(setterValue, out setterNumericValue);
 
             switch (operation)
             {
-                case SetterOperations.Add:
-                    newElementValue = assumedCurrentValue + setterValue;
-                    break;
-
                 case SetterOperations.Assign:
                     newElementValue = setterValue;
                     break;
 
+                case SetterOperations.Add:
+                    newElementValue = (currentNumericValue + setterNumericValue).ToString();
+                    break;               
+
                 case SetterOperations.Divide:
-                    newElementValue = assumedCurrentValue / setterValue;
+                    //In order to prevent Divide By Zero errors, substitute 1 if numeric value is zero.
+                    setterNumericValue = setterNumericValue == 0 ? 1 : setterNumericValue;
+
+                    newElementValue = (currentNumericValue / setterNumericValue).ToString();
                     break;
 
                 case SetterOperations.Multiply:
-                    newElementValue = assumedCurrentValue * setterValue;
+                    newElementValue = (currentNumericValue * setterNumericValue).ToString();
                     break;
 
                 case SetterOperations.Subtract:
-                    newElementValue = assumedCurrentValue - setterValue;
+                    newElementValue = (currentNumericValue - setterNumericValue).ToString();
                     break;
 
                 default:
@@ -178,83 +203,29 @@ namespace Hitcents.Interview.AwesomeRpg.Engine
        
         private GameElement GetElementById(string id)
         {
-            return this.GetElementById(this._gameState, id);
-        }
-
-        private GameElement GetElementById(List<GameElement> elements, string id)
-        {
-            GameElement gameElement = null;
-
-            if(elements.Any(x => string.Equals(id, x.Id, StringComparison.CurrentCultureIgnoreCase)))
-            {
-                gameElement = elements.First(x => string.Equals(id, x.Id, StringComparison.CurrentCultureIgnoreCase));
-            }
-            else
-            {
-                foreach(var element in elements)
-                {
-                    if(element.Elements != null)
-                    {
-                        gameElement = this.GetElementById(element.Elements, id);
-                    }
-                }
-            }
-
-            return gameElement;
+            return this._gameStateNavigator.GetElementById(this._gameState, id);
         }
 
         private GameAction GetActionById(string id)
         {
-            return this.GetActionById(this._gameState, id);
-        }
-
-        private GameAction GetActionById(List<GameElement> elements, string id)
-        {
-            GameAction action = null;
-            
-            if(elements.Any(x => x.Action != null && string.Equals(id, x.Action.Id, StringComparison.CurrentCultureIgnoreCase)))
-            {
-                action = elements.First(x => x.Action != null && string.Equals(id, x.Action.Id, StringComparison.CurrentCultureIgnoreCase)).Action;
-            }
-            else
-            {
-                foreach(var element in elements)
-                {
-                    if(element.Elements != null)
-                    {
-                        action = this.GetActionById(element.Elements, id);
-                    }
-                }
-            }
-
-            return action;
+            return this._gameStateNavigator.GetActionById(this._gameState, id);
         }
 
         private GameTrigger GetTriggerByTarget(string targetId)
         {
-            return this.GetTriggerByTarget(this._gameState, targetId);
+            return this._gameStateNavigator.GetTriggerByTarget(this._gameState, targetId);
         }
 
-        private GameTrigger GetTriggerByTarget(List<GameElement> elements, string targetId)
+        /// <summary>
+        /// Uses the Float type to determine whether the value is numeric.
+        /// This supports both whole and partial numbers (as opposed to using
+        /// integer).
+        /// </summary>
+        private bool IsNumeric(string value)
         {
-            GameTrigger trigger = null;
-
-            if(elements.Any(x => x.Trigger != null && string.Equals(targetId, x.Trigger.TargetId, StringComparison.CurrentCultureIgnoreCase)))
-            {
-                trigger = elements.First(x => x.Trigger != null && string.Equals(targetId, x.Trigger.TargetId, StringComparison.CurrentCultureIgnoreCase)).Trigger;
-            }
-            else
-            {
-                foreach(var element in elements)
-                {
-                    if(element.Elements != null)
-                    {
-                        trigger = this.GetTriggerByTarget(element.Elements, targetId);
-                    }
-                }
-            }
-
-            return trigger;
+            float unused;
+            return !string.IsNullOrEmpty(value) &&
+                   float.TryParse(value, out unused);
         }
     }
 }

@@ -7,10 +7,10 @@
         public string Operation { get; set; }
 
         /// <summary>
-        /// This is assume to be an integer for the purpose of this interview project.
-        /// In real life this could be any type and the triggering logic would need to
-        /// be adjusted to account for operations against varying types at runtime.
+        /// This can be either numeric or string. The comparisons and operations check
+        /// the type before acting and will only perform the comparison or operation
+        /// if the type is appropriate.
         /// </summary>
-        public int Value { get; set; }
+        public string Value { get; set; }
     }
 }

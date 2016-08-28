@@ -11,98 +11,6 @@ namespace Hitcents.Interview.AwesomeRpg.Tests.Loaders
     public class GameStateLoaderTests
     {
         [TestMethod, ExpectedException(typeof(Exception))]
-        public void DoesLoadGameStateThrowEceptionWhenLoadingFails()
-        {
-            //Arrange
-            var gameStateLoader = new GameStateLoader();
-
-            var elements = new List<Element>()
-            {
-                new Element() { Id = "abc", Value = "a" }
-            };
-
-            //Act
-            var actual = gameStateLoader.LoadGameState(elements);
-
-            //Assert - expected exception
-        }
-
-        [TestMethod, ExpectedException(typeof(Exception))]
-        public void DoesLoadGameStateThrowExceptionWhenTriggerTargetCannotBeParsed()
-        {
-            //Arrange
-            var gameStateLoader = new GameStateLoader();
-
-            var elements = new List<Element>()
-            {
-                new Element()
-                {
-                    Id = "abc",
-                    Trigger = new Trigger() { Target = "a" }
-                }
-            };
-
-            //Act
-            var actual = gameStateLoader.LoadGameState(elements);
-
-            //Assert - expected exception
-        }
-
-        [TestMethod, ExpectedException(typeof(Exception))]
-        public void DoesLoadGameStateThrowExceptionWhenActionSetterValueCannotBeParsed()
-        {
-            //Arrange
-            var gameStateLoader = new GameStateLoader();
-
-            var elements = new List<Element>()
-            {
-                new Element()
-                {
-                    Id = "abc",
-                    Action = new AwesomeRpg.Contracts.Models.RawXml.Action()
-                    {
-                        Setters = new[]
-                        {
-                            new Setter() { Value = "a" }
-                        }
-                    }
-                }
-            };
-
-            //Act
-            var actual = gameStateLoader.LoadGameState(elements);
-
-            //Assert - expected exception
-        }
-
-        [TestMethod, ExpectedException(typeof(Exception))]
-        public void DoesLoadGameStateThrowExceptionWhenTriggerSetterValueCannotBeParsed()
-        {
-            //Arrange
-            var gameStateLoader = new GameStateLoader();
-
-            var elements = new List<Element>()
-            {
-                new Element()
-                {
-                    Id = "abc",
-                    Trigger = new Trigger()
-                    {
-                        Setters = new[]
-                        {
-                            new Setter() { Value = "a" }
-                        }
-                    }
-                }
-            };
-
-            //Act
-            var actual = gameStateLoader.LoadGameState(elements);
-
-            //Assert - expected exception
-        }
-
-        [TestMethod, ExpectedException(typeof(Exception))]
         public void DoesLoadGameStateThrowExceptionWhenDuplicateElementIdIsAddedInSameLevel()
         {
             var gameStateLoader = new GameStateLoader();
@@ -238,13 +146,13 @@ namespace Hitcents.Interview.AwesomeRpg.Tests.Loaders
             Assert.AreEqual(1, actionSetter.Count);
             Assert.AreEqual("XP", actionSetter.First().TargetId);
             Assert.AreEqual("+", actionSetter.First().Operation);
-            Assert.AreEqual(10, actionSetter.First().Value);
+            Assert.AreEqual("10", actionSetter.First().Value);
 
             //GameConfig/Elements/CoolGame/Player/Trigger
             Assert.IsNotNull(playerElement.Trigger);
             Assert.AreEqual("XP", playerElement.Trigger.TargetId);
             Assert.AreEqual(">=", playerElement.Trigger.Comparison);
-            Assert.AreEqual(10, playerElement.Trigger.Value);
+            Assert.AreEqual("10", playerElement.Trigger.Value);
             Assert.IsNotNull(playerElement.Trigger.Setters);
 
             //GameConfig/Elements/CoolGame/Player/Trigger/Setter
@@ -252,25 +160,25 @@ namespace Hitcents.Interview.AwesomeRpg.Tests.Loaders
             Assert.AreEqual(1, triggerSetter.Count);
             Assert.AreEqual("Level", triggerSetter.First().TargetId);
             Assert.AreEqual("=", triggerSetter.First().Operation);
-            Assert.AreEqual(2, triggerSetter.First().Value);
+            Assert.AreEqual("2", triggerSetter.First().Value);
 
             //GameConfig/Elements/CoolGame/Player/Level
             Assert.IsNotNull(playerElement.Elements.First());
             var levelElement = playerElement.Elements.First();
             Assert.AreEqual("Level", levelElement.Id);
-            Assert.AreEqual(1, levelElement.Value);
+            Assert.AreEqual("1", levelElement.Value);
 
             //GameConfig/Elements/CoolGame/Player/XP
             Assert.IsNotNull(playerElement.Elements.Skip(1).First());
             var xpElement = playerElement.Elements.Skip(1).First();
             Assert.AreEqual("XP", xpElement.Id);
-            Assert.AreEqual(0, xpElement.Value);
+            Assert.AreEqual("0", xpElement.Value);
 
             //GameConfig/Elements/CoolGame/Player/HP
             Assert.IsNotNull(playerElement.Elements.Skip(2).First());
             var hpElement = playerElement.Elements.Skip(2).First();
             Assert.AreEqual("HP", hpElement.Id);
-            Assert.AreEqual(50, hpElement.Value);
+            Assert.AreEqual("50", hpElement.Value);
         }
     }
 }

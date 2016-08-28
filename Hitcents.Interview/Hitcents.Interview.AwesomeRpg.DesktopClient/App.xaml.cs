@@ -19,7 +19,11 @@ namespace Hitcents.Interview.AwesomeRpg.DesktopClient
         /// <param name="e"></param>
         protected override void OnStartup(StartupEventArgs e)
         {
-            GameContext = new GameContext();
+            //In a larger system this would be managed by a Dependency Injection container (or at least provided by a factory).
+            //I decided to keep it simple here in the interest of time.
+            var gameStateNavigator = new GameStateNavigator();
+
+            GameContext = new GameContext(gameStateNavigator);
 
             base.OnStartup(e);
         }
