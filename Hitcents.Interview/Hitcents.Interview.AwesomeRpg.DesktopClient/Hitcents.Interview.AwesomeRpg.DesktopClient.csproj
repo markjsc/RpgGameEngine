@@ -55,11 +55,15 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Page Include="GameStateViewer.xaml">
+    <DesignData Include="DesignData\GameStateDesignData.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </DesignData>
+    <Page Include="UserControls\GameStateViewer.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="LoadXmlControl.xaml">
+    <Page Include="UserControls\LoadXmlControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -71,10 +75,11 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="GameStateViewer.xaml.cs">
+    <Compile Include="Converters\NullToVisibilityConverter.cs" />
+    <Compile Include="UserControls\GameStateViewer.xaml.cs">
       <DependentUpon>GameStateViewer.xaml</DependentUpon>
     </Compile>
-    <Compile Include="LoadXmlControl.xaml.cs">
+    <Compile Include="UserControls\LoadXmlControl.xaml.cs">
       <DependentUpon>LoadXmlControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="MainWindow.xaml.cs">
@@ -123,9 +128,7 @@
       <Name>Hitcents.Interview.AwesomeRpg.Loaders</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="UserControls\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

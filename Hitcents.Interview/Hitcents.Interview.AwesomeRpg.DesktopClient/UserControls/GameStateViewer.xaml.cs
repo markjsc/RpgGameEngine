@@ -4,11 +4,8 @@ using System.Windows;
 using System.Windows.Controls;
 using Hitcents.Interview.AwesomeRpg.Contracts.Models;
 
-namespace Hitcents.Interview.AwesomeRpg.DesktopClient
+namespace Hitcents.Interview.AwesomeRpg.DesktopClient.UserControls
 {
-    /// <summary>
-    /// Interaction logic for GameStateViewer.xaml
-    /// </summary>
     public partial class GameStateViewer : UserControl
     {
         public event EventHandler NavigateBackEvent;
@@ -16,7 +13,6 @@ namespace Hitcents.Interview.AwesomeRpg.DesktopClient
         public GameStateViewer()
         {
             InitializeComponent();
-            //DataContext = this;
         }
         
         public ObservableCollection<GameElement> GameState
@@ -25,10 +21,9 @@ namespace Hitcents.Interview.AwesomeRpg.DesktopClient
             set { SetValue(GameStateProperty, value); }
         }
 
-        // Using a DependencyProperty as the backing store for GameState.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty GameStateProperty =
             DependencyProperty.Register("GameState", typeof(ObservableCollection<GameElement>), typeof(GameStateViewer), new PropertyMetadata(new ObservableCollection<GameElement>()));
-        
+       
         private void BackButton_Click(object sender, System.Windows.RoutedEventArgs e)
         {
             this.OnNavigateBack();
@@ -39,6 +34,22 @@ namespace Hitcents.Interview.AwesomeRpg.DesktopClient
             if(this.NavigateBackEvent != null)
             {
                 this.NavigateBackEvent.Invoke(this, EventArgs.Empty);
+            }
+        }
+
+        private void DoActionButton_Click(object sender, RoutedEventArgs e)
+        {
+            //TODO: Make this more elegant - it works, but it's not MVVM'y!
+            try
+            {
+                var actionId = (sender as Button).Tag.ToString();
+                App.GameContext.RunAction(actionId);
+                //Freshen up the screen
+                this.GameState = new ObservableCollection<GameElement>(App.GameContext.GameState);
+            }
+            catch(Exception ex)
+            {
+                throw new Exception(string.Format("Unable to run the Action. Exception:{0}", ex));
             }
         }
     }

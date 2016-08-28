@@ -2,8 +2,20 @@
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:local="clr-namespace:Hitcents.Interview.AwesomeRpg.DesktopClient"
+             xmlns:converters="clr-namespace:Hitcents.Interview.AwesomeRpg.DesktopClient.Converters"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-         
+        <!--In a bigger application the styles would be cleanly separated. For expediency, they're all here-->
+        
+        <!--Null To Visibility Converter-->
+        <converters:NullToVisibilityConverter x:Key="NullToVisibilityConverter" />
+
+        <Style x:Key="TextBlock.SectionTitle" TargetType="{x:Type TextBlock}">
+            <Setter Property="Background" Value="LightGray" />
+            <Setter Property="FontSize" Value="20" />
+            <Setter Property="FontWeight" Value="Bold" />
+            <Setter Property="Foreground" Value="Black" />
+        </Style>
+        
     </Application.Resources>
 </Application>

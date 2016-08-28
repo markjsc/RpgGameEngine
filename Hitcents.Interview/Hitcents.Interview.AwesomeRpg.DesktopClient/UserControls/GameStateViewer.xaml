@@ -1,0 +1,104 @@
+﻿<UserControl x:Class="Hitcents.Interview.AwesomeRpg.DesktopClient.UserControls.GameStateViewer"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Hitcents.Interview.AwesomeRpg.DesktopClient"
+             xmlns:models="clr-namespace:Hitcents.Interview.AwesomeRpg.Contracts.Models;assembly=Hitcents.Interview.AwesomeRpg.Contracts"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300"
+             d:DataContext="{d:DesignData Source=/DesignData/GameStateDesignData.xaml}"
+             DataContext="{Binding RelativeSource={RelativeSource Self}}">
+    <UserControl.Resources>
+        <!--GameElement-->
+        <DataTemplate DataType="{x:Type models:GameElement}">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                
+                <TextBlock Grid.Column="0" Grid.ColumnSpan="2"
+                           Style="{StaticResource TextBlock.SectionTitle}"
+                           Text="Element" />
+
+                <TextBlock Grid.Row="1" Grid.Column="0"
+                           Text="Element Id:" />
+                <TextBlock Grid.Row="1" Grid.Column="1"
+                           Text="{Binding Id}" />
+
+
+                <TextBlock Grid.Row="2" Grid.Column="0"
+                           Text="Element Value:" />
+                <TextBlock Grid.Row="2" Grid.Column="1"
+                           Text="{Binding Value}"/>
+                
+                <ItemsControl Grid.Row="3" Grid.ColumnSpan="2"
+                              ItemsSource="{Binding Elements}" Margin="12,0,0,0" />
+
+                <StackPanel Grid.Row="4" Grid.ColumnSpan="2"
+                            Visibility="{Binding Action, Converter={StaticResource NullToVisibilityConverter}}">
+                    <TextBlock Text="Action" />
+                    <TextBlock Text="{Binding Action.Id}" />
+                    <ItemsControl ItemsSource="{Binding Action.Setters}" />
+                    <Button x:Name="DoActionButton"
+                            Margin="4"
+                            Padding="4"
+                            HorizontalAlignment="Left"
+                            Content="Perform Action"
+                            Tag="{Binding Action.Id}"
+                            Click="DoActionButton_Click" />
+                </StackPanel>
+
+                <StackPanel Grid.Row="5" Grid.ColumnSpan="2"
+                            Visibility="{Binding Trigger, Converter={StaticResource NullToVisibilityConverter}}">
+                    <TextBlock Text="Trigger" />
+                    <TextBlock Text="{Binding Trigger.TargetId}" />
+                    <TextBlock Text="{Binding Trigger.Comparison}" />
+                    <TextBlock Text="{Binding Trigger.Value}" />
+                    <ItemsControl ItemsSource="{Binding Trigger.Setters}" />
+                </StackPanel>
+            </Grid>
+        </DataTemplate>
+
+        <!--GameSetter-->
+        <DataTemplate DataType="{x:Type models:GameSetter}">
+            <StackPanel>
+                <TextBlock Text="Setter" />
+                <TextBlock Text="{Binding TargetId}" />
+                <TextBlock Text="{Binding Operation}" />
+                <TextBlock Text="{Binding Value}" />
+            </StackPanel>
+        </DataTemplate>
+    </UserControl.Resources>
+    
+    
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        
+        <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalAlignment="Stretch">
+            <ItemsControl ItemsSource="{Binding GameState}" 
+                          HorizontalAlignment="Stretch"
+                          Margin="4" />
+        </ScrollViewer>        
+
+        <Button Grid.Row="1"
+                x:Name="BackButton"
+                Width="75"
+                Content="Back"
+                HorizontalAlignment="Right"
+                Margin="8"
+                Padding="4" Click="BackButton_Click" />
+    </Grid>
+</UserControl>

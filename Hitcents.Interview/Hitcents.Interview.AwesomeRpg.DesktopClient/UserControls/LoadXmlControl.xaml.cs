@@ -4,7 +4,7 @@ using System.Windows;
 using System.Windows.Controls;
 using Hitcents.Interview.AwesomeRpg.Loaders;
 
-namespace Hitcents.Interview.AwesomeRpg.DesktopClient
+namespace Hitcents.Interview.AwesomeRpg.DesktopClient.UserControls
 {
     /// <summary>
     /// Interaction logic for LoadXmlControl.xaml
