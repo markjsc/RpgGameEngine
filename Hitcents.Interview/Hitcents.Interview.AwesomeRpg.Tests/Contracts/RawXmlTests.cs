@@ -1,6 +1,6 @@
-﻿using Hitcents.Interview.AwesomeRpg.Contracts.Models.RawXml;
+﻿using System.IO;
+using Hitcents.Interview.AwesomeRpg.Contracts.Models.RawXml;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System.IO;
 
 namespace Hitcents.Interview.AwesomeRpg.Tests.Contracts
 {
@@ -18,9 +18,11 @@ namespace Hitcents.Interview.AwesomeRpg.Tests.Contracts
         {
             //Arrange
             var deserializer = new System.Xml.Serialization.XmlSerializer(typeof(GameConfig));
+            //In keeping with the hacky opening and closing tags in the XML Loader code:
+            var completeXml = string.Format("<GameConfig><Elements>{0}</Elements></GameConfig>", Constants.SampleXml);
 
             //Act
-            var xmlRoot = (GameConfig)deserializer.Deserialize(new StringReader(Constants.SampleXml));
+            var xmlRoot = (GameConfig)deserializer.Deserialize(new StringReader(completeXml));
 
             //Assert
             Assert.IsNotNull(xmlRoot);

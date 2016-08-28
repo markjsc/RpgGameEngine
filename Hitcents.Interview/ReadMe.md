@@ -1,4 +1,4 @@
-# Notes
+ Notes
 
 Thank you for the opportunity to provide an example of my work. I've contributed to custom developed
 systems for a wide range of industries before, but I think this is my first experience with game
@@ -11,11 +11,20 @@ I made the following assumptions in cases where I wasn't quite clear on the deta
   Additional features could be added to support varying types. (For example, the Equality comparison operators
   could still be performed for non-integer values. But type checking would need to be applied in order to
   apply the math operators.)
-* Xml Structure - I assume there will be some additional XML wrapping before the array of Element elements
-  (i.e.
+* Separate Classes for Raw XML vs. Domain Logic - I created seprate model classes for the XML deserializing and
+  the Domain Logic. Even in a small, quick effort like this, it's helpful to have the logic separated. The
+  result is that the domain classes don't have to be polluted with the XML serialization attributes and
+  they can even have different property types, if needed.
+* Xml Structure - I originally implemented XML Deserialization with the expectation that the incoming XML
+  would be required to have some outer tags that are required for properly deserializable XML. But I ended up
+  adding a hack in the XML Loader to stuff the incoming XML (literally in the structure provided in the original 
+  ReadMe.MD) inside the expected tags. I was unclear on whether the supported XML should be literally what
+  was provided, or if there's some flexibility there.
+  The result of the hack is:
 ```xml
     <SomeRoot>
         <SomeContainer>
+            <!--XML provided to the Loader-->
             <Element>…</Element>
         </SomeContainer>
     </SomeRoot>

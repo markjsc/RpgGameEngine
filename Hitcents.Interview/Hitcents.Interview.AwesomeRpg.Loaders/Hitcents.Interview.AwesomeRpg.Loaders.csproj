@@ -41,6 +41,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="GameConfig.cs" />
     <Compile Include="GameStateLoader.cs" />
     <Compile Include="XmlLoader.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -5,9 +5,7 @@
     /// </summary>
     public static class Constants
     {
-        public const string SampleXml = "<GameConfig>" +
-"<Elements>" +
-    "<Element Id=\"CoolGame\">" +
+        public const string SampleXml = "<Element Id=\"CoolGame\">" +
         "<Element Id=\"Player\">" +
            "<Element Id=\"Level\" Value=\"1\" />" +
               "<Element Id=\"XP\" Value=\"0\" />" +
@@ -19,8 +17,6 @@
                     "<Setter Target=\"Level\" Operation=\"=\" Value=\"2\" />" +
                 "</Trigger>" +
             "</Element>" +
-        "</Element>" +
-    "</Elements>" +
-"</GameConfig>";
+        "</Element>";
     }
 }
