@@ -70,12 +70,17 @@ namespace Hitcents.Interview.AwesomeRpg.DesktopClient.UserControls
             }
         }
 
+        private void PasteFromClipboard_Click(object sender, RoutedEventArgs e)
+        {
+            XmlTextBox.Text = Clipboard.GetText(TextDataFormat.Text);
+        }
+
         private void OnGameStateLoaded()
         {
             if(this.GameStateLoaded != null)
             {
                 this.GameStateLoaded.Invoke(this, EventArgs.Empty);
             }
-        }
+        }        
     }
 }

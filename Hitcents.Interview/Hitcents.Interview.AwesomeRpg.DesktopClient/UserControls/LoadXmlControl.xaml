@@ -19,11 +19,21 @@
                            Margin="8"
                            TextWrapping="Wrap" />
 
-                <Button x:Name="LoadFromFileButton"
+                <StackPanel Orientation="Horizontal">
+                    <Button x:Name="LoadFromFileButton"
                         Content="Load XML from File..." 
                         HorizontalAlignment="Left"
                         Margin="8"
                         Padding="4" Click="LoadFromFileButton_Click" />
+
+                    <Button x:Name="PasteFromClipboard"
+                            Content="Paste from Clipboard"
+                            HorizontalAlignment="Left"
+                            Margin="8"
+                            Padding="4"
+                            Click="PasteFromClipboard_Click" />
+                </StackPanel>
+                
             </StackPanel>
 
             <TextBox Grid.Row="1"

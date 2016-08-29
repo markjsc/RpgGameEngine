@@ -34,10 +34,10 @@ namespace Hitcents.Interview.AwesomeRpg.Engine
             try
             {
                 this._gameState = gameState;
-                
+
                 //TODO: Add a check here to validate that all Targets point to valid Element Ids so that we can trust Setters not to fail?
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 //TODO: Capture this with the logging mechanism
                 throw new Exception("Buliding the Game Context has failed.", ex);
@@ -49,29 +49,36 @@ namespace Hitcents.Interview.AwesomeRpg.Engine
             try
             {
                 var actionToRun = this.GetActionById(actionId);
-                if(actionToRun != null)
+                if (actionToRun != null)
                 {
                     this.RunActionSetters(actionToRun.Setters, actionId);
-                    this.RunTriggersFromActionSetters(actionToRun.Setters, actionId);             
                 }
                 else
                 {
                     throw new Exception(string.Format("Unable to locate Action with Id {0} in the current Game Context. Check your configuration.", actionId));
                 }
+                try
+                {
+                    this.RunTriggersFromSetters(actionToRun.Setters);
+                }
+                catch (Exception ex)
+                {
+                    throw new Exception("An exception occurred attempting to run the Triggers.", ex);
+                }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 //TODO: Capture this with the logging mechanism
                 throw new Exception(string.Format("Running the action for Action with Id {0} has failed.", actionId), ex);
             }
         }
-                
+
         private void RunActionSetters(List<GameSetter> setters, string actionId)
         {
-            foreach(var setter in setters)
+            foreach (var setter in setters)
             {
                 var elementToSet = this.GetElementById(setter.TargetId);
-                if(elementToSet != null)
+                if (elementToSet != null)
                 {
                     elementToSet.Value = this.CalculateNewElementValue(elementToSet.Value, setter.Operation, setter.Value, setter.TargetId);
                 }
@@ -82,37 +89,34 @@ namespace Hitcents.Interview.AwesomeRpg.Engine
             }
         }
 
-        private void RunTriggersFromActionSetters(List<GameSetter> actionSetters, string actionId)
+        private void RunTriggersFromSetters(List<GameSetter> setters)
         {
-            //TODO: This is getting a bit busy - consider refactoring and possibly optimizing if it seems to be a performance drag.
-            var elementsTouchedByActionSetters = new List<string>();
-            foreach(var actionSetter in actionSetters)
+            foreach (var setter in setters)
             {
-                var triggers = this.GetTriggersByTarget(actionSetter.TargetId);
-                foreach (var trigger in triggers)
+                this.RunTriggersOnElement(setter.TargetId);
+            }
+        }
+
+        private void RunTriggersOnElement(string elementId)
+        {
+            var triggers = this.GetTriggersByTarget(elementId);
+            foreach (var trigger in triggers)
+            {
+                if (this.ShouldTriggerRun(trigger))
                 {
-                    if (this.ShouldTriggerRun(trigger))
-                    {
-                        this.RunTriggerSetters(trigger.Setters, trigger.TargetId);
-                    }
-                    //Check to see if setter changed an Element that should fire another trigger
-                    foreach(var elementTouchedBySetter in trigger.Setters.Select(x => x.TargetId))
-                    {
-                        elementsTouchedByActionSetters.Add(elementTouchedBySetter);
-                    }
+                    this.RunTriggerSetters(trigger.Setters, trigger.TargetId);
+                }
+                //Check to see if setter changed an Element that should fire another trigger
+                foreach (var elementIdChangedBySetter in trigger.Setters.Select(x => x.TargetId))
+                {
+                    //Make recursive call to self.
+                    //A stack overflow exception (aka infinite loop) is possible if a setter changes an element 
+                    // that another trigger is watching and that trigger sets the same element the first trigger 
+                    // was watching.
+                    this.RunTriggersOnElement(elementIdChangedBySetter);
                 }
             }
-            foreach(var elementId in elementsTouchedByActionSetters)
-            {
-                var triggers = this.GetTriggersByTarget(elementId);
-                foreach(var trigger in triggers)
-                {
-                    if (this.ShouldTriggerRun(trigger))
-                    {
-                        this.RunTriggerSetters(trigger.Setters, elementId);
-                    }
-                }
-            }
+
         }
 
         private void RunTriggerSetters(List<GameSetter> triggerSetters, string triggerTargetId)
@@ -167,7 +171,7 @@ namespace Hitcents.Interview.AwesomeRpg.Engine
                 case TargetComparisons.LessThanOrEqual:
                     shouldTriggerRun = numericTargetValue <= numericTriggerValue;
                     break;
-                
+
                 default:
                     throw new Exception(string.Format("The Comparison {0} is not recognized, specified in the Trigger with Target {1}.", trigger.Comparison, trigger.TargetId));
             }
@@ -199,7 +203,7 @@ namespace Hitcents.Interview.AwesomeRpg.Engine
 
                 case SetterOperations.Add:
                     newElementValue = (currentNumericValue + setterNumericValue).ToString();
-                    break;               
+                    break;
 
                 case SetterOperations.Divide:
                     //In order to prevent Divide By Zero errors, substitute 1 if numeric value is zero.
@@ -222,7 +226,7 @@ namespace Hitcents.Interview.AwesomeRpg.Engine
 
             return newElementValue;
         }
-       
+
         private GameElement GetElementById(string id)
         {
             return this._gameStateNavigator.GetElementById(this._gameState, id);
