@@ -11,6 +11,24 @@ namespace Hitcents.Interview.AwesomeRpg.Tests.Engine
     [TestClass]
     public class GameContextTests
     {
+        private class BadGameStateNavigator : IGameStateNavigator
+        {
+            public GameAction GetActionById(List<GameElement> elements, string actionId)
+            {
+                throw new Exception("Fake error!");
+            }
+
+            public GameElement GetElementById(List<GameElement> elements, string id)
+            {
+                throw new Exception("Fake error!");
+            }
+
+            public List<GameTrigger> GetTriggersByTarget(List<GameElement> elements, string targetId)
+            {
+                throw new Exception("Fake error!");
+            }
+        }
+
         private IGameContext GetGameContext()
         {
             var gameStateNavigator = new GameStateNavigator();
@@ -41,6 +59,18 @@ namespace Hitcents.Interview.AwesomeRpg.Tests.Engine
         {
             //Arrange
             var gameContext = this.GetGameContext();
+
+            //Act
+            gameContext.RunAction("abc");
+
+            //Assert - expected exception
+        }
+
+        [TestMethod, ExpectedException(typeof(Exception))]
+        public void DoesRunActionFailWhenGameStateNavigatorThrowsException()
+        {
+            //Arrange
+            var gameContext = new GameContext(new BadGameStateNavigator());
 
             //Act
             gameContext.RunAction("abc");

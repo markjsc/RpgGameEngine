@@ -65,11 +65,11 @@ namespace Hitcents.Interview.AwesomeRpg.Tests.Loaders
             {
                 new Element()
                 {
-                    Action = new[] { new AwesomeRpg.Contracts.Models.RawXml.Action() { Id = "abc" } }
+                    Actions = new[] { new AwesomeRpg.Contracts.Models.RawXml.Action() { Id = "abc" } }
                 },
                 new Element()
                 {
-                    Action = new[] { new AwesomeRpg.Contracts.Models.RawXml.Action() { Id = "abc" } }
+                    Actions = new[] { new AwesomeRpg.Contracts.Models.RawXml.Action() { Id = "abc" } }
                 }
             };
 
@@ -99,9 +99,11 @@ namespace Hitcents.Interview.AwesomeRpg.Tests.Loaders
                             {
                                 new Element() { Id = "Level", Value = "1" },
                                 new Element() { Id = "XP", Value = "0" },
-                                new Element() { Id = "HP", Value = "50" }
+                                new Element() { Id = "HP", Value = "50" },
+                                new Element() { Id = "Name", Value = "Bob" },
+                                new Element() { Id = "Mode", Value = "" }
                             },
-                            Action =new[]
+                            Actions = new[]
                             {
                                 new AwesomeRpg.Contracts.Models.RawXml.Action()
                                 {
@@ -110,9 +112,18 @@ namespace Hitcents.Interview.AwesomeRpg.Tests.Loaders
                                     {
                                         new Setter() { Target = "XP", Operation = "+", Value = "10" }
                                     }
-                            }
+                                },
+                                new AwesomeRpg.Contracts.Models.RawXml.Action()
+                                {
+                                    Id = "ClearHP",
+                                    Setters = new[]
+                                    {
+                                        new Setter() { Target = "HP", Operation = "=", Value = "0" },
+                                        new Setter() { Target = "XP", Operation = "-", Value = "5" }
+                                    }
+                                }
                             },
-                            Trigger = new[]
+                            Triggers = new[]
                             {
                                 new Trigger()
                                 {
@@ -121,7 +132,28 @@ namespace Hitcents.Interview.AwesomeRpg.Tests.Loaders
                                     Value = "10",
                                     Setters = new[]
                                     {
-                                        new Setter() { Target = "Level", Operation = "=", Value = "2" }
+                                        new Setter() { Target = "Level", Operation = "=", Value = "2" },
+                                        new Setter() { Target = "Name", Operation = "=", Value = "Super Bob" }
+                                    }
+                                },
+                                new Trigger()
+                                {
+                                    Target = "Name",
+                                    Comparison = "==",
+                                    Value = "Super Bob",
+                                    Setters = new[]
+                                    {
+                                        new Setter() { Target = "Mode", Operation = "=", Value = "Superman Mode!" }
+                                    }
+                                },
+                                new Trigger()
+                                {
+                                    Target = "Mode",
+                                    Comparison = "==",
+                                    Value = "Superman Mode!",
+                                    Setters = new[]
+                                    {
+                                        new Setter() { Target = "Level", Operation ="=", Value = "3" }
                                     }
                                 }
                             }
@@ -131,46 +163,92 @@ namespace Hitcents.Interview.AwesomeRpg.Tests.Loaders
             };
 
             //Act
-            var actual = gameStateLoader.LoadGameState(elements);
+            var gameState = gameStateLoader.LoadGameState(elements);
 
             //Assert
-            var coolGameElement = actual.First();
+            var coolGameElement = gameState[0];
             Assert.AreEqual("CoolGame", coolGameElement.Id);
             Assert.AreEqual(1, coolGameElement.Elements.Count);
             
-            var playerElement = coolGameElement.Elements.First();
+            var playerElement = coolGameElement.Elements[0];
             Assert.AreEqual("Player", playerElement.Id);
-            Assert.AreEqual(3, playerElement.Elements.Count);
+            Assert.AreEqual(5, playerElement.Elements.Count);
 
-            //GameConfig/Elements/CoolGame/Player/Action
+            //GameConfig/Elements/CoolGame/Player/Action(GainXP)
             Assert.IsNotNull(playerElement.Actions);
             Assert.AreEqual("GainXP", playerElement.Actions[0].Id);
             Assert.IsNotNull(playerElement.Actions[0].Setters);
 
-            //GameConfig/Elements/CoolGame/Player/Action/Setter
-            var actionSetter = playerElement.Actions[0].Setters;
-            Assert.AreEqual(1, actionSetter.Count);
-            Assert.AreEqual("XP", actionSetter.First().TargetId);
-            Assert.AreEqual("+", actionSetter.First().Operation);
-            Assert.AreEqual("10", actionSetter.First().Value);
+            //GameConfig/Elements/CoolGame/Player/Action/GainXP/Setters
+            var gainXpActionSetters = playerElement.Actions[0].Setters;
+            Assert.AreEqual(1, gainXpActionSetters.Count);
+            Assert.AreEqual("XP", gainXpActionSetters[0].TargetId);
+            Assert.AreEqual("+", gainXpActionSetters[0].Operation);
+            Assert.AreEqual("10", gainXpActionSetters[0].Value);
 
-            //GameConfig/Elements/CoolGame/Player/Trigger
-            Assert.IsNotNull(playerElement.Triggers);
+            //GameConfig/Elements/CoolGame/Player/Action(ClearHP)
+            Assert.IsNotNull(playerElement.Actions);
+            Assert.AreEqual("ClearHP", playerElement.Actions[1].Id);
+            Assert.IsNotNull(playerElement.Actions[1].Setters);
+
+            //GameConfig/Elements/CoolGame/Player/Action/ClearHP/Setters
+            var clearHpActionSetters = playerElement.Actions[1].Setters;
+            Assert.AreEqual(2, clearHpActionSetters.Count);
+            Assert.AreEqual("HP", clearHpActionSetters[0].TargetId);
+            Assert.AreEqual("=", clearHpActionSetters[0].Operation);
+            Assert.AreEqual("0", clearHpActionSetters[0].Value);
+            Assert.AreEqual("XP", clearHpActionSetters[1].TargetId);
+            Assert.AreEqual("-", clearHpActionSetters[1].Operation);
+            Assert.AreEqual("5", clearHpActionSetters[1].Value);
+
+            //GameConfig/Elements/CoolGame/Player/Trigger(XP)
+            Assert.IsNotNull(playerElement.Triggers[0]);
             Assert.AreEqual("XP", playerElement.Triggers[0].TargetId);
             Assert.AreEqual(">=", playerElement.Triggers[0].Comparison);
             Assert.AreEqual("10", playerElement.Triggers[0].Value);
             Assert.IsNotNull(playerElement.Triggers[0].Setters);
 
-            //GameConfig/Elements/CoolGame/Player/Trigger/Setter
-            var triggerSetter = playerElement.Triggers[0].Setters;
-            Assert.AreEqual(1, triggerSetter.Count);
-            Assert.AreEqual("Level", triggerSetter.First().TargetId);
-            Assert.AreEqual("=", triggerSetter.First().Operation);
-            Assert.AreEqual("2", triggerSetter.First().Value);
+            //GameConfig/Elements/CoolGame/Player/Trigger/XP/Setters
+            var triggerXpSetters = playerElement.Triggers[0].Setters;
+            Assert.AreEqual(2, triggerXpSetters.Count);
+            Assert.AreEqual("Level", triggerXpSetters[0].TargetId);
+            Assert.AreEqual("=", triggerXpSetters[0].Operation);
+            Assert.AreEqual("2", triggerXpSetters[0].Value);
+            Assert.AreEqual("Name", triggerXpSetters[1].TargetId);
+            Assert.AreEqual("=", triggerXpSetters[1].Operation);
+            Assert.AreEqual("Super Bob", triggerXpSetters[1].Value);
+
+            //GameConfig/Elements/CoolGame/Player/Trigger(Name)
+            Assert.IsNotNull(playerElement.Triggers[1]);
+            Assert.AreEqual("Name", playerElement.Triggers[1].TargetId);
+            Assert.AreEqual("==", playerElement.Triggers[1].Comparison);
+            Assert.AreEqual("Super Bob", playerElement.Triggers[1].Value);
+            Assert.IsNotNull(playerElement.Triggers[1].Setters);
+
+            //GameConfig/Elements/CoolGame/Player/Trigger/Name/Setters
+            var triggerNameSetters = playerElement.Triggers[1].Setters;
+            Assert.AreEqual(1, triggerNameSetters.Count);
+            Assert.AreEqual("Mode", triggerNameSetters[0].TargetId);
+            Assert.AreEqual("=", triggerNameSetters[0].Operation);
+            Assert.AreEqual("Superman Mode!", triggerNameSetters[0].Value);
+
+            //GameConfig/Elements/CoolGame/Player/Trigger(Mode)
+            Assert.IsNotNull(playerElement.Triggers[2]);
+            Assert.AreEqual("Mode", playerElement.Triggers[2].TargetId);
+            Assert.AreEqual("==", playerElement.Triggers[2].Comparison);
+            Assert.AreEqual("Superman Mode!", playerElement.Triggers[2].Value);
+            Assert.IsNotNull(playerElement.Triggers[2].Setters);
+
+            //GameConfig/Elements/CoolGame/Player/Trigger/Mode/Setters
+            var triggerModeSetters = playerElement.Triggers[2].Setters;
+            Assert.AreEqual(1, triggerModeSetters.Count);
+            Assert.AreEqual("Level", triggerModeSetters[0].TargetId);
+            Assert.AreEqual("=", triggerModeSetters[0].Operation);
+            Assert.AreEqual("3", triggerModeSetters[0].Value);
 
             //GameConfig/Elements/CoolGame/Player/Level
-            Assert.IsNotNull(playerElement.Elements.First());
-            var levelElement = playerElement.Elements.First();
+            Assert.IsNotNull(playerElement.Elements[0]);
+            var levelElement = playerElement.Elements[0];
             Assert.AreEqual("Level", levelElement.Id);
             Assert.AreEqual("1", levelElement.Value);
 

@@ -39,6 +39,9 @@ namespace Hitcents.Interview.AwesomeRpg.Loaders
                     gameState.Add(this.GetGameElement(element));
                 }
 
+                this.ValidateTriggerTargetsAreValidElementIds(gameState);
+                this.ValidateSetterTargetsAreValidElementIds(gameState);
+
                 return gameState;
             }
             catch (Exception ex)
@@ -46,6 +49,16 @@ namespace Hitcents.Interview.AwesomeRpg.Loaders
                 //TODO: Capture this with the logging mechanism
                 throw new Exception(string.Format("An exception occurred while loading the GameState.", ex));
             }
+        }
+
+        private void ValidateSetterTargetsAreValidElementIds(List<GameElement> gameState)
+        {
+            //TODO: Add some validation to make sure that all Setter Targets are valid Element Ids
+        }
+
+        private void ValidateTriggerTargetsAreValidElementIds(List<GameElement> gameState)
+        {
+            //TODO: Add some validation to make sure all Trigger Targets are valid Element Ids
         }
 
         private GameElement GetGameElement(Element element)
@@ -75,22 +88,19 @@ namespace Hitcents.Interview.AwesomeRpg.Loaders
         private List<GameAction> GetGameActions(Element element)
         {
             List<GameAction> actions = new List<GameAction>();
-            if (element.Action != null)
+            if (element.Actions != null)
             {
                 //Make sure another action with the same Id doesn't exist
-                if (element.Action.Any(x => this._allActionIds.Contains(x.Id)))
+                if (element.Actions.Any(x => this._allActionIds.Contains(x.Id)))
                 {
                     throw new Exception(string.Format("A duplicate Action is being created from the ELement {0}. Each Action Id must be unique. Check your configuration and retry.", element.Id));
                 }
                 else
                 {
-                    foreach(var id in element.Action.Select(x => x.Id))
-                    {
-                        this._allActionIds.Add(id);
-                    }
+                    this._allActionIds.AddRange(element.Actions.Select(x => x.Id));                    
                 }
 
-                foreach(var action in element.Action)
+                foreach(var action in element.Actions)
                 {
                     actions.Add(new GameAction()
                     {
@@ -106,9 +116,9 @@ namespace Hitcents.Interview.AwesomeRpg.Loaders
         {
             List<GameTrigger> gameTriggers = new List<GameTrigger>();
 
-            if (element.Trigger != null)
+            if (element.Triggers != null)
             {
-                foreach(var trigger in element.Trigger)
+                foreach(var trigger in element.Triggers)
                 {
                     gameTriggers.Add(new GameTrigger()
                     {

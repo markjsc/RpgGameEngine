@@ -34,8 +34,6 @@ namespace Hitcents.Interview.AwesomeRpg.Engine
             try
             {
                 this._gameState = gameState;
-
-                //TODO: Add a check here to validate that all Targets point to valid Element Ids so that we can trust Setters not to fail?
             }
             catch (Exception ex)
             {
@@ -240,18 +238,6 @@ namespace Hitcents.Interview.AwesomeRpg.Engine
         private List<GameTrigger> GetTriggersByTarget(string targetId)
         {
             return this._gameStateNavigator.GetTriggersByTarget(this._gameState, targetId);
-        }
-
-        /// <summary>
-        /// Uses the Float type to determine whether the value is numeric.
-        /// This supports both whole and partial numbers (as opposed to using
-        /// integer).
-        /// </summary>
-        private bool IsNumeric(string value)
-        {
-            float unused;
-            return !string.IsNullOrEmpty(value) &&
-                   float.TryParse(value, out unused);
         }
     }
 }

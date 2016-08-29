@@ -4,14 +4,14 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Hitcents.Interview.AwesomeRpg.Tests.Loaders
 {
-    /// <summary>
-    /// Summary description for XmlLoaderTests
-    /// </summary>
     [TestClass]
     public class XmlLoaderTests
     {
+        /// <summary>
+        /// Very basic test to make sure the XML deserialized correctly.
+        /// </summary>
         [TestMethod]
-        public void DoesLoadXmlReturnExpectedListOfElements()
+        public void DoesLoadXmlReturnProperlyDeserialiezdObjects()
         {
             //Arrange
             var loader = new XmlLoader();
@@ -32,35 +32,84 @@ namespace Hitcents.Interview.AwesomeRpg.Tests.Loaders
             var playerElement = coolGameElement.Elements[0];
             Assert.IsInstanceOfType(playerElement, typeof(Element));
             Assert.AreEqual("Player", playerElement.Id);
-            Assert.AreEqual(3, playerElement.Elements.Length);
+            Assert.AreEqual(5, playerElement.Elements.Length);
 
-            //GameConfig/Elements/CoolGame/Player/Action
-            Assert.IsNotNull(playerElement.Action);
-            Assert.AreEqual("GainXP", playerElement.Action[0].Id);
-            Assert.IsNotNull(playerElement.Action[0].Setters);
+            //GameConfig/Elements/CoolGame/Player/Action(GainXP)
+            Assert.IsNotNull(playerElement.Actions);
+            Assert.AreEqual("GainXP", playerElement.Actions[0].Id);
+            Assert.IsNotNull(playerElement.Actions[0].Setters);
+            
+            //GameConfig/Elements/CoolGame/Player/Action/GainXP/Setters
+            var gainXpActionSetters = playerElement.Actions[0].Setters;
+            Assert.IsInstanceOfType(gainXpActionSetters, typeof(Setter[]));
+            Assert.AreEqual(1, gainXpActionSetters.Length);
+            Assert.AreEqual("XP", gainXpActionSetters[0].Target);
+            Assert.AreEqual("+", gainXpActionSetters[0].Operation);
+            Assert.AreEqual("5", gainXpActionSetters[0].Value);
 
-            //GameConfig/Elements/CoolGame/Player/Action/Setter
-            var actionSetter = playerElement.Action[0].Setters;
-            Assert.IsInstanceOfType(actionSetter, typeof(Setter[]));
-            Assert.AreEqual(1, actionSetter.Length);
-            Assert.AreEqual("XP", actionSetter[0].Target);
-            Assert.AreEqual("+", actionSetter[0].Operation);
-            Assert.AreEqual("10", actionSetter[0].Value);
+            //GameConfig/Elements/CoolGame/Player/Action(ClearHP)
+            Assert.IsNotNull(playerElement.Actions);
+            Assert.AreEqual("ClearHP", playerElement.Actions[1].Id);
+            Assert.IsNotNull(playerElement.Actions[1].Setters);
 
-            //GameConfig/Elements/CoolGame/Player/Trigger
-            Assert.IsNotNull(playerElement.Trigger);
-            Assert.AreEqual("XP", playerElement.Trigger[0].Target);
-            Assert.AreEqual(">=", playerElement.Trigger[0].Comparison);
-            Assert.AreEqual("10", playerElement.Trigger[0].Value);
-            Assert.IsNotNull(playerElement.Trigger[0].Setters);
+            //GameConfig/Elements/CoolGame/Player/Action/ClearHP/Setters
+            var clearHpActionSetters = playerElement.Actions[1].Setters;
+            Assert.IsInstanceOfType(clearHpActionSetters, typeof(Setter[]));
+            Assert.AreEqual(2, clearHpActionSetters.Length);
+            Assert.AreEqual("HP", clearHpActionSetters[0].Target);
+            Assert.AreEqual("=", clearHpActionSetters[0].Operation);
+            Assert.AreEqual("0", clearHpActionSetters[0].Value);
+            Assert.AreEqual("XP", clearHpActionSetters[1].Target);
+            Assert.AreEqual("-", clearHpActionSetters[1].Operation);
+            Assert.AreEqual("5", clearHpActionSetters[1].Value);
+            
+            //GameConfig/Elements/CoolGame/Player/Trigger(XP)
+            Assert.IsNotNull(playerElement.Triggers[0]);
+            Assert.AreEqual("XP", playerElement.Triggers[0].Target);
+            Assert.AreEqual(">=", playerElement.Triggers[0].Comparison);
+            Assert.AreEqual("20", playerElement.Triggers[0].Value);
+            Assert.IsNotNull(playerElement.Triggers[0].Setters);
 
-            //GameConfig/Elements/CoolGame/Player/Trigger/Setter
-            var triggerSetter = playerElement.Trigger[0].Setters;
-            Assert.IsInstanceOfType(triggerSetter, typeof(Setter[]));
-            Assert.AreEqual(1, triggerSetter.Length);
-            Assert.AreEqual("Level", triggerSetter[0].Target);
-            Assert.AreEqual("=", triggerSetter[0].Operation);
-            Assert.AreEqual("2", triggerSetter[0].Value);
+            //GameConfig/Elements/CoolGame/Player/Trigger/XP/Setters
+            var triggerXpSetters = playerElement.Triggers[0].Setters;
+            Assert.IsInstanceOfType(triggerXpSetters, typeof(Setter[]));
+            Assert.AreEqual(2, triggerXpSetters.Length);
+            Assert.AreEqual("Level", triggerXpSetters[0].Target);
+            Assert.AreEqual("=", triggerXpSetters[0].Operation);
+            Assert.AreEqual("2", triggerXpSetters[0].Value);
+            Assert.AreEqual("Name", triggerXpSetters[1].Target);
+            Assert.AreEqual("=", triggerXpSetters[1].Operation);
+            Assert.AreEqual("Super Bob", triggerXpSetters[1].Value);
+
+            //GameConfig/Elements/CoolGame/Player/Trigger(Name)
+            Assert.IsNotNull(playerElement.Triggers[1]);
+            Assert.AreEqual("Name", playerElement.Triggers[1].Target);
+            Assert.AreEqual("==", playerElement.Triggers[1].Comparison);
+            Assert.AreEqual("Super Bob", playerElement.Triggers[1].Value);
+            Assert.IsNotNull(playerElement.Triggers[1].Setters);
+
+            //GameConfig/Elements/CoolGame/Player/Trigger/Name/Setters
+            var triggerNameSetters = playerElement.Triggers[1].Setters;
+            Assert.IsInstanceOfType(triggerNameSetters, typeof(Setter[]));
+            Assert.AreEqual(1, triggerNameSetters.Length);
+            Assert.AreEqual("Mode", triggerNameSetters[0].Target);
+            Assert.AreEqual("=", triggerNameSetters[0].Operation);
+            Assert.AreEqual("Superman Mode!", triggerNameSetters[0].Value);
+
+            //GameConfig/Elements/CoolGame/Player/Trigger(Mode)
+            Assert.IsNotNull(playerElement.Triggers[2]);
+            Assert.AreEqual("Mode", playerElement.Triggers[2].Target);
+            Assert.AreEqual("==", playerElement.Triggers[2].Comparison);
+            Assert.AreEqual("Superman Mode!", playerElement.Triggers[2].Value);
+            Assert.IsNotNull(playerElement.Triggers[2].Setters);
+
+            //GameConfig/Elements/CoolGame/Player/Trigger/Mode/Setters
+            var triggerModeSetters = playerElement.Triggers[2].Setters;
+            Assert.IsInstanceOfType(triggerModeSetters, typeof(Setter[]));
+            Assert.AreEqual(1, triggerModeSetters.Length);
+            Assert.AreEqual("Level", triggerModeSetters[0].Target);
+            Assert.AreEqual("=", triggerModeSetters[0].Operation);
+            Assert.AreEqual("3", triggerModeSetters[0].Value);
 
             //GameConfig/Elements/CoolGame/Player/Level
             Assert.IsNotNull(playerElement.Elements[0]);

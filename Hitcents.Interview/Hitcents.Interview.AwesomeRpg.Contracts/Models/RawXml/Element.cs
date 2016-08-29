@@ -14,9 +14,9 @@ namespace Hitcents.Interview.AwesomeRpg.Contracts.Models.RawXml
         public Element[] Elements { get; set; }
 
         [XmlElement(ElementName = "Action")]
-        public Action[] Action { get; set; }
+        public Action[] Actions { get; set; }
         
         [XmlElement(ElementName = "Trigger")]
-        public Trigger[] Trigger { get; set; }
+        public Trigger[] Triggers { get; set; }
     }
 }

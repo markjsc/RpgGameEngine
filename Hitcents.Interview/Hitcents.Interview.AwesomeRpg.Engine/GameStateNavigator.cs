@@ -12,9 +12,9 @@ namespace Hitcents.Interview.AwesomeRpg.Engine
         {
             GameElement gameElement = null;
 
-            if (elements.Any(x => string.Equals(id, x.Id, StringComparison.CurrentCultureIgnoreCase)))
+            if (elements.Any(x => AreStringsEqual(id, x.Id)))
             {
-                gameElement = elements.First(x => string.Equals(id, x.Id, StringComparison.CurrentCultureIgnoreCase));
+                gameElement = elements.First(x => AreStringsEqual(id, x.Id));
             }
             else
             {
@@ -34,10 +34,10 @@ namespace Hitcents.Interview.AwesomeRpg.Engine
         {
             GameAction action = null;
 
-            if (elements.Any(x => x.Actions.Any(y => string.Equals(actionId, y.Id, StringComparison.CurrentCultureIgnoreCase))))
+            if (elements.Any(x => x.Actions.Any(y => AreStringsEqual(actionId, y.Id))))
             {
-                var element = elements.First(x => x.Actions.Any(y => string.Equals(actionId, y.Id, StringComparison.CurrentCultureIgnoreCase)));
-                action = element.Actions.First(x => string.Equals(actionId, x.Id, StringComparison.CurrentCultureIgnoreCase));
+                var element = elements.First(x => x.Actions.Any(y => AreStringsEqual(actionId, y.Id)));
+                action = element.Actions.First(x => AreStringsEqual(actionId, x.Id));
             }
             else
             {
@@ -57,30 +57,26 @@ namespace Hitcents.Interview.AwesomeRpg.Engine
         {
             List<GameTrigger> triggers = new List<GameTrigger>();
 
-            if (elements.Any(x => x.Triggers.Any(y => string.Equals(targetId, y.TargetId, StringComparison.CurrentCultureIgnoreCase))))
+            foreach(var element in elements)
             {
-                var element = elements.First(x => x.Triggers.Any(y => string.Equals(targetId, y.TargetId, StringComparison.CurrentCultureIgnoreCase)));
-                foreach (var trigger in element.Triggers.Where(x => string.Equals(targetId, x.TargetId, StringComparison.CurrentCultureIgnoreCase)))
+                foreach (var trigger in element.Triggers.Where(x => AreStringsEqual(targetId, x.TargetId)))
                 {
                     triggers.Add(trigger);
                 }
-            }
-            else
-            {
-                foreach (var element in elements)
-                {
-                    if (element.Elements != null)
-                    {
-                        foreach(var trigger in this.GetTriggersByTarget(element.Elements, targetId))
-                        {
-                            triggers.Add(trigger);
-                        }
 
-                    }
+                if (element.Elements != null)
+                {
+                    triggers.AddRange(this.GetTriggersByTarget(element.Elements, targetId));
                 }
-            }
+            }        
 
             return triggers;
+        }
+
+        private bool AreStringsEqual(string a, string b)
+        {
+            //Assume we're OK with case-insensitivity
+            return string.Equals(a, b, StringComparison.CurrentCultureIgnoreCase);
         }
     }
 }
