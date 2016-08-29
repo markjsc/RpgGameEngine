@@ -1,8 +1,9 @@
- Notes
+ # Mark's Notes
 
 Thank you for the opportunity to provide an example of my work. I've contributed to custom developed
 systems for a wide range of industries before, but I think this is my first experience with game
 development. (Although I was an avid PC and console gamer for many years - I don't think that counts.)
+What an enjoyable and rewarding effort this has been!
 
 ## Assumptions
 I made the following assumptions in cases where I wasn't quite clear on the details.
@@ -32,14 +33,11 @@ I made the following assumptions in cases where I wasn't quite clear on the deta
         </Elements>
     </GameConfig>
 ```
-* Only a Single Action and Single Trigger per Element - I probably took the provided XML a bit too literally.
-  It seems to make sense that multiple Actions and Triggers would be needed in a given Element.
-
 ## Comments:
 Some additional comments for clarification:
 
 * I realize there are some optimizations that will need to be performed to make this code more device-friendly
-  (i.e. reducing iterations by using more efficient types of storage). The iterations are all about expediency.
+  (i.e. reducing iterations by using more efficient types of storage). The iterations are all about accuracy and expediency.
 * I used quite a bit of defensive logic (lots of try/catches and repetitive checks for items may not be found
   when expected). I realize at least some of this may not be necessary in paradigms where the inputs and 
   outpus are more tightly controlled (i.e. a Game Designer defining  the rules at design time, but no 

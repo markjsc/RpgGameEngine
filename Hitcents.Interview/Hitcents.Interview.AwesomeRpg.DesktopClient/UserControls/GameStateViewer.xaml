@@ -7,7 +7,7 @@
              xmlns:models="clr-namespace:Hitcents.Interview.AwesomeRpg.Contracts.Models;assembly=Hitcents.Interview.AwesomeRpg.Contracts"
              xmlns:designData="clr-namespace:Hitcents.Interview.AwesomeRpg.DesktopClient.DesignData"
              mc:Ignorable="d" 
-             d:DesignHeight="600" d:DesignWidth="800"
+             d:DesignHeight="800" d:DesignWidth="800"
              d:DataContext="{d:DesignInstance Type=designData:GameStateViewerDesignData, IsDesignTimeCreatable=True}"
              DataContext="{Binding RelativeSource={RelativeSource Self}}">
     <UserControl.Resources>
@@ -46,107 +46,15 @@
                               ItemsSource="{Binding Elements}" Margin="12,0,0,0" />
 
                 <!--Action-->
-                <Grid Grid.Row="3" Grid.ColumnSpan="2"
-                      Margin="12,0,0,0"
-                      Visibility="{Binding Action, Converter={StaticResource NullToVisibilityConverter}}">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto" />
-                        <RowDefinition Height="Auto" />
-                        <RowDefinition Height="Auto" />
-                        <RowDefinition Height="*" />
-                    </Grid.RowDefinitions>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="Auto" />
-                        <ColumnDefinition Width="Auto" />
-                        <ColumnDefinition Width="Auto" />
-                        <ColumnDefinition Width="*" />
-                    </Grid.ColumnDefinitions>
+                <ItemsControl Grid.Row="3" Grid.ColumnSpan="2"
+                              ItemsSource="{Binding Actions}" />
 
-                    <TextBlock Grid.Row="0" Grid.ColumnSpan="4"
-                               Style="{StaticResource TextBlock.SectionSubTitle}">
-                        <Run Text="Action - " />
-                        <Run Text="{Binding Action.Id}" />
-                    </TextBlock>
-
-                    <Grid Grid.Row="1" Grid.ColumnSpan="4">
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto" />
-                            <RowDefinition Height="*" />
-                        </Grid.RowDefinitions>
-
-                        <TextBlock Style="{StaticResource TextBlock.SetterTitle}"
-                                   Text="Setters" />
-
-                        <ItemsControl Grid.Row="1" 
-                                      ItemsSource="{Binding Action.Setters}" />
-                    </Grid>
-                 
-                    <Button Grid.Row="2" Grid.ColumnSpan="4"
-                            x:Name="DoActionButton"
-                            Style="{StaticResource Button.DoAction}"
-                            Content="Perform Action"
-                            Tag="{Binding Action.Id}"
-                            Click="DoActionButton_Click" />
-                </Grid>
 
                 <!--Trigger-->
-                <Grid Grid.Row="4" Grid.ColumnSpan="2"
-                      Margin="12,0,0,0"
-                      Visibility="{Binding Trigger, Converter={StaticResource NullToVisibilityConverter}}">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto" />
-                        <RowDefinition Height="Auto" />
-                        <RowDefinition Height="*" />
-                    </Grid.RowDefinitions>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="Auto" />
-                        <ColumnDefinition Width="Auto" />
-                        <ColumnDefinition Width="Auto" />
-                        <ColumnDefinition Width="Auto" />
-                        <ColumnDefinition Width="Auto" />
-                        <ColumnDefinition Width="*" />
-                    </Grid.ColumnDefinitions>
+                <ItemsControl Grid.Row="4" Grid.ColumnSpan="2"
+                              ItemsSource="{Binding Triggers}"/>
 
-                    <TextBlock Grid.Row="0" Grid.ColumnSpan="6"
-                               Style="{StaticResource TextBlock.SectionSubTitle}"
-                               Text="Trigger" />
 
-                    <TextBlock Grid.Row="1" Grid.Column="0"
-                               Style="{StaticResource TextBlock.Label}"
-                               Text="Target:" />
-                    <TextBlock Grid.Row="1" Grid.Column="1"
-                               Style="{StaticResource TextBlock.Value}"
-                               Text="{Binding Trigger.TargetId}" />
-
-                    <TextBlock Grid.Row="1" Grid.Column="2"
-                               Style="{StaticResource TextBlock.Label}"
-                               Text="Comparison:" />
-                    <TextBlock Grid.Row="1" Grid.Column="3"
-                               Style="{StaticResource TextBlock.Value}"
-                               Text="{Binding Trigger.Comparison}" />
-
-                    <TextBlock Grid.Row="1" Grid.Column="4"
-                               Style="{StaticResource TextBlock.Label}"
-                               Text="Value:" />
-                    <TextBlock Grid.Row="1" Grid.Column="5"
-                               Style="{StaticResource TextBlock.Value}"
-                               Text="{Binding Trigger.Value}" />
-
-                    <Grid Grid.Row="2" Grid.ColumnSpan="6">
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto" />
-                            <RowDefinition Height="*" />
-                        </Grid.RowDefinitions>
-
-                        <TextBlock Style="{StaticResource TextBlock.SetterTitle}"
-                                   Text="Setters" />
-
-                        <ItemsControl Grid.Row="1" 
-                                      ItemsSource="{Binding Trigger.Setters}" />
-                    </Grid>
-                    
-                </Grid>
-                
             </Grid>
         </DataTemplate>
 
@@ -185,6 +93,111 @@
             </Grid>
         </DataTemplate>
 
+        <!--Action-->
+        <DataTemplate DataType="{x:Type models:GameAction}">
+            <Grid Margin="12,0,0,0"
+                      Visibility="{Binding Action, Converter={StaticResource NullToVisibilityConverter}}">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <TextBlock Grid.Row="0" Grid.ColumnSpan="4"
+                               Style="{StaticResource TextBlock.SectionSubTitle}">
+                        <Run Text="Action - " />
+                        <Run Text="{Binding Id}" />
+                </TextBlock>
+
+                <Grid Grid.Row="1" Grid.ColumnSpan="4">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+
+                    <TextBlock Style="{StaticResource TextBlock.SetterTitle}"
+                                   Text="Setters" />
+
+                    <ItemsControl Grid.Row="1" 
+                                      ItemsSource="{Binding Setters}" />
+                </Grid>
+
+                <Button Grid.Row="2" Grid.ColumnSpan="4"
+                            x:Name="DoActionButton"
+                            Style="{StaticResource Button.DoAction}"
+                            Content="Perform Action"
+                            Tag="{Binding Id}"
+                            Click="DoActionButton_Click" />
+            </Grid>
+        </DataTemplate>
+
+        <!--Trigger-->
+        <DataTemplate DataType="{x:Type models:GameTrigger}">
+            <Grid Margin="12,0,0,0"
+                      Visibility="{Binding Trigger, Converter={StaticResource NullToVisibilityConverter}}">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <TextBlock Grid.Row="0" Grid.ColumnSpan="6"
+                               Style="{StaticResource TextBlock.SectionSubTitle}"
+                               Text="Trigger" />
+
+                <TextBlock Grid.Row="1" Grid.Column="0"
+                               Style="{StaticResource TextBlock.Label}"
+                               Text="Target:" />
+                <TextBlock Grid.Row="1" Grid.Column="1"
+                               Style="{StaticResource TextBlock.Value}"
+                               Text="{Binding TargetId}" />
+
+                <TextBlock Grid.Row="1" Grid.Column="2"
+                               Style="{StaticResource TextBlock.Label}"
+                               Text="Comparison:" />
+                <TextBlock Grid.Row="1" Grid.Column="3"
+                               Style="{StaticResource TextBlock.Value}"
+                               Text="{Binding Comparison}" />
+
+                <TextBlock Grid.Row="1" Grid.Column="4"
+                               Style="{StaticResource TextBlock.Label}"
+                               Text="Value:" />
+                <TextBlock Grid.Row="1" Grid.Column="5"
+                               Style="{StaticResource TextBlock.Value}"
+                               Text="{Binding Value}" />
+
+                <Grid Grid.Row="2" Grid.ColumnSpan="6">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+
+                    <TextBlock Style="{StaticResource TextBlock.SetterTitle}"
+                                   Text="Setters" />
+
+                    <ItemsControl Grid.Row="1" 
+                                      ItemsSource="{Binding Setters}" />
+                </Grid>
+
+            </Grid>
+        </DataTemplate>
+
+
     </UserControl.Resources>
 
     <Grid>
@@ -194,7 +207,7 @@
         </Grid.RowDefinitions>
 
         <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalAlignment="Stretch">
-           <ItemsControl ItemsSource="{Binding GameState}"
+            <ItemsControl ItemsSource="{Binding GameState}"
                           HorizontalAlignment="Stretch"
                           Margin="4" />
         </ScrollViewer>

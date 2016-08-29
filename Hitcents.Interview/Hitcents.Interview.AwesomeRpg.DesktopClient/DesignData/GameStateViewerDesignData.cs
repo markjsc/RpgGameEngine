@@ -22,37 +22,77 @@ namespace Hitcents.Interview.AwesomeRpg.DesktopClient.DesignData
                         new GameElement()
                         {
                             Id = "Player",
-                            Action = new GameAction()
+                            Actions = new List<GameAction>()
                             {
-                                Id = "GainXP",
-                                Setters = new List<GameSetter>()
+                                new GameAction()
                                 {
-                                    new GameSetter()
+                                    Id = "GainXP",
+                                    Setters = new List<GameSetter>()
                                     {
-                                        TargetId = "XP",
-                                        Operation = "+",
-                                        Value = "10"
+                                        new GameSetter()
+                                        {
+                                            TargetId = "XP",
+                                            Operation = "+",
+                                            Value = "10"
+                                        }
+                                    }
+                                },
+                                new GameAction()
+                                {
+                                    Id = "ClearHP",
+                                    Setters = new List<GameSetter>()
+                                    {
+                                        new GameSetter()
+                                        {
+                                            TargetId = "HP",
+                                            Operation = "=",
+                                            Value = "0"
+                                        },
+                                        new GameSetter()
+                                        {
+                                            TargetId = "XP",
+                                            Operation = "-",
+                                            Value = "5"
+                                        }
                                     }
                                 }
                             },
-                            Trigger = new GameTrigger()
+                            Triggers = new List<GameTrigger>()
                             {
-                                TargetId = "XP",
-                                Comparison = ">=",
-                                Value = "10",
-                                Setters = new List<GameSetter>()
+                                new GameTrigger()
                                 {
-                                    new GameSetter()
+                                    TargetId = "XP",
+                                    Comparison = ">=",
+                                    Value = "10",
+                                    Setters = new List<GameSetter>()
                                     {
-                                        TargetId = "Level",
-                                        Operation = "=",
-                                        Value = "2"
-                                    },
-                                    new GameSetter()
+                                        new GameSetter()
+                                        {
+                                            TargetId = "Level",
+                                            Operation = "=",
+                                            Value = "2"
+                                        },
+                                        new GameSetter()
+                                        {
+                                            TargetId = "HP",
+                                            Operation = "+",
+                                            Value = "5"
+                                        }
+                                    }
+                                },
+                                new GameTrigger()
+                                {
+                                    TargetId = "Name",
+                                    Comparison = "=",
+                                    Value = "Super Bob",
+                                    Setters = new List<GameSetter>()
                                     {
-                                        TargetId = "HP",
-                                        Operation = "+",
-                                        Value = "5"
+                                        new GameSetter()
+                                        {
+                                            TargetId = "Mode",
+                                            Operation = "=",
+                                            Value = "Superman Mode!"
+                                        }
                                     }
                                 }
                             },
@@ -60,7 +100,8 @@ namespace Hitcents.Interview.AwesomeRpg.DesktopClient.DesignData
                             {
                                 new GameElement() { Id = "Level", Value = "1" },
                                 new GameElement() { Id = "XP", Value = "0"},
-                                new GameElement() { Id = "HP", Value = "50" }
+                                new GameElement() { Id = "HP", Value = "50" },
+                                new GameElement() { Id = "Mode", Value = null }
                             }
                         }
                     }

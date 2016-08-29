@@ -9,6 +9,6 @@ namespace Hitcents.Interview.AwesomeRpg.Contracts.Interfaces
 
         GameAction GetActionById(List<GameElement> elements, string actionId);
 
-        GameTrigger GetTriggerByTarget(List<GameElement> elements, string targetId);
+        List<GameTrigger> GetTriggersByTarget(List<GameElement> elements, string targetId);
     } 
 }

@@ -60,6 +60,7 @@
             <Setter Property="Padding" Value="4" />
             <Setter Property="Margin" Value="12,8" />
             <Setter Property="HorizontalAlignment" Value="Left" />
+            <Setter Property="VerticalAlignment" Value="Top" />
         </Style>
         
     </Application.Resources>

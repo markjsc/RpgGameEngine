@@ -7,6 +7,8 @@ namespace Hitcents.Interview.AwesomeRpg.Contracts.Models
         public GameElement()
         {
             this.Elements = new List<GameElement>();
+            this.Actions = new List<GameAction>();
+            this.Triggers = new List<GameTrigger>();
         }
 
         public string Id { get; set; }
@@ -20,9 +22,9 @@ namespace Hitcents.Interview.AwesomeRpg.Contracts.Models
 
         public List<GameElement> Elements { get; set; }
 
-        public GameAction Action { get; set; }
+        public List<GameAction> Actions { get; set; }
         
-        public GameTrigger Trigger { get; set; }
+        public List<GameTrigger> Triggers { get; set; }
 
         public override string ToString()
         {

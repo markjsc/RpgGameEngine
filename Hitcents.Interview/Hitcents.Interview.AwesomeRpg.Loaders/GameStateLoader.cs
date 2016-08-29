@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Hitcents.Interview.AwesomeRpg.Contracts.Interfaces;
 using Hitcents.Interview.AwesomeRpg.Contracts.Models;
 using Hitcents.Interview.AwesomeRpg.Contracts.Models.RawXml;
@@ -63,54 +64,63 @@ namespace Hitcents.Interview.AwesomeRpg.Loaders
             {
                 Id = element.Id,
                 Value = element.Value,
-                Action = this.GetGameAction(element),
-                Trigger = this.GetGameTrigger(element),
+                Actions = this.GetGameActions(element),
+                Triggers = this.GetGameTriggers(element),
                 Elements = this.GetChildElements(element)
             };
 
             return gameElement;
         }
 
-        private GameAction GetGameAction(Element element)
+        private List<GameAction> GetGameActions(Element element)
         {
-            GameAction action = null;
+            List<GameAction> actions = new List<GameAction>();
             if (element.Action != null)
             {
                 //Make sure another action with the same Id doesn't exist
-                if (this._allActionIds.Contains(element.Action.Id))
+                if (element.Action.Any(x => this._allActionIds.Contains(x.Id)))
                 {
-                    throw new Exception(string.Format("An Action with the Id {0} already exists (Element Id {1}). Each Action Id must be unique. Check your configuration and retry.", element.Action.Id, element.Id));
+                    throw new Exception(string.Format("A duplicate Action is being created from the ELement {0}. Each Action Id must be unique. Check your configuration and retry.", element.Id));
                 }
                 else
                 {
-                    this._allActionIds.Add(element.Action.Id);
+                    foreach(var id in element.Action.Select(x => x.Id))
+                    {
+                        this._allActionIds.Add(id);
+                    }
                 }
 
-                action = new GameAction()
+                foreach(var action in element.Action)
                 {
-                    Id = element.Action.Id,
-                    Setters = this.GetGameSetters(element.Id, element.Action.Setters)
-                };
+                    actions.Add(new GameAction()
+                    {
+                        Id = action.Id,
+                        Setters = this.GetGameSetters(element.Id, action.Setters)
+                    });
+                }
             }
-            return action;
+            return actions;
         }
 
-        private GameTrigger GetGameTrigger(Element element)
+        private List<GameTrigger> GetGameTriggers(Element element)
         {
-            GameTrigger gameTrigger = null;
+            List<GameTrigger> gameTriggers = new List<GameTrigger>();
 
             if (element.Trigger != null)
             {
-                gameTrigger = new GameTrigger()
+                foreach(var trigger in element.Trigger)
                 {
-                    TargetId = element.Trigger.Target,
-                    Comparison = element.Trigger.Comparison,
-                    Value = element.Trigger.Value,
-                    Setters = this.GetGameSetters(element.Id, element.Trigger.Setters)
-                };
+                    gameTriggers.Add(new GameTrigger()
+                    {
+                        TargetId = trigger.Target,
+                        Comparison = trigger.Comparison,
+                        Value = trigger.Value,
+                        Setters = this.GetGameSetters(element.Id, trigger.Setters)
+                    });
+                }
             }
 
-            return gameTrigger;
+            return gameTriggers;
         }
 
         private List<GameSetter> GetGameSetters(string parentElementId, Setter[] setters)

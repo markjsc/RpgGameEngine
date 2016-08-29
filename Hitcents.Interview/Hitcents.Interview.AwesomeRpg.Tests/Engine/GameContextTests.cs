@@ -63,12 +63,15 @@ namespace Hitcents.Interview.AwesomeRpg.Tests.Engine
                 {
                     Id = "Level",
                     Value = "5",
-                    Action = new GameAction()
+                    Actions = new List<GameAction>()
                     {
-                        Id = ActionId,
-                        Setters = new List<GameSetter>()
+                        new GameAction()
                         {
-                            new GameSetter() { TargetId = "Level", Operation = TestOperation, Value = "10" }
+                            Id = ActionId,
+                            Setters = new List<GameSetter>()
+                            {
+                                new GameSetter() { TargetId = "Level", Operation = TestOperation, Value = "10" }
+                            }
                         }
                     }
                 }
@@ -97,12 +100,15 @@ namespace Hitcents.Interview.AwesomeRpg.Tests.Engine
                 {
                     Id = "Level",
                     Value = "5",
-                    Action = new GameAction()
+                    Actions = new List<GameAction>()
                     {
-                        Id = ActionId,
-                        Setters = new List<GameSetter>()
+                        new GameAction()
                         {
-                            new GameSetter() { TargetId = "Level", Operation = TestOperation, Value = "abc" }
+                            Id = ActionId,
+                            Setters = new List<GameSetter>()
+                            {
+                                new GameSetter() { TargetId = "Level", Operation = TestOperation, Value = "abc" }
+                            }
                         }
                     }
                 }
@@ -131,12 +137,15 @@ namespace Hitcents.Interview.AwesomeRpg.Tests.Engine
                 {
                     Id = "Level",
                     Value = "5",
-                    Action = new GameAction()
+                    Actions = new List<GameAction>()
                     {
-                        Id = ActionId,
-                        Setters = new List<GameSetter>()
+                        new GameAction()
                         {
-                            new GameSetter() { TargetId = "Level", Operation = TestOperation, Value = "10" }
+                            Id = ActionId,
+                            Setters = new List<GameSetter>()
+                            {
+                                new GameSetter() { TargetId = "Level", Operation = TestOperation, Value = "10" }
+                            }
                         }
                     }
                 }
@@ -165,12 +174,15 @@ namespace Hitcents.Interview.AwesomeRpg.Tests.Engine
                 {
                     Id = "Level",
                     Value = "5",
-                    Action = new GameAction()
+                    Actions = new List<GameAction>()
                     {
-                        Id = ActionId,
-                        Setters = new List<GameSetter>()
+                        new GameAction()
                         {
-                            new GameSetter() { TargetId = "Level", Operation = TestOperation, Value = "a" }
+                            Id = ActionId,
+                            Setters = new List<GameSetter>()
+                            {
+                                new GameSetter() { TargetId = "Level", Operation = TestOperation, Value = "a" }
+                            }
                         }
                     }
                 }
@@ -199,12 +211,15 @@ namespace Hitcents.Interview.AwesomeRpg.Tests.Engine
                 {
                     Id = "Level",
                     Value = "a",
-                    Action = new GameAction()
+                    Actions = new List<GameAction>()
                     {
-                        Id = ActionId,
-                        Setters = new List<GameSetter>()
+                        new GameAction()
                         {
-                            new GameSetter() { TargetId = "Level", Operation = TestOperation, Value = "10" }
+                            Id = ActionId,
+                            Setters = new List<GameSetter>()
+                            {
+                                new GameSetter() { TargetId = "Level", Operation = TestOperation, Value = "10" }
+                            }
                         }
                     }
                 }
@@ -233,12 +248,15 @@ namespace Hitcents.Interview.AwesomeRpg.Tests.Engine
                 {
                     Id = "Level",
                     Value = "15",
-                    Action = new GameAction()
+                    Actions = new List<GameAction>()
                     {
-                        Id = ActionId,
-                        Setters = new List<GameSetter>()
+                        new GameAction()
                         {
-                            new GameSetter() { TargetId = "Level", Operation = TestOperation, Value = "3" }
+                            Id = ActionId,
+                            Setters = new List<GameSetter>()
+                            {
+                                new GameSetter() { TargetId = "Level", Operation = TestOperation, Value = "3" }
+                            }
                         }
                     }
                 }
@@ -267,12 +285,15 @@ namespace Hitcents.Interview.AwesomeRpg.Tests.Engine
                 {
                     Id = "Level",
                     Value = "15",
-                    Action = new GameAction()
+                    Actions = new List<GameAction>()
                     {
-                        Id = ActionId,
-                        Setters = new List<GameSetter>()
+                        new GameAction()
                         {
-                            new GameSetter() { TargetId = "Level", Operation = TestOperation, Value = "0" }
+                            Id = ActionId,
+                            Setters = new List<GameSetter>()
+                            {
+                                new GameSetter() { TargetId = "Level", Operation = TestOperation, Value = "0" }
+                            }
                         }
                     }
                 }
@@ -301,12 +322,15 @@ namespace Hitcents.Interview.AwesomeRpg.Tests.Engine
                 {
                     Id = "Level",
                     Value = "15",
-                    Action = new GameAction()
+                    Actions = new List<GameAction>()
                     {
-                        Id = ActionId,
-                        Setters = new List<GameSetter>()
+                        new GameAction()
                         {
-                            new GameSetter() { TargetId = "Level", Operation = TestOperation, Value = "a" }
+                            Id = ActionId,
+                            Setters = new List<GameSetter>()
+                            {
+                                new GameSetter() { TargetId = "Level", Operation = TestOperation, Value = "a" }
+                            }
                         }
                     }
                 }
@@ -335,12 +359,15 @@ namespace Hitcents.Interview.AwesomeRpg.Tests.Engine
                 {
                     Id = "Level",
                     Value = "a",
-                    Action = new GameAction()
+                    Actions = new List<GameAction>()
                     {
-                        Id = ActionId,
-                        Setters = new List<GameSetter>()
+                        new GameAction()
                         {
-                            new GameSetter() { TargetId = "Level", Operation = TestOperation, Value = "15" }
+                            Id = ActionId,
+                            Setters = new List<GameSetter>()
+                            {
+                                new GameSetter() { TargetId = "Level", Operation = TestOperation, Value = "15" }
+                            }
                         }
                     }
                 }
@@ -369,12 +396,15 @@ namespace Hitcents.Interview.AwesomeRpg.Tests.Engine
                 {
                     Id = "Level",
                     Value = "5",
-                    Action = new GameAction()
+                    Actions = new List<GameAction>()
                     {
-                        Id = ActionId,
-                        Setters = new List<GameSetter>()
+                        new GameAction()
                         {
-                            new GameSetter() { TargetId = "Level", Operation = TestOperation, Value = "3" }
+                            Id = ActionId,
+                            Setters = new List<GameSetter>()
+                            {
+                                new GameSetter() { TargetId = "Level", Operation = TestOperation, Value = "3" }
+                            }
                         }
                     }
                 }
@@ -403,12 +433,15 @@ namespace Hitcents.Interview.AwesomeRpg.Tests.Engine
                 {
                     Id = "Level",
                     Value = "5",
-                    Action = new GameAction()
+                    Actions = new List<GameAction>()
                     {
-                        Id = ActionId,
-                        Setters = new List<GameSetter>()
+                        new GameAction()
                         {
-                            new GameSetter() { TargetId = "Level", Operation = TestOperation, Value = "a" }
+                            Id = ActionId,
+                            Setters = new List<GameSetter>()
+                            {
+                                new GameSetter() { TargetId = "Level", Operation = TestOperation, Value = "a" }
+                            }
                         }
                     }
                 }
@@ -437,12 +470,15 @@ namespace Hitcents.Interview.AwesomeRpg.Tests.Engine
                 {
                     Id = "Level",
                     Value = "a",
-                    Action = new GameAction()
+                    Actions = new List<GameAction>()
                     {
-                        Id = ActionId,
-                        Setters = new List<GameSetter>()
+                        new GameAction()
                         {
-                            new GameSetter() { TargetId = "Level", Operation = TestOperation, Value = "15" }
+                            Id = ActionId,
+                            Setters = new List<GameSetter>()
+                            {
+                                new GameSetter() { TargetId = "Level", Operation = TestOperation, Value = "15" }
+                            }
                         }
                     }
                 }
@@ -471,12 +507,15 @@ namespace Hitcents.Interview.AwesomeRpg.Tests.Engine
                 {
                     Id = "Level",
                     Value = "5",
-                    Action = new GameAction()
+                    Actions = new List<GameAction>()
                     {
-                        Id = ActionId,
-                        Setters = new List<GameSetter>()
+                        new GameAction()
                         {
-                            new GameSetter() { TargetId = "Level", Operation = TestOperation, Value = "3" }
+                            Id = ActionId,
+                            Setters = new List<GameSetter>()
+                            {
+                                new GameSetter() { TargetId = "Level", Operation = TestOperation, Value = "3" }
+                            }
                         }
                     }
                 }
@@ -505,12 +544,15 @@ namespace Hitcents.Interview.AwesomeRpg.Tests.Engine
                 {
                     Id = "Level",
                     Value = "5",
-                    Action = new GameAction()
+                    Actions = new List<GameAction>()
                     {
-                        Id = ActionId,
-                        Setters = new List<GameSetter>()
+                        new GameAction()
                         {
-                            new GameSetter() { TargetId = "Level", Operation = TestOperation, Value = "a" }
+                            Id = ActionId,
+                            Setters = new List<GameSetter>()
+                            {
+                                new GameSetter() { TargetId = "Level", Operation = TestOperation, Value = "a" }
+                            }
                         }
                     }
                 }
@@ -539,12 +581,15 @@ namespace Hitcents.Interview.AwesomeRpg.Tests.Engine
                 {
                     Id = "Level",
                     Value = "a",
-                    Action = new GameAction()
+                    Actions = new List<GameAction>()
                     {
-                        Id = ActionId,
-                        Setters = new List<GameSetter>()
+                        new GameAction()
                         {
-                            new GameSetter() { TargetId = "Level", Operation = TestOperation, Value = "5" }
+                            Id = ActionId,
+                            Setters = new List<GameSetter>()
+                            {
+                                new GameSetter() { TargetId = "Level", Operation = TestOperation, Value = "5" }
+                            }
                         }
                     }
                 }
@@ -574,22 +619,28 @@ namespace Hitcents.Interview.AwesomeRpg.Tests.Engine
                 {
                     Id = TriggerTarget,
                     Value = "0",
-                    Action = new GameAction()
+                    Actions = new List<GameAction>()
                     {
-                        Id = ActionId,
-                        Setters = new List<GameSetter>()
+                        new GameAction()
                         {
-                            new GameSetter() { TargetId = "Level", Operation = SetterOperations.Assign, Value = "10" }
+                            Id = ActionId,
+                            Setters = new List<GameSetter>()
+                            {
+                                new GameSetter() { TargetId = "Level", Operation = SetterOperations.Assign, Value = "10" }
+                            }
                         }
                     },
-                    Trigger = new GameTrigger()
+                    Triggers = new List<GameTrigger>()
                     {
-                        TargetId = "Level",
-                        Comparison = TestComparison,
-                        Value = "10",
-                        Setters = new List<GameSetter>()
+                        new GameTrigger()
                         {
-                            new GameSetter() { TargetId = TriggerTarget, Operation = SetterOperations.Assign, Value = "50" }
+                            TargetId = "Level",
+                            Comparison = TestComparison,
+                            Value = "10",
+                            Setters = new List<GameSetter>()
+                            {
+                                new GameSetter() { TargetId = TriggerTarget, Operation = SetterOperations.Assign, Value = "50" }
+                            }
                         }
                     }
                 },
@@ -620,22 +671,28 @@ namespace Hitcents.Interview.AwesomeRpg.Tests.Engine
                 {
                     Id = TriggerTarget,
                     Value = "0",
-                    Action = new GameAction()
+                    Actions = new List<GameAction>()
                     {
-                        Id = ActionId,
-                        Setters = new List<GameSetter>()
+                        new GameAction()
                         {
-                            new GameSetter() { TargetId = "Level", Operation = SetterOperations.Assign, Value = "abc" }
+                            Id = ActionId,
+                            Setters = new List<GameSetter>()
+                            {
+                                new GameSetter() { TargetId = "Level", Operation = SetterOperations.Assign, Value = "abc" }
+                            }
                         }
                     },
-                    Trigger = new GameTrigger()
+                    Triggers = new List<GameTrigger>()
                     {
-                        TargetId = "Level",
-                        Comparison = TestComparison,
-                        Value = "abc",
-                        Setters = new List<GameSetter>()
+                        new GameTrigger()
                         {
-                            new GameSetter() { TargetId = TriggerTarget, Operation = SetterOperations.Assign, Value = "50" }
+                            TargetId = "Level",
+                            Comparison = TestComparison,
+                            Value = "abc",
+                            Setters = new List<GameSetter>()
+                            {
+                                new GameSetter() { TargetId = TriggerTarget, Operation = SetterOperations.Assign, Value = "50" }
+                            }
                         }
                     }
                 },
@@ -666,22 +723,28 @@ namespace Hitcents.Interview.AwesomeRpg.Tests.Engine
                 {
                     Id = TriggerTarget,
                     Value = "0",
-                    Action = new GameAction()
+                    Actions = new List<GameAction>()
                     {
-                        Id = ActionId,
-                        Setters = new List<GameSetter>()
+                        new GameAction()
                         {
-                            new GameSetter() { TargetId = "Level", Operation = SetterOperations.Assign, Value = "9" }
+                            Id = ActionId,
+                            Setters = new List<GameSetter>()
+                            {
+                                new GameSetter() { TargetId = "Level", Operation = SetterOperations.Assign, Value = "9" }
+                            }
                         }
                     },
-                    Trigger = new GameTrigger()
+                    Triggers = new List<GameTrigger>()
                     {
-                        TargetId = "Level",
-                        Comparison = TestComparison,
-                        Value = "10",
-                        Setters = new List<GameSetter>()
+                        new GameTrigger()
                         {
-                            new GameSetter() { TargetId = TriggerTarget, Operation = SetterOperations.Assign, Value = "50" }
+                            TargetId = "Level",
+                            Comparison = TestComparison,
+                            Value = "10",
+                            Setters = new List<GameSetter>()
+                            {
+                                new GameSetter() { TargetId = TriggerTarget, Operation = SetterOperations.Assign, Value = "50" }
+                            }
                         }
                     }
                 },
@@ -712,22 +775,28 @@ namespace Hitcents.Interview.AwesomeRpg.Tests.Engine
                 {
                     Id = TriggerTarget,
                     Value = "0",
-                    Action = new GameAction()
+                    Actions = new List<GameAction>()
                     {
-                        Id = ActionId,
-                        Setters = new List<GameSetter>()
+                        new GameAction()
                         {
-                            new GameSetter() { TargetId = "Level", Operation = SetterOperations.Assign, Value = "abc" }
+                            Id = ActionId,
+                            Setters = new List<GameSetter>()
+                            {
+                                new GameSetter() { TargetId = "Level", Operation = SetterOperations.Assign, Value = "abc" }
+                            }
                         }
                     },
-                    Trigger = new GameTrigger()
+                    Triggers = new List<GameTrigger>()
                     {
-                        TargetId = "Level",
-                        Comparison = TestComparison,
-                        Value = "cba",
-                        Setters = new List<GameSetter>()
+                        new GameTrigger()
                         {
-                            new GameSetter() { TargetId = TriggerTarget, Operation = SetterOperations.Assign, Value = "50" }
+                            TargetId = "Level",
+                            Comparison = TestComparison,
+                            Value = "cba",
+                            Setters = new List<GameSetter>()
+                            {
+                                new GameSetter() { TargetId = TriggerTarget, Operation = SetterOperations.Assign, Value = "50" }
+                            }
                         }
                     }
                 },
@@ -758,22 +827,28 @@ namespace Hitcents.Interview.AwesomeRpg.Tests.Engine
                 {
                     Id = TriggerTarget,
                     Value = "0",
-                    Action = new GameAction()
+                    Actions = new List<GameAction>()
                     {
-                        Id = ActionId,
-                        Setters = new List<GameSetter>()
+                        new GameAction()
                         {
-                            new GameSetter() { TargetId = "Level", Operation = SetterOperations.Assign, Value = "11" }
+                            Id = ActionId,
+                            Setters = new List<GameSetter>()
+                            {
+                                new GameSetter() { TargetId = "Level", Operation = SetterOperations.Assign, Value = "11" }
+                            }
                         }
                     },
-                    Trigger = new GameTrigger()
+                    Triggers = new List<GameTrigger>()
                     {
-                        TargetId = "Level",
-                        Comparison = TestComparison,
-                        Value = "10",
-                        Setters = new List<GameSetter>()
+                        new GameTrigger()
                         {
-                            new GameSetter() { TargetId = TriggerTarget, Operation = SetterOperations.Assign, Value = "50" }
+                            TargetId = "Level",
+                            Comparison = TestComparison,
+                            Value = "10",
+                            Setters = new List<GameSetter>()
+                            {
+                                new GameSetter() { TargetId = TriggerTarget, Operation = SetterOperations.Assign, Value = "50" }
+                            }
                         }
                     }
                 },
@@ -804,22 +879,28 @@ namespace Hitcents.Interview.AwesomeRpg.Tests.Engine
                 {
                     Id = TriggerTarget,
                     Value = "0",
-                    Action = new GameAction()
+                    Actions = new List<GameAction>()
                     {
-                        Id = ActionId,
-                        Setters = new List<GameSetter>()
+                        new GameAction()
                         {
-                            new GameSetter() { TargetId = "Level", Operation = SetterOperations.Assign, Value = "11" }
+                            Id = ActionId,
+                            Setters = new List<GameSetter>()
+                            {
+                                new GameSetter() { TargetId = "Level", Operation = SetterOperations.Assign, Value = "11" }
+                            }
                         }
                     },
-                    Trigger = new GameTrigger()
+                    Triggers = new List<GameTrigger>()
                     {
-                        TargetId = "Level",
-                        Comparison = TestComparison,
-                        Value = "abc",
-                        Setters = new List<GameSetter>()
+                        new GameTrigger()
                         {
-                            new GameSetter() { TargetId = TriggerTarget, Operation = SetterOperations.Assign, Value = "50" }
+                            TargetId = "Level",
+                            Comparison = TestComparison,
+                            Value = "abc",
+                            Setters = new List<GameSetter>()
+                            {
+                                new GameSetter() { TargetId = TriggerTarget, Operation = SetterOperations.Assign, Value = "50" }
+                            }
                         }
                     }
                 },
@@ -850,22 +931,28 @@ namespace Hitcents.Interview.AwesomeRpg.Tests.Engine
                 {
                     Id = TriggerTarget,
                     Value = "abc",
-                    Action = new GameAction()
+                    Actions = new List<GameAction>()
                     {
-                        Id = ActionId,
-                        Setters = new List<GameSetter>()
+                        new GameAction()
                         {
-                            new GameSetter() { TargetId = "Level", Operation = SetterOperations.Assign, Value = "11" }
+                            Id = ActionId,
+                            Setters = new List<GameSetter>()
+                            {
+                                new GameSetter() { TargetId = "Level", Operation = SetterOperations.Assign, Value = "11" }
+                            }
                         }
                     },
-                    Trigger = new GameTrigger()
+                    Triggers = new List<GameTrigger>()
                     {
-                        TargetId = "Level",
-                        Comparison = TestComparison,
-                        Value = "10",
-                        Setters = new List<GameSetter>()
+                        new GameTrigger()
                         {
-                            new GameSetter() { TargetId = TriggerTarget, Operation = SetterOperations.Assign, Value = "50" }
+                            TargetId = "Level",
+                            Comparison = TestComparison,
+                            Value = "10",
+                            Setters = new List<GameSetter>()
+                            {
+                                new GameSetter() { TargetId = TriggerTarget, Operation = SetterOperations.Assign, Value = "50" }
+                            }
                         }
                     }
                 },
@@ -896,22 +983,28 @@ namespace Hitcents.Interview.AwesomeRpg.Tests.Engine
                 {
                     Id = TriggerTarget,
                     Value = "0",
-                    Action = new GameAction()
+                    Actions = new List<GameAction>()
                     {
-                        Id = ActionId,
-                        Setters = new List<GameSetter>()
+                        new GameAction()
                         {
-                            new GameSetter() { TargetId = "Level", Operation = SetterOperations.Assign, Value = "10" }
+                            Id = ActionId,
+                            Setters = new List<GameSetter>()
+                            {
+                                new GameSetter() { TargetId = "Level", Operation = SetterOperations.Assign, Value = "10" }
+                            }
                         }
                     },
-                    Trigger = new GameTrigger()
+                    Triggers = new List<GameTrigger>()
                     {
-                        TargetId = "Level",
-                        Comparison = TestComparison,
-                        Value = "10",
-                        Setters = new List<GameSetter>()
+                        new GameTrigger()
                         {
-                            new GameSetter() { TargetId = TriggerTarget, Operation = SetterOperations.Assign, Value = "50" }
+                            TargetId = "Level",
+                            Comparison = TestComparison,
+                            Value = "10",
+                            Setters = new List<GameSetter>()
+                            {
+                                new GameSetter() { TargetId = TriggerTarget, Operation = SetterOperations.Assign, Value = "50" }
+                            }
                         }
                     }
                 },
@@ -942,22 +1035,28 @@ namespace Hitcents.Interview.AwesomeRpg.Tests.Engine
                 {
                     Id = TriggerTarget,
                     Value = "0",
-                    Action = new GameAction()
+                    Actions = new List<GameAction>()
                     {
-                        Id = ActionId,
-                        Setters = new List<GameSetter>()
+                        new GameAction()
                         {
-                            new GameSetter() { TargetId = "Level", Operation = SetterOperations.Assign, Value = "10" }
+                            Id = ActionId,
+                            Setters = new List<GameSetter>()
+                            {
+                                new GameSetter() { TargetId = "Level", Operation = SetterOperations.Assign, Value = "10" }
+                            }
                         }
                     },
-                    Trigger = new GameTrigger()
+                    Triggers = new List<GameTrigger>()
                     {
-                        TargetId = "Level",
-                        Comparison = TestComparison,
-                        Value = "abc",
-                        Setters = new List<GameSetter>()
+                        new GameTrigger()
                         {
-                            new GameSetter() { TargetId = TriggerTarget, Operation = SetterOperations.Assign, Value = "50" }
+                            TargetId = "Level",
+                            Comparison = TestComparison,
+                            Value = "abc",
+                            Setters = new List<GameSetter>()
+                            {
+                                new GameSetter() { TargetId = TriggerTarget, Operation = SetterOperations.Assign, Value = "50" }
+                            }
                         }
                     }
                 },
@@ -988,22 +1087,28 @@ namespace Hitcents.Interview.AwesomeRpg.Tests.Engine
                 {
                     Id = TriggerTarget,
                     Value = "abc",
-                    Action = new GameAction()
+                    Actions = new List<GameAction>()
                     {
-                        Id = ActionId,
-                        Setters = new List<GameSetter>()
+                        new GameAction()
                         {
-                            new GameSetter() { TargetId = "Level", Operation = SetterOperations.Assign, Value = "10" }
+                            Id = ActionId,
+                            Setters = new List<GameSetter>()
+                            {
+                                new GameSetter() { TargetId = "Level", Operation = SetterOperations.Assign, Value = "10" }
+                            }
                         }
                     },
-                    Trigger = new GameTrigger()
+                    Triggers = new List<GameTrigger>()
                     {
-                        TargetId = "Level",
-                        Comparison = TestComparison,
-                        Value = "10",
-                        Setters = new List<GameSetter>()
+                        new GameTrigger()
                         {
-                            new GameSetter() { TargetId = TriggerTarget, Operation = SetterOperations.Assign, Value = "50" }
+                            TargetId = "Level",
+                            Comparison = TestComparison,
+                            Value = "10",
+                            Setters = new List<GameSetter>()
+                            {
+                                new GameSetter() { TargetId = TriggerTarget, Operation = SetterOperations.Assign, Value = "50" }
+                            }
                         }
                     }
                 },
@@ -1034,22 +1139,28 @@ namespace Hitcents.Interview.AwesomeRpg.Tests.Engine
                 {
                     Id = TriggerTarget,
                     Value = "0",
-                    Action = new GameAction()
+                    Actions = new List<GameAction>()
                     {
-                        Id = ActionId,
-                        Setters = new List<GameSetter>()
+                        new GameAction()
                         {
-                            new GameSetter() { TargetId = "Level", Operation = SetterOperations.Assign, Value = "9" }
+                            Id = ActionId,
+                            Setters = new List<GameSetter>()
+                            {
+                                new GameSetter() { TargetId = "Level", Operation = SetterOperations.Assign, Value = "9" }
+                            }
                         }
                     },
-                    Trigger = new GameTrigger()
+                    Triggers = new List<GameTrigger>()
                     {
-                        TargetId = "Level",
-                        Comparison = TestComparison,
-                        Value = "10",
-                        Setters = new List<GameSetter>()
+                        new GameTrigger()
                         {
-                            new GameSetter() { TargetId = TriggerTarget, Operation = SetterOperations.Assign, Value = "50" }
+                            TargetId = "Level",
+                            Comparison = TestComparison,
+                            Value = "10",
+                            Setters = new List<GameSetter>()
+                            {
+                                new GameSetter() { TargetId = TriggerTarget, Operation = SetterOperations.Assign, Value = "50" }
+                            }
                         }
                     }
                 },
@@ -1080,22 +1191,28 @@ namespace Hitcents.Interview.AwesomeRpg.Tests.Engine
                 {
                     Id = TriggerTarget,
                     Value = "0",
-                    Action = new GameAction()
+                    Actions = new List<GameAction>()
                     {
-                        Id = ActionId,
-                        Setters = new List<GameSetter>()
+                        new GameAction()
                         {
-                            new GameSetter() { TargetId = "Level", Operation = SetterOperations.Assign, Value = "9" }
+                            Id = ActionId,
+                            Setters = new List<GameSetter>()
+                            {
+                                new GameSetter() { TargetId = "Level", Operation = SetterOperations.Assign, Value = "9" }
+                            }
                         }
                     },
-                    Trigger = new GameTrigger()
+                    Triggers = new List<GameTrigger>()
                     {
-                        TargetId = "Level",
-                        Comparison = TestComparison,
-                        Value = "abc",
-                        Setters = new List<GameSetter>()
+                        new GameTrigger()
                         {
-                            new GameSetter() { TargetId = TriggerTarget, Operation = SetterOperations.Assign, Value = "50" }
+                            TargetId = "Level",
+                            Comparison = TestComparison,
+                            Value = "abc",
+                            Setters = new List<GameSetter>()
+                            {
+                                new GameSetter() { TargetId = TriggerTarget, Operation = SetterOperations.Assign, Value = "50" }
+                            }
                         }
                     }
                 },
@@ -1126,22 +1243,28 @@ namespace Hitcents.Interview.AwesomeRpg.Tests.Engine
                 {
                     Id = TriggerTarget,
                     Value = "abc",
-                    Action = new GameAction()
+                    Actions = new List<GameAction>()
                     {
-                        Id = ActionId,
-                        Setters = new List<GameSetter>()
+                        new GameAction()
                         {
-                            new GameSetter() { TargetId = "Level", Operation = SetterOperations.Assign, Value = "9" }
+                            Id = ActionId,
+                            Setters = new List<GameSetter>()
+                            {
+                                new GameSetter() { TargetId = "Level", Operation = SetterOperations.Assign, Value = "9" }
+                            }
                         }
                     },
-                    Trigger = new GameTrigger()
+                    Triggers = new List<GameTrigger>()
                     {
-                        TargetId = "Level",
-                        Comparison = TestComparison,
-                        Value = "10",
-                        Setters = new List<GameSetter>()
+                        new GameTrigger()
                         {
-                            new GameSetter() { TargetId = TriggerTarget, Operation = SetterOperations.Assign, Value = "50" }
+                            TargetId = "Level",
+                            Comparison = TestComparison,
+                            Value = "10",
+                            Setters = new List<GameSetter>()
+                            {
+                                new GameSetter() { TargetId = TriggerTarget, Operation = SetterOperations.Assign, Value = "50" }
+                            }
                         }
                     }
                 },
@@ -1172,22 +1295,28 @@ namespace Hitcents.Interview.AwesomeRpg.Tests.Engine
                 {
                     Id = TriggerTarget,
                     Value = "0",
-                    Action = new GameAction()
+                    Actions = new List<GameAction>()
                     {
-                        Id = ActionId,
-                        Setters = new List<GameSetter>()
+                        new GameAction()
                         {
-                            new GameSetter() { TargetId = "Level", Operation = SetterOperations.Assign, Value = "10" }
+                            Id = ActionId,
+                            Setters = new List<GameSetter>()
+                            {
+                                new GameSetter() { TargetId = "Level", Operation = SetterOperations.Assign, Value = "10" }
+                            }
                         }
                     },
-                    Trigger = new GameTrigger()
+                    Triggers = new List<GameTrigger>()
                     {
-                        TargetId = "Level",
-                        Comparison = TestComparison,
-                        Value = "10",
-                        Setters = new List<GameSetter>()
+                        new GameTrigger()
                         {
-                            new GameSetter() { TargetId = TriggerTarget, Operation = SetterOperations.Assign, Value = "50" }
+                            TargetId = "Level",
+                            Comparison = TestComparison,
+                            Value = "10",
+                            Setters = new List<GameSetter>()
+                            {
+                                new GameSetter() { TargetId = TriggerTarget, Operation = SetterOperations.Assign, Value = "50" }
+                            }
                         }
                     }
                 },
@@ -1218,22 +1347,28 @@ namespace Hitcents.Interview.AwesomeRpg.Tests.Engine
                 {
                     Id = TriggerTarget,
                     Value = "0",
-                    Action = new GameAction()
+                    Actions = new List<GameAction>()
                     {
-                        Id = ActionId,
-                        Setters = new List<GameSetter>()
+                        new GameAction()
                         {
-                            new GameSetter() { TargetId = "Level", Operation = SetterOperations.Assign, Value = "10" }
+                            Id = ActionId,
+                            Setters = new List<GameSetter>()
+                            {
+                                new GameSetter() { TargetId = "Level", Operation = SetterOperations.Assign, Value = "10" }
+                            }
                         }
                     },
-                    Trigger = new GameTrigger()
+                    Triggers = new List<GameTrigger>()
                     {
-                        TargetId = "Level",
-                        Comparison = TestComparison,
-                        Value = "abc",
-                        Setters = new List<GameSetter>()
+                        new GameTrigger()
                         {
-                            new GameSetter() { TargetId = TriggerTarget, Operation = SetterOperations.Assign, Value = "50" }
+                            TargetId = "Level",
+                            Comparison = TestComparison,
+                            Value = "abc",
+                            Setters = new List<GameSetter>()
+                            {
+                                new GameSetter() { TargetId = TriggerTarget, Operation = SetterOperations.Assign, Value = "50" }
+                            }
                         }
                     }
                 },
@@ -1264,22 +1399,28 @@ namespace Hitcents.Interview.AwesomeRpg.Tests.Engine
                 {
                     Id = TriggerTarget,
                     Value = "abc",
-                    Action = new GameAction()
+                    Actions = new List<GameAction>()
                     {
-                        Id = ActionId,
-                        Setters = new List<GameSetter>()
+                        new GameAction()
                         {
-                            new GameSetter() { TargetId = "Level", Operation = SetterOperations.Assign, Value = "10" }
+                            Id = ActionId,
+                            Setters = new List<GameSetter>()
+                            {
+                                new GameSetter() { TargetId = "Level", Operation = SetterOperations.Assign, Value = "10" }
+                            }
                         }
                     },
-                    Trigger = new GameTrigger()
+                    Triggers = new List<GameTrigger>()
                     {
-                        TargetId = "Level",
-                        Comparison = TestComparison,
-                        Value = "10",
-                        Setters = new List<GameSetter>()
+                        new GameTrigger()
                         {
-                            new GameSetter() { TargetId = TriggerTarget, Operation = SetterOperations.Assign, Value = "50" }
+                            TargetId = "Level",
+                            Comparison = TestComparison,
+                            Value = "10",
+                            Setters = new List<GameSetter>()
+                            {
+                                new GameSetter() { TargetId = TriggerTarget, Operation = SetterOperations.Assign, Value = "50" }
+                            }
                         }
                     }
                 },

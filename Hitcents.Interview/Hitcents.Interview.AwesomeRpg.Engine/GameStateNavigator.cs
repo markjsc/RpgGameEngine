@@ -34,9 +34,10 @@ namespace Hitcents.Interview.AwesomeRpg.Engine
         {
             GameAction action = null;
 
-            if (elements.Any(x => x.Action != null && string.Equals(actionId, x.Action.Id, StringComparison.CurrentCultureIgnoreCase)))
+            if (elements.Any(x => x.Actions.Any(y => string.Equals(actionId, y.Id, StringComparison.CurrentCultureIgnoreCase))))
             {
-                action = elements.First(x => x.Action != null && string.Equals(actionId, x.Action.Id, StringComparison.CurrentCultureIgnoreCase)).Action;
+                var element = elements.First(x => x.Actions.Any(y => string.Equals(actionId, y.Id, StringComparison.CurrentCultureIgnoreCase)));
+                action = element.Actions.First(x => string.Equals(actionId, x.Id, StringComparison.CurrentCultureIgnoreCase));
             }
             else
             {
@@ -52,13 +53,17 @@ namespace Hitcents.Interview.AwesomeRpg.Engine
             return action;
         }
        
-        public GameTrigger GetTriggerByTarget(List<GameElement> elements, string targetId)
+        public List<GameTrigger> GetTriggersByTarget(List<GameElement> elements, string targetId)
         {
-            GameTrigger trigger = null;
+            List<GameTrigger> triggers = new List<GameTrigger>();
 
-            if (elements.Any(x => x.Trigger != null && string.Equals(targetId, x.Trigger.TargetId, StringComparison.CurrentCultureIgnoreCase)))
+            if (elements.Any(x => x.Triggers.Any(y => string.Equals(targetId, y.TargetId, StringComparison.CurrentCultureIgnoreCase))))
             {
-                trigger = elements.First(x => x.Trigger != null && string.Equals(targetId, x.Trigger.TargetId, StringComparison.CurrentCultureIgnoreCase)).Trigger;
+                var element = elements.First(x => x.Triggers.Any(y => string.Equals(targetId, y.TargetId, StringComparison.CurrentCultureIgnoreCase)));
+                foreach (var trigger in element.Triggers.Where(x => string.Equals(targetId, x.TargetId, StringComparison.CurrentCultureIgnoreCase)))
+                {
+                    triggers.Add(trigger);
+                }
             }
             else
             {
@@ -66,12 +71,16 @@ namespace Hitcents.Interview.AwesomeRpg.Engine
                 {
                     if (element.Elements != null)
                     {
-                        trigger = this.GetTriggerByTarget(element.Elements, targetId);
+                        foreach(var trigger in this.GetTriggersByTarget(element.Elements, targetId))
+                        {
+                            triggers.Add(trigger);
+                        }
+
                     }
                 }
             }
 
-            return trigger;
+            return triggers;
         }
     }
 }

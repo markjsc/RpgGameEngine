@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
 using Hitcents.Interview.AwesomeRpg.Contracts.Interfaces;
 using Hitcents.Interview.AwesomeRpg.Contracts.Models;
 
@@ -83,12 +84,33 @@ namespace Hitcents.Interview.AwesomeRpg.Engine
 
         private void RunTriggersFromActionSetters(List<GameSetter> actionSetters, string actionId)
         {
+            //TODO: This is getting a bit busy - consider refactoring and possibly optimizing if it seems to be a performance drag.
+            var elementsTouchedByActionSetters = new List<string>();
             foreach(var actionSetter in actionSetters)
             {
-                var trigger = this.GetTriggerByTarget(actionSetter.TargetId);
-                if(trigger != null && this.ShouldTriggerRun(trigger))
+                var triggers = this.GetTriggersByTarget(actionSetter.TargetId);
+                foreach (var trigger in triggers)
                 {
-                    this.RunTriggerSetters(trigger.Setters, trigger.TargetId);
+                    if (this.ShouldTriggerRun(trigger))
+                    {
+                        this.RunTriggerSetters(trigger.Setters, trigger.TargetId);
+                    }
+                    //Check to see if setter changed an Element that should fire another trigger
+                    foreach(var elementTouchedBySetter in trigger.Setters.Select(x => x.TargetId))
+                    {
+                        elementsTouchedByActionSetters.Add(elementTouchedBySetter);
+                    }
+                }
+            }
+            foreach(var elementId in elementsTouchedByActionSetters)
+            {
+                var triggers = this.GetTriggersByTarget(elementId);
+                foreach(var trigger in triggers)
+                {
+                    if (this.ShouldTriggerRun(trigger))
+                    {
+                        this.RunTriggerSetters(trigger.Setters, elementId);
+                    }
                 }
             }
         }
@@ -211,9 +233,9 @@ namespace Hitcents.Interview.AwesomeRpg.Engine
             return this._gameStateNavigator.GetActionById(this._gameState, id);
         }
 
-        private GameTrigger GetTriggerByTarget(string targetId)
+        private List<GameTrigger> GetTriggersByTarget(string targetId)
         {
-            return this._gameStateNavigator.GetTriggerByTarget(this._gameState, targetId);
+            return this._gameStateNavigator.GetTriggersByTarget(this._gameState, targetId);
         }
 
         /// <summary>

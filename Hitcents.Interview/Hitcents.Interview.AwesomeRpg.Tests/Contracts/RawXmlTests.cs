@@ -44,11 +44,11 @@ namespace Hitcents.Interview.AwesomeRpg.Tests.Contracts
 
             //GameConfig/Elements/CoolGame/Player/Action
             Assert.IsNotNull(playerElement.Action);
-            Assert.AreEqual("GainXP", playerElement.Action.Id);
-            Assert.IsNotNull(playerElement.Action.Setters);
+            Assert.AreEqual("GainXP", playerElement.Action[0].Id);
+            Assert.IsNotNull(playerElement.Action[0].Setters);
 
             //GameConfig/Elements/CoolGame/Player/Action/Setter
-            var actionSetter = playerElement.Action.Setters;
+            var actionSetter = playerElement.Action[0].Setters;
             Assert.IsInstanceOfType(actionSetter, typeof(Setter[]));
             Assert.AreEqual(1, actionSetter.Length);
             Assert.AreEqual("XP", actionSetter[0].Target);
@@ -57,13 +57,13 @@ namespace Hitcents.Interview.AwesomeRpg.Tests.Contracts
 
             //GameConfig/Elements/CoolGame/Player/Trigger
             Assert.IsNotNull(playerElement.Trigger);
-            Assert.AreEqual("XP", playerElement.Trigger.Target);
-            Assert.AreEqual(">=", playerElement.Trigger.Comparison);
-            Assert.AreEqual("10", playerElement.Trigger.Value);
-            Assert.IsNotNull(playerElement.Trigger.Setters);
+            Assert.AreEqual("XP", playerElement.Trigger[0].Target);
+            Assert.AreEqual(">=", playerElement.Trigger[0].Comparison);
+            Assert.AreEqual("10", playerElement.Trigger[0].Value);
+            Assert.IsNotNull(playerElement.Trigger[0].Setters);
 
             //GameConfig/Elements/CoolGame/Player/Trigger/Setter
-            var triggerSetter = playerElement.Trigger.Setters;
+            var triggerSetter = playerElement.Trigger[0].Setters;
             Assert.IsInstanceOfType(triggerSetter, typeof(Setter[]));
             Assert.AreEqual(1, triggerSetter.Length);
             Assert.AreEqual("Level", triggerSetter[0].Target);
