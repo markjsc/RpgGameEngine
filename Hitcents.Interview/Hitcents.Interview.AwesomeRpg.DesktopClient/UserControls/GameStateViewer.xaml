@@ -46,13 +46,19 @@
                               ItemsSource="{Binding Elements}" Margin="12,0,0,0" />
 
                 <!--Action-->
-                <ItemsControl Grid.Row="3" Grid.ColumnSpan="2"
-                              ItemsSource="{Binding Actions}" />
+                <Border Grid.Row="3" Grid.ColumnSpan="2"
+                        Margin="12,0,0,0"
+                        Background="Ivory">
+                    <ItemsControl ItemsSource="{Binding Actions}" />
+                </Border>
 
 
                 <!--Trigger-->
-                <ItemsControl Grid.Row="4" Grid.ColumnSpan="2"
-                              ItemsSource="{Binding Triggers}"/>
+                <Border Grid.Row="4" Grid.ColumnSpan="2"
+                        Background="LightGoldenrodYellow"
+                        Margin="12,0,0,0">                    
+                    <ItemsControl ItemsSource="{Binding Triggers}"/>
+                </Border>
 
 
             </Grid>

@@ -75,6 +75,11 @@ namespace Hitcents.Interview.AwesomeRpg.DesktopClient.UserControls
             XmlTextBox.Text = Clipboard.GetText(TextDataFormat.Text);
         }
 
+        private void LoadSample_Click(object sender, RoutedEventArgs e)
+        {
+            XmlTextBox.Text = File.ReadAllText("GameStateSample.xml");
+        }
+
         private void OnGameStateLoaded()
         {
             if(this.GameStateLoaded != null)

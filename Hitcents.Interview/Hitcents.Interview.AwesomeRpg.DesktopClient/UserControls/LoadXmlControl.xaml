@@ -15,7 +15,7 @@
             </Grid.RowDefinitions>
 
             <StackPanel Grid.Row="0">
-                <TextBlock Text="Use the button to load from an XML file, or you can paste XML into the Text Area below. Click 'Run Game' to run the game." 
+                <TextBlock Text="Use the buttons to load from an XML file, paste from Clipboard, load a Sample, or you can paste XML into the Text Area below. Click 'Run Game' to run the game." 
                            Margin="8"
                            TextWrapping="Wrap" />
 
@@ -32,6 +32,13 @@
                             Margin="8"
                             Padding="4"
                             Click="PasteFromClipboard_Click" />
+
+                    <Button x:Name="LoadSample"
+                            Content="Load Sample Game State"
+                            HorizontalAlignment="Left"
+                            Margin="8"
+                            Padding="4"
+                            Click="LoadSample_Click" />
                 </StackPanel>
                 
             </StackPanel>

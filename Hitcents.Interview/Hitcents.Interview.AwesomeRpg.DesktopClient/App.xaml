@@ -31,11 +31,13 @@
         <!--TriggerTitle-->
         <Style x:Key="TextBlock.TriggerTitle" TargetType="{x:Type TextBlock}" BasedOn="{StaticResource TextBlock.SectionSubTitle}">
             <Setter Property="Foreground" Value="DarkGreen" />
+            <Setter Property="FontWeight" Value="Bold" />
         </Style>
 
         <!--ActionTitle-->
         <Style x:Key="TextBlock.ActionTitle" TargetType="{x:Type TextBlock}" BasedOn="{StaticResource TextBlock.SectionSubTitle}">
             <Setter Property="Foreground" Value="Coral" />
+            <Setter Property="FontWeight" Value="Bold" />
         </Style>
 
         <!--TextBlock.SetterTitle-->
@@ -77,3 +79,4 @@
 
     </Application.Resources>
 </Application>
+
