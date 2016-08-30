@@ -8,6 +8,11 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Hitcents.Interview.AwesomeRpg.Tests.Engine
 {
+    /// <summary>
+    /// These tests exercise the various scenarios supported by GameContext.
+    /// This includes checking the behavior when running actions with various
+    /// configurations.
+    /// </summary>
     [TestClass]
     public class GameContextTests
     {

@@ -9,6 +9,10 @@ namespace Hitcents.Interview.AwesomeRpg.Engine
 {
     /// <summary>
     /// This is where the Game State is stored, Actions are performed, and Triggers are fired.
+    /// I know the logic is very iteration-driven. I believe this could be improved greatly
+    /// (perhaps registering an event for each Element and then firing the event when an Action
+    /// with a matching Target is performed). For this initial effort, I was focused on the logical 
+    /// structure of the entities more than optimizing them for performance.
     /// </summary>
     public class GameContext : IGameContext
     {
@@ -51,19 +55,20 @@ namespace Hitcents.Interview.AwesomeRpg.Engine
                 if (actionToRun != null)
                 {
                     this.RunActionSetters(actionToRun.Setters, actionId);
+
+                    try
+                    {
+                        this.RunTriggersFromSetters(actionToRun.Setters);
+                    }
+                    catch (Exception ex)
+                    {
+                        throw new Exception("An exception occurred attempting to run the Triggers.", ex);
+                    }
                 }
                 else
                 {
                     throw new Exception(string.Format("Unable to locate Action with Id {0} in the current Game Context. Check your configuration.", actionId));
-                }
-                try
-                {
-                    this.RunTriggersFromSetters(actionToRun.Setters);
-                }
-                catch (Exception ex)
-                {
-                    throw new Exception("An exception occurred attempting to run the Triggers.", ex);
-                }
+                }                
             }
             catch (Exception ex)
             {

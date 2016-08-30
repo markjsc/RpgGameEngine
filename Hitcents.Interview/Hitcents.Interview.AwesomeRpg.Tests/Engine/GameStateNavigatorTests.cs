@@ -5,6 +5,9 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Hitcents.Interview.AwesomeRpg.Tests.Engine
 {
+    /// <summary>
+    /// These tests exercise the GameStateNavigator
+    /// </summary>
     [TestClass]
     public class GameStateNavigatorTests
     {

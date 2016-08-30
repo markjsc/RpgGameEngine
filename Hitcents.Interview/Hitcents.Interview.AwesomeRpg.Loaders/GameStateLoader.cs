@@ -12,7 +12,7 @@ namespace Hitcents.Interview.AwesomeRpg.Loaders
     /// </summary>
     public class GameStateLoader : IGameStateLoader
     {
-        //TODO: These should be a more accurate/specific type (Hashtable, maybe?)...using List for expediency
+        //TODO: These should be a more optimized/specific type (Hashtable, maybe?)...using List for expediency
         private List<string> _allElementIds;
         private List<string> _allActionIds;
 

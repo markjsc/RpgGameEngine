@@ -50,7 +50,8 @@ namespace Hitcents.Interview.AwesomeRpg.DesktopClient.UserControls
             {
                 var actionId = (sender as Button).Tag.ToString();
                 App.GameContext.RunAction(actionId);
-                //Freshen up the screen
+                //Freshen up the screen (in an MVVM approach the screen's data source would be updated directly
+                // instead of re-binding to a new instance after each Action is fired)
                 this.GameState = new ObservableCollection<GameElement>(App.GameContext.GameState);
             }
             catch(Exception ex)
