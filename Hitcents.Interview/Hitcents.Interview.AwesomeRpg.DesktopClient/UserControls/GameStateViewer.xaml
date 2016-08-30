@@ -132,9 +132,16 @@
                 <Button Grid.Row="2" Grid.ColumnSpan="4"
                             x:Name="DoActionButton"
                             Style="{StaticResource Button.DoAction}"
-                            Content="Perform Action"
                             Tag="{Binding Id}"
-                            Click="DoActionButton_Click" />
+                            Click="DoActionButton_Click">
+                    <Button.Content>
+                        <TextBlock>
+                            <TextBlock>
+                                <Run Text="Perform Action (" /><Run Text="{Binding RunCount}" /><Run Text=")" />
+                            </TextBlock>
+                        </TextBlock>
+                    </Button.Content>
+                </Button>
             </Grid>
         </DataTemplate>
 

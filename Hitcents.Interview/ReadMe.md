@@ -5,6 +5,10 @@ systems for a wide range of industries before, but I think this is my first expe
 development. (Although I was an avid PC and console gamer for many years - I don't think that counts.)
 What an enjoyable and rewarding effort this has been!
 
+I wish I had more time to implement features that I generally use on larger systems - logging, better
+validation and error handling, prettier styling, etc. I attempted to leave TODO comments in appropriate
+places indicating what I would do given a bit more time.
+
 ## Assumptions
 I made the following assumptions in cases where I wasn't quite clear on the details.
 
@@ -44,6 +48,7 @@ Some additional comments for clarification:
   modifications at runtime). This is mostly out of habit based on my experience in paradigms with 
   constantly-shifting assumptions (i.e. concurrent operations, unreliable data, etc).
 * I've become accustomed to relying on ReSharper and Visual Studio Enterprise to help me get by with lazy 
-  keyboard habits and the like. I don't have the same toolset on my personal PC (where I did the interview 
-  development). So this is probably a bit more sloppy and less professional than my normal output, at 
-  least as long as the toolset crutch exists.
+  keyboard habits, unit test coverage verification and the like. I don't have the same toolset on my 
+  personal PC (where I did the interview  development) - I only have Visual Studio 2015 Community Edition.
+  So this is probably a bit more sloppy and less professional than my normal output, at least until I break
+  my addiction to tooling!

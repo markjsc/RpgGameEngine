@@ -47,6 +47,7 @@ namespace Hitcents.Interview.AwesomeRpg.Engine
             try
             {
                 var actionToRun = this.GetActionById(actionId);
+                actionToRun.RunCount++;
                 if (actionToRun != null)
                 {
                     this.RunActionSetters(actionToRun.Setters, actionId);

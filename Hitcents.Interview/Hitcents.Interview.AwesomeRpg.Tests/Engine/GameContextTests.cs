@@ -77,7 +77,40 @@ namespace Hitcents.Interview.AwesomeRpg.Tests.Engine
 
             //Assert - expected exception
         }
-        
+
+        [TestMethod]
+        public void DoesRunActionIncrementRunCount()
+        {
+            //Arrange
+            const string ActionId = "TestActionId";
+
+            var gameContext = this.GetGameContext();
+            var gameState = new List<GameElement>()
+            {
+                new GameElement()
+                {
+                    Id = "Level",
+                    Value = "5",
+                    Actions = new List<GameAction>()
+                    {
+                        new GameAction()
+                        {
+                            Id = ActionId
+                        }
+                    }
+                }
+            };
+            gameContext.BuildGameContext(gameState);
+
+            //Act
+            gameContext.RunAction(ActionId);
+            var action = gameContext.GameState.First().Actions.First();
+
+            //Assert
+            Assert.IsNotNull(action);
+            Assert.AreEqual(1, action.RunCount);
+        }
+
         [TestMethod]
         public void DoesRunActionPerformSetterWithAssignOperationWithNumerics()
         {
