@@ -13,7 +13,7 @@
         <!--TextBlock.SectionTitle-->
         <Style x:Key="TextBlock.SectionTitle" TargetType="{x:Type TextBlock}">
             <Setter Property="Background" Value="LightGray" />
-            <Setter Property="FontSize" Value="20" />
+            <Setter Property="FontSize" Value="18" />
             <Setter Property="FontWeight" Value="Bold" />
             <Setter Property="Foreground" Value="Black" />
             <Setter Property="Margin" Value="2" />
@@ -25,12 +25,24 @@
             <Setter Property="FontSize" Value="14" />
             <Setter Property="FontWeight" Value="Normal" />
             <Setter Property="Foreground" Value="Black" />
+            <Setter Property="Margin" Value="4" />
+        </Style>
+        
+        <!--TriggerTitle-->
+        <Style x:Key="TextBlock.TriggerTitle" TargetType="{x:Type TextBlock}" BasedOn="{StaticResource TextBlock.SectionSubTitle}">
+            <Setter Property="Foreground" Value="DarkGreen" />
+        </Style>
+
+        <!--ActionTitle-->
+        <Style x:Key="TextBlock.ActionTitle" TargetType="{x:Type TextBlock}" BasedOn="{StaticResource TextBlock.SectionSubTitle}">
+            <Setter Property="Foreground" Value="Coral" />
         </Style>
 
         <!--TextBlock.SetterTitle-->
         <Style x:Key="TextBlock.SetterTitle" TargetType="{x:Type TextBlock}">
             <Setter Property="FontSize" Value="12" />
             <Setter Property="FontWeight" Value="Bold" />
+            <Setter Property="Margin" Value="12,0" />
         </Style>
 
         <!--TextBlock.Label-->
@@ -62,6 +74,6 @@
             <Setter Property="HorizontalAlignment" Value="Left" />
             <Setter Property="VerticalAlignment" Value="Top" />
         </Style>
-        
+
     </Application.Resources>
 </Application>

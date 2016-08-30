@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:userControls="clr-namespace:Hitcents.Interview.AwesomeRpg.DesktopClient.UserControls"
         mc:Ignorable="d"
-        Title="Awesome RPG" Height="750" Width="800">
+        Title="Awesome RPG" Height="750" Width="800" Icon="Resources/Wizard1.ico">
     <Grid>
         <userControls:LoadXmlControl x:Name="LoadXmlControl" />
         <userControls:GameStateViewer x:Name="GameStateViewer" Visibility="Collapsed" />

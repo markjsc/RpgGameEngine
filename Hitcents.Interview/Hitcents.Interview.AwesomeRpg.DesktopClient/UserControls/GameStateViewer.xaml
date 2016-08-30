@@ -111,9 +111,8 @@
                 </Grid.ColumnDefinitions>
 
                 <TextBlock Grid.Row="0" Grid.ColumnSpan="4"
-                               Style="{StaticResource TextBlock.SectionSubTitle}">
-                        <Run Text="Action - " />
-                        <Run Text="{Binding Id}" />
+                               Style="{StaticResource TextBlock.ActionTitle}">
+                        <Run Text=" Action - " /><Run Text="{Binding Id}" />
                 </TextBlock>
 
                 <Grid Grid.Row="1" Grid.ColumnSpan="4">
@@ -164,8 +163,8 @@
                 </Grid.ColumnDefinitions>
 
                 <TextBlock Grid.Row="0" Grid.ColumnSpan="6"
-                               Style="{StaticResource TextBlock.SectionSubTitle}"
-                               Text="Trigger" />
+                               Style="{StaticResource TextBlock.TriggerTitle}"
+                               Text=" Trigger" />
 
                 <TextBlock Grid.Row="1" Grid.Column="0"
                                Style="{StaticResource TextBlock.Label}"
