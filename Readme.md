@@ -82,10 +82,9 @@ To run the Unit Tests:
 ## Project Structure
 I used the name "AwesomeRpg" because I'm not great at creatively naming systems. :-(
 
-The reusable library projects are all built as Portable libraries, using the default targets 
-(.NET 4.5, ASP.NET Core 1.0, Windows 8, and Windows Phone 8.1). This can obviously be changed 
-as needed. The Desktop Client project, as mentioned above, is WPF and the Unit Tests project is
-a standard .NET Unit Test project.
+The reusable library projects were originally built as Portable Class Libraries (PCL). but have been 
+updated to .NET Standard 2.0. The Desktop Client project, as mentioned above, is WPF and the Unit Tests project is
+a typical .NET Unit Test project.
 
 * __Contracts__ (Hitcents.Interview.AwesomeRpg.Contracts) - interfaces that can be implemented by
   the current proejcts or any future ones; also data and domain models. There is no logic here.
@@ -116,7 +115,7 @@ a standard .NET Unit Test project.
 ## Assumptions
 I made the following assumptions in cases where I wasn't quite clear on the details.
 
-* __Strings vs. Numerics__ - Based on a comment in the provided Readme.MD, I allowed the Values to be strings or 
+* __Strings vs. Numerics__ - Based on a comment in the provided instructions, I allowed the Values to be strings or 
   numerics. However the only supported Operation for strings is _Assign_. Also, the only supported Comparisons 
   for strings are _Equal_ and _NotEqual_. 
   **One critical note:** If an alpha is provided when a numeric Operation or Comparison is to be
