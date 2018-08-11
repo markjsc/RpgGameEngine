@@ -5,8 +5,7 @@ VisualStudioVersion = 15.0.27703.2047
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{2E0BBA77-FD7F-4524-A9A7-980E895889E6}"
 	ProjectSection(SolutionItems) = preProject
-		OriginalREADME.MD = OriginalREADME.MD
-		ReadMe.md = ReadMe.md
+		Readme.md = Readme.md
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hitcents.Interview.AwesomeRpg.DesktopClient", "Hitcents.Interview.AwesomeRpg.DesktopClient\Hitcents.Interview.AwesomeRpg.DesktopClient.csproj", "{98A3DD55-FA2A-4C92-A04D-B3CD223C19C3}"
