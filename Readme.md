@@ -1,4 +1,4 @@
- # Game Engine Example
+ # RPG Game Engine Example
 
 This project was created as a programming test for a technical interview. It's an engine for an RPG-style game.
 
