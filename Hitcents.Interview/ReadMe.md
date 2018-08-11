@@ -1,17 +1,72 @@
- # Mark's Notes
+ # Game Engine Example
 
-Thank you for the opportunity to provide an example of my work. I've contributed to custom developed
-systems for a wide range of industries before, but I think this is my first experience with game
-development. (Although I was an avid PC and console gamer for many years - I don't think that counts.)
-What an enjoyable and rewarding effort this has been!
+This project was created as a programming test for a technical interview. It's an engine for an RPG-style game.
+
+Here is an excerpt from the provided instructions:
+
+## Task
+
+You are tasked to implement a XML-based markup language for RPG games. It is simple to understand and meant to be written by game designers to express the logic behind the game.
+
+The XML language contains these types of XML elements:
+* Element - an arbitrary "game object" that holds meaning within the game
+  * Id - unique identifier
+  * Value - Holds a number (or maybe string) for the value of this object
+  * List of `<Element>` - for child elements, can be infinitely deep
+* Action - an action you perform to modify the game's state
+  * Id - unique identifier
+  * List of `<Setter>` - operations that run on `<Element>` objects
+* Trigger - something that happens as the result of a value changing
+  * Target - the element to watch
+  * Comparison - boolean operators: >, <, ==, !=, <=, >=
+  * List of `<Setter>` - operations that run on `<Element>` objects
+* Setter - an operation that modifies a value
+  * Target - the element to modify
+  * Operation - math operators, or assignment: =, +, -, /, *
+  * Value - the value to use for the operation
+
+For example, a game hierarchy might look something like:
+```xml
+<Element Id="CoolGame">
+  <Element Id="Player">
+    <Element Id="Level" Value="1" />
+    <Element Id="XP" Value="0" />
+    <Element Id="HP" Value="50" />
+    <Action Id="GainXP">
+      <Setter Target="XP" Operation="+" Value="10" />
+    </Action>
+    <Trigger Target="XP" Comparison=">=" Value="10">
+      <Setter Target="Level" Operation="=" Value="2" />
+    </Trigger>
+  </Element>
+</Element>
+```
+
+What this does, is create an object tree:
+* CoolGame
+ * Player
+  * Level 1
+  * XP 0
+  * HP 50
+  * [Action] GainXP
+  * [Trigger] watches XP
+
+When you run `GainXP`, `XP` should go to 10, the trigger should run and `Level` should go to 2. You can think of this thing as a state machine that *could* be used to drive the logic behind any RPG game you can think of.
+
+## Deliverables
+
+* A C# library for loading XML and running game logic, should be a nice interface that other programmers can reuse.
+* A unit test suite.
+* A "front-end" to control your library (don't worry it can be really ugly)
+ * Should have the ability for me to somehow insert my own XML file to play around.
+
+---
+
+## Developer Notes
 
 I wish I had more time to implement features that I generally use on larger systems - logging, better
 validation and error handling, prettier styling, etc. I attempted to leave TODO comments in appropriate
 places indicating what I would do given a bit more time.
-
-## Time Spent
-I spent just north of **17 hours** on this project. (In full disclosure, some of the time spent on Saturday
-and Sunday were not as focused as my usual work-day efforts due to family commitments.)
 
 ## Project Instructions
 To run the Desktop Client (WPF):
@@ -108,14 +163,3 @@ Some additional comments for clarification:
   my style so that the code is more self-documenting and try to keep comments to a minimum due to the maintenance
   liability of having comments not reflect the code over many touches in a system's lifespan. However, I'm
   happy to adapt to any style that's requested
-
-## Final Thoughts
-Even if this results in a clear 'No' on hiring me for your current open position, I would appreciate any
-feedback you can offer to help me continue growing professionally. I would also appreciate being considered
-for any future positions at Hitcents that you think may be a better fit.
-
-Thanks again for the opportunity!
-
-**Mark Johnston**  
-Mark.Johnston@yahoo.com  
-270-903-7276

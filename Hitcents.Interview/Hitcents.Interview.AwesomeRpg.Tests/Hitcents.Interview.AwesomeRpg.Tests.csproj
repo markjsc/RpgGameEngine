@@ -8,7 +8,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Hitcents.Interview.AwesomeRpg.Tests</RootNamespace>
     <AssemblyName>Hitcents.Interview.AwesomeRpg.Tests</AssemblyName>
-    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
@@ -16,6 +16,7 @@
     <ReferencePath>$(ProgramFiles)\Common Files\microsoft shared\VSTT\$(VisualStudioVersion)\UITestExtensionPackages</ReferencePath>
     <IsCodedUITest>False</IsCodedUITest>
     <TestProjectType>UnitTest</TestProjectType>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -62,20 +63,19 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Hitcents.Interview.AwesomeRpg.Contracts\Hitcents.Interview.AwesomeRpg.Contracts.csproj">
-      <Project>{d1ac1eed-e929-48e4-adfc-5058791c89c9}</Project>
-      <Name>Hitcents.Interview.AwesomeRpg.Contracts</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Hitcents.Interview.AwesomeRpg.Engine\Hitcents.Interview.AwesomeRpg.Engine.csproj">
-      <Project>{499242EA-D727-4382-8E8F-99E823EFD1F1}</Project>
+      <Project>{770b209a-ecec-4e4f-a969-a92fdceef52b}</Project>
       <Name>Hitcents.Interview.AwesomeRpg.Engine</Name>
     </ProjectReference>
     <ProjectReference Include="..\Hitcents.Interview.AwesomeRpg.Loaders\Hitcents.Interview.AwesomeRpg.Loaders.csproj">
-      <Project>{1dae69d6-b2ca-43e2-bf22-6d992e84f459}</Project>
+      <Project>{dcd764c4-01ab-4767-b8d9-c89b44883018}</Project>
       <Name>Hitcents.Interview.AwesomeRpg.Loaders</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Hitcents.Inteview.AwesomeRpg.Contracts\Hitcents.Inteview.AwesomeRpg.Contracts.csproj">
+      <Project>{72fd0417-2fd0-46b4-9895-e48075f857d1}</Project>
+      <Name>Hitcents.Inteview.AwesomeRpg.Contracts</Name>
+    </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
       <ItemGroup>
