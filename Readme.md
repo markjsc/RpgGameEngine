@@ -1,6 +1,6 @@
  # RPG Game Engine Example
 
-This project was created as a programming test for a technical interview. It's an engine for an RPG-style game.
+This project was created as a programming test for a technical interview in August, 2016. It's an engine for an RPG-style game.
 
 Here is an excerpt from the provided instructions:
 
@@ -62,7 +62,7 @@ When you run `GainXP`, `XP` should go to 10, the trigger should run and `Level` 
 
 ---
 
-## Developer Notes
+## My Notes
 
 I wish I had more time to implement features that I generally use on larger systems - logging, better
 validation and error handling, prettier styling, etc. I attempted to leave TODO comments in appropriate
