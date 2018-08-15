@@ -1,10 +1,10 @@
 language: csharp
-solution: Hitcents.Interview.sln
+solution: ./Hitcents.Interview/Hitcents.Interview.sln
 install:
-  - nuget restore Hitcents.Interview.sln
+  - nuget restore ./Hitcents.Interview/Hitcents.Interview.sln
   - nuget install NUnit.Runners -Version 3.8.0 -OutputDirectory testrunner
 script:
-  - msbuild /p:Configuration=Release Hitcents.Interview.sln
+  - msbuild /p:Configuration=Release ./Hitcents.Interview/Hitcents.Interview.sln
   - mono ./testrunner/NUnit.ConsoleRunner.3.8.0/tools/nunit3-console.exe ./Hitcents.Interview.AwesomeRpg.Tests/bin/Release/Hitcents.Interview.AwesomeRpg.Tests.dll
   - mono nuget pack ./Hitcents.Interview.AwesomeRpg.DesktopClient
   
