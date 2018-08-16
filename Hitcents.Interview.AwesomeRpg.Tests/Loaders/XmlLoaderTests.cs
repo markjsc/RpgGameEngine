@@ -1,16 +1,16 @@
 ﻿using Hitcents.Interview.AwesomeRpg.Contracts.Models.RawXml;
 using Hitcents.Interview.AwesomeRpg.Loaders;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace Hitcents.Interview.AwesomeRpg.Tests.Loaders
 {
-    [TestClass]
+    [TestFixture]
     public class XmlLoaderTests
     {
         /// <summary>
         /// Very basic test to make sure the XML deserialized correctly.
         /// </summary>
-        [TestMethod]
+        [Test]
         public void DoesLoadXmlReturnProperlyDeserialiezdObjects()
         {
             //Arrange
@@ -24,13 +24,13 @@ namespace Hitcents.Interview.AwesomeRpg.Tests.Loaders
 
             //GameConfig/Elements/CoolGame
             var coolGameElement = elements[0];
-            Assert.IsInstanceOfType(coolGameElement, typeof(Element));
+            Assert.IsInstanceOf(typeof(Element), coolGameElement);
             Assert.AreEqual("CoolGame", coolGameElement.Id);
             Assert.AreEqual(1, coolGameElement.Elements.Length);
 
             //GameConfig/Elements/CoolGame/Player
             var playerElement = coolGameElement.Elements[0];
-            Assert.IsInstanceOfType(playerElement, typeof(Element));
+            Assert.IsInstanceOf(typeof(Element), playerElement);
             Assert.AreEqual("Player", playerElement.Id);
             Assert.AreEqual(5, playerElement.Elements.Length);
 
@@ -41,7 +41,7 @@ namespace Hitcents.Interview.AwesomeRpg.Tests.Loaders
             
             //GameConfig/Elements/CoolGame/Player/Action/GainXP/Setters
             var gainXpActionSetters = playerElement.Actions[0].Setters;
-            Assert.IsInstanceOfType(gainXpActionSetters, typeof(Setter[]));
+            Assert.IsInstanceOf(typeof(Setter[]), gainXpActionSetters);
             Assert.AreEqual(1, gainXpActionSetters.Length);
             Assert.AreEqual("XP", gainXpActionSetters[0].Target);
             Assert.AreEqual("+", gainXpActionSetters[0].Operation);
@@ -54,7 +54,7 @@ namespace Hitcents.Interview.AwesomeRpg.Tests.Loaders
 
             //GameConfig/Elements/CoolGame/Player/Action/ClearHP/Setters
             var clearHpActionSetters = playerElement.Actions[1].Setters;
-            Assert.IsInstanceOfType(clearHpActionSetters, typeof(Setter[]));
+            Assert.IsInstanceOf(typeof(Setter[]), clearHpActionSetters);
             Assert.AreEqual(2, clearHpActionSetters.Length);
             Assert.AreEqual("HP", clearHpActionSetters[0].Target);
             Assert.AreEqual("=", clearHpActionSetters[0].Operation);
@@ -72,7 +72,7 @@ namespace Hitcents.Interview.AwesomeRpg.Tests.Loaders
 
             //GameConfig/Elements/CoolGame/Player/Trigger/XP/Setters
             var triggerXpSetters = playerElement.Triggers[0].Setters;
-            Assert.IsInstanceOfType(triggerXpSetters, typeof(Setter[]));
+            Assert.IsInstanceOf(typeof(Setter[]), triggerXpSetters);
             Assert.AreEqual(2, triggerXpSetters.Length);
             Assert.AreEqual("Level", triggerXpSetters[0].Target);
             Assert.AreEqual("=", triggerXpSetters[0].Operation);
@@ -90,7 +90,7 @@ namespace Hitcents.Interview.AwesomeRpg.Tests.Loaders
 
             //GameConfig/Elements/CoolGame/Player/Trigger/Name/Setters
             var triggerNameSetters = playerElement.Triggers[1].Setters;
-            Assert.IsInstanceOfType(triggerNameSetters, typeof(Setter[]));
+            Assert.IsInstanceOf(typeof(Setter[]), triggerNameSetters);
             Assert.AreEqual(1, triggerNameSetters.Length);
             Assert.AreEqual("Mode", triggerNameSetters[0].Target);
             Assert.AreEqual("=", triggerNameSetters[0].Operation);
@@ -105,7 +105,7 @@ namespace Hitcents.Interview.AwesomeRpg.Tests.Loaders
 
             //GameConfig/Elements/CoolGame/Player/Trigger/Mode/Setters
             var triggerModeSetters = playerElement.Triggers[2].Setters;
-            Assert.IsInstanceOfType(triggerModeSetters, typeof(Setter[]));
+            Assert.IsInstanceOf(typeof(Setter[]), triggerModeSetters);
             Assert.AreEqual(1, triggerModeSetters.Length);
             Assert.AreEqual("Level", triggerModeSetters[0].Target);
             Assert.AreEqual("=", triggerModeSetters[0].Operation);

@@ -1,14 +1,14 @@
 ﻿using System.Collections.Generic;
 using Hitcents.Interview.AwesomeRpg.Contracts.Models;
 using Hitcents.Interview.AwesomeRpg.Engine;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace Hitcents.Interview.AwesomeRpg.Tests.Engine
 {
     /// <summary>
     /// These tests exercise the GameStateNavigator
     /// </summary>
-    [TestClass]
+    [TestFixture]
     public class GameStateNavigatorTests
     {
         #region Test Data
@@ -108,7 +108,7 @@ namespace Hitcents.Interview.AwesomeRpg.Tests.Engine
 
         #endregion
 
-        [TestMethod]
+        [Test]
         public void DoesGetElementByIdReturnExpectedElement()
         {
             //Arrange
@@ -122,7 +122,7 @@ namespace Hitcents.Interview.AwesomeRpg.Tests.Engine
             Assert.AreEqual("1", actual.Value);
         }
 
-        [TestMethod]
+        [Test]
         public void DoesGetElementByIdReturnExpectedElementRegardlessOfCase()
         {
             //Arrange
@@ -136,7 +136,7 @@ namespace Hitcents.Interview.AwesomeRpg.Tests.Engine
             Assert.AreEqual("1", actual.Value);
         }
 
-        [TestMethod]
+        [Test]
         public void DoesGetElementByIdReturnNullWhenElementIdDoesNotExist()
         {
             //Arrange
@@ -149,7 +149,7 @@ namespace Hitcents.Interview.AwesomeRpg.Tests.Engine
             Assert.IsNull(actual);
         }
 
-        [TestMethod]
+        [Test]
         public void DoesGetActionByIdReturnExpectedAction()
         {
             //Arrange
@@ -163,7 +163,7 @@ namespace Hitcents.Interview.AwesomeRpg.Tests.Engine
             Assert.AreEqual(actual.Id, "ClearHP");
         }
 
-        [TestMethod]
+        [Test]
         public void DoesGetActionByIdReturnExpectedActionRegardlessOfCase()
         {
             //Arrange
@@ -177,7 +177,7 @@ namespace Hitcents.Interview.AwesomeRpg.Tests.Engine
             Assert.AreEqual(actual.Id, "ClearHP");
         }
 
-        [TestMethod]
+        [Test]
         public void DoesGetActionByIdReturnNullWhenActionDoesNotExist()
         {
             //Arrange
@@ -190,7 +190,7 @@ namespace Hitcents.Interview.AwesomeRpg.Tests.Engine
             Assert.IsNull(actual);
         }
 
-        [TestMethod]
+        [Test]
         public void DoesGetTriggersByTargetReturnExpectedTriggers()
         {
             //Arrange
@@ -206,7 +206,7 @@ namespace Hitcents.Interview.AwesomeRpg.Tests.Engine
             Assert.AreEqual("Mode", actual[1].TargetId);
         }
 
-        [TestMethod]
+        [Test]
         public void DoesGetTriggersByTargetReturnExpectedTriggersRegardlessOfCase()
         {
             //Arrange

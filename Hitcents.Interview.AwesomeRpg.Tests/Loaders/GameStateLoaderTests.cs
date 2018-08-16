@@ -3,14 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using Hitcents.Interview.AwesomeRpg.Contracts.Models.RawXml;
 using Hitcents.Interview.AwesomeRpg.Loaders;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace Hitcents.Interview.AwesomeRpg.Tests.Loaders
 {
-    [TestClass]
+    [TestFixture]
     public class GameStateLoaderTests
     {
-        [TestMethod, ExpectedException(typeof(Exception))]
+        [Test]
         public void DoesLoadGameStateThrowExceptionWhenDuplicateElementIdIsAddedInSameLevel()
         {
             var gameStateLoader = new GameStateLoader();
@@ -28,12 +28,12 @@ namespace Hitcents.Interview.AwesomeRpg.Tests.Loaders
             };
 
             //Act
-            var actual = gameStateLoader.LoadGameState(elements);
+            Assert.Throws<Exception>(() => gameStateLoader.LoadGameState(elements));
 
             //Assert - expected exception
         }
 
-        [TestMethod, ExpectedException(typeof(Exception))]
+        [Test]
         public void DoesLoadGameStateThrowExceptionWhenDuplicateElementIdIsAddedInDifferentLevel()
         {
             var gameStateLoader = new GameStateLoader();
@@ -51,12 +51,12 @@ namespace Hitcents.Interview.AwesomeRpg.Tests.Loaders
             };
 
             //Act
-            var actual = gameStateLoader.LoadGameState(elements);
+            Assert.Throws<Exception>(() => gameStateLoader.LoadGameState(elements));
 
             //Assert - expected exception
         }
 
-        [TestMethod, ExpectedException(typeof(Exception))]
+        [Test]
         public void DoesLoadGameStateThrowExceptionWhenDuplicateActionIdIsAdded()
         {
             var gameStateLoader = new GameStateLoader();
@@ -74,12 +74,12 @@ namespace Hitcents.Interview.AwesomeRpg.Tests.Loaders
             };
 
             //Act
-            var actual = gameStateLoader.LoadGameState(elements);
+            Assert.Throws<Exception>(() => gameStateLoader.LoadGameState(elements));
 
             //Assert - expected exception
         }
 
-        [TestMethod]
+        [Test]
         public void DoesLoadGameStateWorkWithHappyPath()
         {
             //Arrange

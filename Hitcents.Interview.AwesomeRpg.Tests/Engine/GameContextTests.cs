@@ -4,7 +4,7 @@ using System.Linq;
 using Hitcents.Interview.AwesomeRpg.Contracts.Interfaces;
 using Hitcents.Interview.AwesomeRpg.Contracts.Models;
 using Hitcents.Interview.AwesomeRpg.Engine;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace Hitcents.Interview.AwesomeRpg.Tests.Engine
 {
@@ -13,7 +13,7 @@ namespace Hitcents.Interview.AwesomeRpg.Tests.Engine
     /// This includes checking the behavior when running actions with various
     /// configurations.
     /// </summary>
-    [TestClass]
+    [TestFixture]
     public class GameContextTests
     {
         private class BadGameStateNavigator : IGameStateNavigator
@@ -40,7 +40,7 @@ namespace Hitcents.Interview.AwesomeRpg.Tests.Engine
             return new GameContext(gameStateNavigator);
         }
 
-        [TestMethod]
+        [Test]
         public void DoesBuildGameContextSetGameState()
         {
             //Arrange
@@ -59,31 +59,31 @@ namespace Hitcents.Interview.AwesomeRpg.Tests.Engine
             Assert.AreEqual(3, gameContext.GameState.Count);
         }
 
-        [TestMethod, ExpectedException(typeof(Exception))]
+        [Test]
         public void DoesRunActionFailWhenActionIdIsNotRecognized()
         {
             //Arrange
             var gameContext = this.GetGameContext();
 
             //Act
-            gameContext.RunAction("abc");
+            Assert.Throws<Exception>(() => gameContext.RunAction("abc"));
 
             //Assert - expected exception
         }
 
-        [TestMethod, ExpectedException(typeof(Exception))]
+        [Test]
         public void DoesRunActionFailWhenGameStateNavigatorThrowsException()
         {
             //Arrange
             var gameContext = new GameContext(new BadGameStateNavigator());
 
             //Act
-            gameContext.RunAction("abc");
+            Assert.Throws<Exception>(() => gameContext.RunAction("abc"));
 
             //Assert - expected exception
         }
 
-        [TestMethod]
+        [Test]
         public void DoesRunActionIncrementRunCount()
         {
             //Arrange
@@ -116,7 +116,7 @@ namespace Hitcents.Interview.AwesomeRpg.Tests.Engine
             Assert.AreEqual(1, action.RunCount);
         }
 
-        [TestMethod]
+        [Test]
         public void DoesRunActionPerformSetterWithAssignOperationWithNumerics()
         {
             //Arrange
@@ -153,7 +153,7 @@ namespace Hitcents.Interview.AwesomeRpg.Tests.Engine
             Assert.AreEqual(ExpectedValue, gameContext.GameState.First().Value);
         }
 
-        [TestMethod]
+        [Test]
         public void DoesRunActionPerformSetterWithAssignOperationWithAlphas()
         {
             //Arrange
@@ -190,7 +190,7 @@ namespace Hitcents.Interview.AwesomeRpg.Tests.Engine
             Assert.AreEqual(ExpectedValue, gameContext.GameState.First().Value);
         }
 
-        [TestMethod]
+        [Test]
         public void DoesRunActionPerformSetterWithAddOperationWithNumerics()
         {
             //Arrange
@@ -227,7 +227,7 @@ namespace Hitcents.Interview.AwesomeRpg.Tests.Engine
             Assert.AreEqual(ExpectedValue, gameContext.GameState.First().Value);
         }
 
-        [TestMethod]
+        [Test]
         public void DoesRunActionPerformSetterWithAddOperationWithAlphaSetter()
         {
             //Arrange
@@ -264,7 +264,7 @@ namespace Hitcents.Interview.AwesomeRpg.Tests.Engine
             Assert.AreEqual(ExpectedValue, gameContext.GameState.First().Value);
         }
 
-        [TestMethod]
+        [Test]
         public void DoesRunActionPerformSetterWithAddOperationWithAlphaValue()
         {
             //Arrange
@@ -301,7 +301,7 @@ namespace Hitcents.Interview.AwesomeRpg.Tests.Engine
             Assert.AreEqual(ExpectedValue, gameContext.GameState.First().Value);
         }
 
-        [TestMethod]
+        [Test]
         public void DoesRunActionPerformSetterWithDivideOperationWithNonZeroNumerics()
         {
             //Arrange
@@ -338,7 +338,7 @@ namespace Hitcents.Interview.AwesomeRpg.Tests.Engine
             Assert.AreEqual(ExpectedValue, gameContext.GameState.First().Value);
         }
 
-        [TestMethod]
+        [Test]
         public void DoesRunActionPerformSetterWithDivideOperationWithZeroSetter()
         {
             //Arrange
@@ -375,7 +375,7 @@ namespace Hitcents.Interview.AwesomeRpg.Tests.Engine
             Assert.AreEqual(ExpectedValue, gameContext.GameState.First().Value);
         }
 
-        [TestMethod]
+        [Test]
         public void DoesRunActionPerformSetterWithDivideOperationWithAlphaSetter()
         {
             //Arrange
@@ -412,7 +412,7 @@ namespace Hitcents.Interview.AwesomeRpg.Tests.Engine
             Assert.AreEqual(ExpectedValue, gameContext.GameState.First().Value);
         }
 
-        [TestMethod]
+        [Test]
         public void DoesRunActionPerformSetterWithDivideOperationWithAlphaValue()
         {
             //Arrange
@@ -449,7 +449,7 @@ namespace Hitcents.Interview.AwesomeRpg.Tests.Engine
             Assert.AreEqual(ExpectedValue, gameContext.GameState.First().Value);
         }
 
-        [TestMethod]
+        [Test]
         public void DoesRunActionPerformSetterWithMultiplyOperationWithNumerics()
         {
             //Arrange
@@ -486,7 +486,7 @@ namespace Hitcents.Interview.AwesomeRpg.Tests.Engine
             Assert.AreEqual(ExpectedValue, gameContext.GameState.First().Value);
         }
 
-        [TestMethod]
+        [Test]
         public void DoesRunActionPerformSetterWithMultiplyOperationWithAlphaSetter()
         {
             //Arrange
@@ -523,7 +523,7 @@ namespace Hitcents.Interview.AwesomeRpg.Tests.Engine
             Assert.AreEqual(ExpectedValue, gameContext.GameState.First().Value);
         }
 
-        [TestMethod]
+        [Test]
         public void DoesRunActionPerformSetterWithMultiplyOperationWithAlphaValue()
         {
             //Arrange
@@ -560,7 +560,7 @@ namespace Hitcents.Interview.AwesomeRpg.Tests.Engine
             Assert.AreEqual(ExpectedValue, gameContext.GameState.First().Value);
         }
 
-        [TestMethod]
+        [Test]
         public void DoesRunActionPerformSetterWithSubtractOperationWithNumerics()
         {
             //Arrange
@@ -597,7 +597,7 @@ namespace Hitcents.Interview.AwesomeRpg.Tests.Engine
             Assert.AreEqual(ExpectedValue, gameContext.GameState.First().Value);
         }
 
-        [TestMethod]
+        [Test]
         public void DoesRunActionPerformSetterWithSubtractOperationWithAlphaSetter()
         {
             //Arrange
@@ -634,7 +634,7 @@ namespace Hitcents.Interview.AwesomeRpg.Tests.Engine
             Assert.AreEqual(ExpectedValue, gameContext.GameState.First().Value);
         }
 
-        [TestMethod]
+        [Test]
         public void DoesRunActionPerformSetterWithSubtractOperationWithAlphaValue()
         {
             //Arrange
@@ -671,7 +671,7 @@ namespace Hitcents.Interview.AwesomeRpg.Tests.Engine
             Assert.AreEqual(ExpectedValue, gameContext.GameState.First().Value);
         }
 
-        [TestMethod]
+        [Test]
         public void DoesRunActionFireTriggerWhenComparisonIsEqualWithNumerics()
         {
             //Arrange
@@ -723,7 +723,7 @@ namespace Hitcents.Interview.AwesomeRpg.Tests.Engine
             Assert.AreEqual(ExpectedValue, gameContext.GameState.First().Value);
         }
 
-        [TestMethod]
+        [Test]
         public void DoesRunActionFireTriggerWhenComparisonIsEqualWithAlphas()
         {
             //Arrange
@@ -775,7 +775,7 @@ namespace Hitcents.Interview.AwesomeRpg.Tests.Engine
             Assert.AreEqual(ExpectedValue, gameContext.GameState.First().Value);
         }
 
-        [TestMethod]
+        [Test]
         public void DoesRunActionFireTriggerWhenComparisonIsNotEqualWithNumerics()
         {
             //Arrange
@@ -827,7 +827,7 @@ namespace Hitcents.Interview.AwesomeRpg.Tests.Engine
             Assert.AreEqual(ExpectedValue, gameContext.GameState.First().Value);
         }
 
-        [TestMethod]
+        [Test]
         public void DoesRunActionFireTriggerWhenComparisonIsNotEqualWithAlphas()
         {
             //Arrange
@@ -879,7 +879,7 @@ namespace Hitcents.Interview.AwesomeRpg.Tests.Engine
             Assert.AreEqual(ExpectedValue, gameContext.GameState.First().Value);
         }
 
-        [TestMethod]
+        [Test]
         public void DoesRunActionFireTriggerWhenComparisonIsGreaterThanWithNumerics()
         {
             //Arrange
@@ -931,7 +931,7 @@ namespace Hitcents.Interview.AwesomeRpg.Tests.Engine
             Assert.AreEqual(ExpectedValue, gameContext.GameState.First().Value);
         }
 
-        [TestMethod]
+        [Test]
         public void DoesRunActionFireTriggerWhenComparisonIsGreaterThanWithAlphaTrigger()
         {
             //Arrange
@@ -983,7 +983,7 @@ namespace Hitcents.Interview.AwesomeRpg.Tests.Engine
             Assert.AreEqual(ExpectedValue, gameContext.GameState.First().Value);
         }
 
-        [TestMethod]
+        [Test]
         public void DoesRunActionFireTriggerWhenComparisonIsGreaterThanWithAlphaValue()
         {
             //Arrange
@@ -1035,7 +1035,7 @@ namespace Hitcents.Interview.AwesomeRpg.Tests.Engine
             Assert.AreEqual(ExpectedValue, gameContext.GameState.First().Value);
         }
 
-        [TestMethod]
+        [Test]
         public void DoesRunActionFireTriggerWhenComparisonIsGreaterThanOrEqualWithNumerics()
         {
             //Arrange
@@ -1087,7 +1087,7 @@ namespace Hitcents.Interview.AwesomeRpg.Tests.Engine
             Assert.AreEqual(ExpectedValue, gameContext.GameState.First().Value);
         }
 
-        [TestMethod]
+        [Test]
         public void DoesRunActionFireTriggerWhenComparisonIsGreaterThanOrEqualWithAlphaTrigger()
         {
             //Arrange
@@ -1139,7 +1139,7 @@ namespace Hitcents.Interview.AwesomeRpg.Tests.Engine
             Assert.AreEqual(ExpectedValue, gameContext.GameState.First().Value);
         }
 
-        [TestMethod]
+        [Test]
         public void DoesRunActionFireTriggerWhenComparisonIsGreaterThanOrEqualWithAlphaValue()
         {
             //Arrange
@@ -1191,7 +1191,7 @@ namespace Hitcents.Interview.AwesomeRpg.Tests.Engine
             Assert.AreEqual(ExpectedValue, gameContext.GameState.First().Value);
         }
 
-        [TestMethod]
+        [Test]
         public void DoesRunActionFireTriggerWhenComparisonIsLessThanWithNumerics()
         {
             //Arrange
@@ -1243,7 +1243,7 @@ namespace Hitcents.Interview.AwesomeRpg.Tests.Engine
             Assert.AreEqual(ExpectedValue, gameContext.GameState.First().Value);
         }
 
-        [TestMethod]
+        [Test]
         public void DoesRunActionFireTriggerWhenComparisonIsLessThanWithAlphaTrigger()
         {
             //Arrange
@@ -1295,7 +1295,7 @@ namespace Hitcents.Interview.AwesomeRpg.Tests.Engine
             Assert.AreEqual(ExpectedValue, gameContext.GameState.First().Value);
         }
 
-        [TestMethod]
+        [Test]
         public void DoesRunActionFireTriggerWhenComparisonIsLessThanWithAlphaValue()
         {
             //Arrange
@@ -1347,7 +1347,7 @@ namespace Hitcents.Interview.AwesomeRpg.Tests.Engine
             Assert.AreEqual(ExpectedValue, gameContext.GameState.First().Value);
         }
 
-        [TestMethod]
+        [Test]
         public void DoesRunActionFireTriggerWhenComparisonIsLessThanOrEqualWithNumerics()
         {
             //Arrange
@@ -1399,7 +1399,7 @@ namespace Hitcents.Interview.AwesomeRpg.Tests.Engine
             Assert.AreEqual(ExpectedValue, gameContext.GameState.First().Value);
         }
 
-        [TestMethod]
+        [Test]
         public void DoesRunActionFireTriggerWhenComparisonIsLessThanOrEqualWithAlphaTrigger()
         {
             //Arrange
@@ -1451,7 +1451,7 @@ namespace Hitcents.Interview.AwesomeRpg.Tests.Engine
             Assert.AreEqual(ExpectedValue, gameContext.GameState.First().Value);
         }
 
-        [TestMethod]
+        [Test]
         public void DoesRunActionFireTriggerWhenComparisonIsLessThanOrEqualWithAlphaValue()
         {
             //Arrange
