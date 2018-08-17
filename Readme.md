@@ -1,4 +1,4 @@
- # RPG Game Engine Example
+ # RPG Game Engine Example [![Build status](https://ci.appveyor.com/api/projects/status/bx5ih7udf5ur62if?svg=true)](https://ci.appveyor.com/project/markjsc/rpggameengine)
 
 This project was created as a programming test for a technical interview in August, 2016. It's an engine for an RPG-style game.
 

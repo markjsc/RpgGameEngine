@@ -124,6 +124,10 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Hitcents.Interview.AwesomeRpg.Contracts\Hitcents.Interview.AwesomeRpg.Contracts.csproj">
+      <Project>{56df9882-1ad8-4d0f-bfce-4ccf28491b37}</Project>
+      <Name>Hitcents.Interview.AwesomeRpg.Contracts</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Hitcents.Interview.AwesomeRpg.Engine\Hitcents.Interview.AwesomeRpg.Engine.csproj">
       <Project>{770b209a-ecec-4e4f-a969-a92fdceef52b}</Project>
       <Name>Hitcents.Interview.AwesomeRpg.Engine</Name>
@@ -131,10 +135,6 @@
     <ProjectReference Include="..\Hitcents.Interview.AwesomeRpg.Loaders\Hitcents.Interview.AwesomeRpg.Loaders.csproj">
       <Project>{dcd764c4-01ab-4767-b8d9-c89b44883018}</Project>
       <Name>Hitcents.Interview.AwesomeRpg.Loaders</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Hitcents.Inteview.AwesomeRpg.Contracts\Hitcents.Inteview.AwesomeRpg.Contracts.csproj">
-      <Project>{72fd0417-2fd0-46b4-9895-e48075f857d1}</Project>
-      <Name>Hitcents.Inteview.AwesomeRpg.Contracts</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

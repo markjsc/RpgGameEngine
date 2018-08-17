@@ -11,13 +11,13 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hitcents.Interview.AwesomeRpg.DesktopClient", "Hitcents.Interview.AwesomeRpg.DesktopClient\Hitcents.Interview.AwesomeRpg.DesktopClient.csproj", "{98A3DD55-FA2A-4C92-A04D-B3CD223C19C3}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Hitcents.Inteview.AwesomeRpg.Contracts", "Hitcents.Inteview.AwesomeRpg.Contracts\Hitcents.Inteview.AwesomeRpg.Contracts.csproj", "{72FD0417-2FD0-46B4-9895-E48075F857D1}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Hitcents.Interview.AwesomeRpg.Engine", "Hitcents.Interview.AwesomeRpg.Engine\Hitcents.Interview.AwesomeRpg.Engine.csproj", "{770B209A-ECEC-4E4F-A969-A92FDCEEF52B}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Hitcents.Interview.AwesomeRpg.Loaders", "Hitcents.Interview.AwesomeRpg.Loaders\Hitcents.Interview.AwesomeRpg.Loaders.csproj", "{DCD764C4-01AB-4767-B8D9-C89B44883018}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hitcents.Interview.AwesomeRpg.Tests", "Hitcents.Interview.AwesomeRpg.Tests\Hitcents.Interview.AwesomeRpg.Tests.csproj", "{42AF5CC0-B2C9-46C5-8DEC-50BEEEA3C663}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Hitcents.Interview.AwesomeRpg.Contracts", "Hitcents.Interview.AwesomeRpg.Contracts\Hitcents.Interview.AwesomeRpg.Contracts.csproj", "{56DF9882-1AD8-4D0F-BFCE-4CCF28491B37}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -29,10 +29,6 @@ Global
 		{98A3DD55-FA2A-4C92-A04D-B3CD223C19C3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{98A3DD55-FA2A-4C92-A04D-B3CD223C19C3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{98A3DD55-FA2A-4C92-A04D-B3CD223C19C3}.Release|Any CPU.Build.0 = Release|Any CPU
-		{72FD0417-2FD0-46B4-9895-E48075F857D1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{72FD0417-2FD0-46B4-9895-E48075F857D1}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{72FD0417-2FD0-46B4-9895-E48075F857D1}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{72FD0417-2FD0-46B4-9895-E48075F857D1}.Release|Any CPU.Build.0 = Release|Any CPU
 		{770B209A-ECEC-4E4F-A969-A92FDCEEF52B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{770B209A-ECEC-4E4F-A969-A92FDCEEF52B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{770B209A-ECEC-4E4F-A969-A92FDCEEF52B}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -45,6 +41,10 @@ Global
 		{42AF5CC0-B2C9-46C5-8DEC-50BEEEA3C663}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{42AF5CC0-B2C9-46C5-8DEC-50BEEEA3C663}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{42AF5CC0-B2C9-46C5-8DEC-50BEEEA3C663}.Release|Any CPU.Build.0 = Release|Any CPU
+		{56DF9882-1AD8-4D0F-BFCE-4CCF28491B37}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{56DF9882-1AD8-4D0F-BFCE-4CCF28491B37}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{56DF9882-1AD8-4D0F-BFCE-4CCF28491B37}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{56DF9882-1AD8-4D0F-BFCE-4CCF28491B37}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
